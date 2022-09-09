@@ -10,7 +10,7 @@
     <div class="grid grid--f flex row-wrap block-rel">
       <div class="reviews-box">
         <div class="customer-img">
-          <img src="{{ block.settings.image | img_url: '' }}" alt="" />
+          <img class="lazy2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{ block.settings.image | img_url: '' }}" alt="" />
         </div>
         <h3>{{ block.settings.title_1}}</h3>
         {{ block.settings.text_2}}

@@ -26,13 +26,13 @@
          data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}" 
          data-description="{{ product.description | escape }}"   
          data-product-sku="{{product.handle}}">   
-      {{ product.metafields.stamped.reviews }}   
+      {{ product.metafields.stamped.reviews | replace: "<link href", "<link data-href" }}   
     </div>
   </div>
 </div>
 
-<script>
-  $(function(){
+<script type="lazyload2">
+  setTimeout(function(){
     $('#reviewsHeading').wbskSwiper({
       slidesPerView: 1,
       loop:true,

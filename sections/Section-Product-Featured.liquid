@@ -9,7 +9,11 @@
           {% assign variantTitles = image.variants | map:'title' | join:' ' %}
           {% unless variantTitles contains '24k' %}
           <div class="swiper-slide" data-imageId="{{image.id}}">  
-            <img imgID="{{image.id}}" class="lazyload" data-src="{{ image | product_img_url: '1024x' }}" src="{{ image | product_img_url: '1024x' }}"/>
+                {% if forloop.first == true %}
+                    <img imgID="{{image.id}}" class="lazyloaded" src="{{ image | product_img_url: '1024x' }}"/>
+                {% else %}
+                    <img imgID="{{image.id}}" class="lazyloaded lazy2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{ image | product_img_url: '1024x' }}"/>
+                {% endif %}  
           </div>
           {% endunless %}
           {% endfor %}
@@ -30,8 +34,8 @@
       </div>
 
       {% if template == 'index' %}
-      <script>
-        $(function(){
+      <script type="lazyload2">
+        setTimeout(function(){
           var swiper = new Swiper(".mySwiper-thumb", {
             spaceBetween: 10,
             slidesPerView: 5,
@@ -64,8 +68,8 @@
         })
       </script>
       {% else %}
-      <script>
-        $(function(){
+      <script type="lazyload2">
+        setTimeout(function(){
           var swiper = new Swiper(".mySwiper-thumb", {
             spaceBetween: 10,
             slidesPerView: 5,

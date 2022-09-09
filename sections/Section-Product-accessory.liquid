@@ -18,7 +18,8 @@
           </div>
            <div class="swiper-pagination"></div>
         </div>
-        <script>
+        <script type="lazyload2">
+        
         var swiper0 = new Swiper(".mySwiper_mob", {
           slidesPerView: "auto",
           centeredSlides: true,
@@ -64,9 +65,11 @@
         </div>
       </div>
       {% endif %}
-      <script>
+      <script type="lazyload2">
+        
         {% if featuredProduct.media.size > 1 %}
-        $(function(){
+        
+        setTimeout(function(){
           var swiper = new Swiper(".mySwiper-thumb", {
             spaceBetween: 10,
             slidesPerView: 5,

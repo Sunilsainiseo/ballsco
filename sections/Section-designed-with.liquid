@@ -19,9 +19,9 @@
             <h4>{{ block.settings.text }}</h4>
           </div>
           <div class="set-img">
-            <img class="{% if block.settings.image_mob %}desk_img_new{% endif %}" src="{{ block.settings.image | img_url: '' }}" alt="" />
+            <img class="lazy2 lazy3 {% if block.settings.image_mob %}desk_img_new{% endif %}" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{ block.settings.image | img_url: '' }}" alt="" />
           {% if block.settings.image_mob %}
-            <img class="mob_img"  src="{{ block.settings.image_mob | img_url: '' }}" alt="" />
+            <img class="lazy2 lazy3 mob_img"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{ block.settings.image_mob | img_url: '' }}" alt="" />
             {% endif %}
           </div>
           {% if forloop.index == 2 %}
@@ -330,11 +330,3 @@
 ]
 }
 {% endschema %}
-
-{% stylesheet %}
-{% endstylesheet %}
-
-{% javascript %}
-
-
-{% endjavascript %}

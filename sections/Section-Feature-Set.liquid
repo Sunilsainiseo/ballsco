@@ -6,7 +6,7 @@
     </div>
     <div class="d-flex flex-nowrap align-items-end">
       <div class="Fset-L">
-        <img src="{{ section.settings.section_image | img_url: '1024x1024' }}" alt="" />
+        <img class="lazy2 lazy3" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{ section.settings.section_image | img_url: '1024x1024' }}" alt="" />
       </div>
       <div class="Fset-R">
         <div class="Fset-R-Inner">
@@ -32,7 +32,7 @@
 
       <ul class="swiper-wrapper d-flex align-items-end">
         {% for block in section.blocks %}
-        <li class="swiper-slide" style="background-image: url({{ block.settings.image | img_url: '' }})">
+        <li class="swiper-slide lazybg" data-style="background-image: url({{ block.settings.image | img_url: '' }})">
 
           <div class="d-flex flex-nowrap align-items-end">
             <div class="set-left">
@@ -52,8 +52,8 @@
   </div>
 </div>
 
-<script>
-  $(function(){
+<script type="lazyload2">
+  setTimeout(function(){
     var menu = [
       {% for block in section.blocks %}
       '{{ block.settings.title }}',
@@ -509,12 +509,4 @@
 ]
 }
 {% endschema %}
-
-{% stylesheet %}
-{% endstylesheet %}
-
-{% javascript %}
-
-
-{% endjavascript %}
 

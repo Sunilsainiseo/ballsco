@@ -7,7 +7,7 @@
     <div class="wr_pro d-flex flex-nowrap grid grid--f flex row-wrap block-rel">
       <div class="pro_info_new block-6/12 cell-l cell-r row--l  @mobile-mobile__block-12/12">
         <div class="pro_info mobile">
-          <h3 class="pro_title"><span>{{product2.title}}</span><img class="nickyour-img" src="{{ section.settings.image | img_url: '' }}" alt="" /></h3>
+          <h3 class="pro_title"><span>{{product2.title}}</span><img class="nickyour-img lazy2 lazy3" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{ section.settings.image | img_url: '' }}" alt="" /></h3>
           <div class="price_pro">
             <span class="first_price">{{product2.variants[0].price | money }}</span>
             <div class="save-percent-price">
@@ -25,7 +25,7 @@
               {% for image in product2.images %}
               {% assign variantTitles = image.variants | map:'title' | join:' ' %}
               <div class="swiper-slide" data-imageId="{{image.id}}">  
-                <img imgID="{{image.id}}" class="lazyload" data-src="{{ image | product_img_url: '640x' }}" src="{{ image | product_img_url: '640x' }}"/>
+                <img imgID="{{image.id}}" class="lazyloaded lazy2 lazy3" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{ image | product_img_url: '640x' }}" src="{{ image | product_img_url: '640x' }}"/>
               </div>
               {% endfor %}
             </div>
@@ -36,7 +36,7 @@
                 {% for image in product2.images %}
                 {% assign variantTitles = image.variants | map:'title' | join:' ' %}
                 <div class="swiper-slide" data-imageId="{{image.id}}">  
-                  <img imgID="{{image.id}}" class="lazyload" data-src="{{ image | product_img_url: '360x' }}" src="{{ image | product_img_url: '360x' }}"/>
+                  <img imgID="{{image.id}}" class="lazyloaded lazy2 lazy3" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{ image | product_img_url: '360x' }}" src="{{ image | product_img_url: '360x' }}"/>
                 </div>
                 {% endfor %}
               </div>
@@ -51,7 +51,7 @@
       </div>
       <div class=" block-6/12 cell-l cell-r row--l  @mobile-mobile__block-12/12">
         <div class="pro_info desk">
-          <h3 class="pro_title"><span>{{product2.title}}</span><img class="nickyour-img" src="{{ section.settings.image | img_url: '' }}" alt="" /></h3>
+          <h3 class="pro_title"><span>{{product2.title}}</span><img class="nickyour-img lazy2 lazy3" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{ section.settings.image | img_url: '' }}" alt="" /></h3>
           <div class="price_pro">
             <span class="first_price">{{product2.variants[0].price | money }}</span>
             <div class="save-percent-price">
@@ -101,11 +101,11 @@
             </form>
 
           </div>
-          <div class="pay_icon"><img class="nickyour-img" src="{{ 'shipp.png' | asset_url }}" alt="" /></div>
+          <div class="pay_icon"><img class="nickyour-img lazy2 lazy3" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{ 'shipp.png' | asset_url }}" alt="" /></div>
           <div class="shippiing_info">
             <ul class="d-flex flex-wrap justify-content-center">
-              <li class="d-flex flex-nowrap align-items-center justify-content-center"><img class="" src="{{ section.settings.image1 | img_url: '' }}" alt="" />{{ section.settings.fr }}</li>
-              <li class="d-flex flex-nowrap align-items-center justify-content-center"><img class="" src="{{ section.settings.image2 | img_url: '' }}" alt="" />{{ section.settings.nk }}</li>
+              <li class="d-flex flex-nowrap align-items-center justify-content-center"><img class=" lazy2 lazy3" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{ section.settings.image1 | img_url: '' }}" alt="" />{{ section.settings.fr }}</li>
+              <li class="d-flex flex-nowrap align-items-center justify-content-center"><img class=" lazy2 lazy3" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{ section.settings.image2 | img_url: '' }}" alt="" />{{ section.settings.nk }}</li>
             </ul>
           </div>
         </div>
@@ -118,7 +118,7 @@
       <div class="pro_info_new block-6/12 cell-l cell-r row--l  @mobile-mobile__block-12/12">
         <div class="pro_info mobile">
 
-          <h3 class="pro_title"><span>{{product1.title}}</span><img class="nickyour-img" src="{{ section.settings.image | img_url: '' }}" alt="" /></h3>
+          <h3 class="pro_title"><span>{{product1.title}}</span><img class="nickyour-img lazy2 lazy3" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{ section.settings.image | img_url: '' }}" alt="" /></h3>
           <div class="price_pro">
             <span class="first_price">{{product1.variants[0].price | money }}</span>
             <div class="save-percent-price">
@@ -135,7 +135,7 @@
             <div class="swiper-wrapper">
               {% for image in product1.images %}
               <div class="swiper-slide" data-imageId="{{image.id}}">  
-                <img imgID="{{image.id}}" class="lazyload" data-src="{{ image | product_img_url: '640x' }}" src="{{ image | product_img_url: '640x' }}"/>
+                <img imgID="{{image.id}}" class="lazyloaded lazy2 lazy3" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{ image | product_img_url: '640x' }}" src="{{ image | product_img_url: '640x' }}"/>
               </div>
               {% endfor %}
             </div>
@@ -145,7 +145,7 @@
               <div class="swiper-wrapper">
                 {% for image in product1.images %}
                 <div class="swiper-slide" data-imageId="{{image.id}}">  
-                  <img imgID="{{image.id}}" class="lazyload" data-src="{{ image | product_img_url: '360x' }}" src="{{ image | product_img_url: '360x' }}"/>
+                  <img imgID="{{image.id}}" class="lazyloaded lazy2 lazy3" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{ image | product_img_url: '360x' }}" src="{{ image | product_img_url: '360x' }}"/>
                 </div>
                 {% endfor %}
               </div>
@@ -161,7 +161,7 @@
       <div class=" block-6/12 cell-l cell-r row--l  @mobile-mobile__block-12/12">
         <div class="pro_info desk">
 
-          <h3 class="pro_title"><span>{{product1.title}}</span><img class="nickyour-img" src="{{ section.settings.image | img_url: '' }}" alt="" /></h3>
+          <h3 class="pro_title"><span>{{product1.title}}</span><img class="nickyour-img lazy2 lazy3" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="{{ section.settings.image | img_url: '' }}" alt="" /></h3>
           <div class="price_pro">
             <span class="first_price">{{product1.variants[0].price | money }}</span>
             <div class="save-percent-price">
@@ -207,11 +207,11 @@
               </div>
             </form>
           </div>
-          <div class="pay_icon"><img class="nickyour-img" src="{{ 'shipp.png' | asset_url }}" alt="" /></div>
+          <div class="pay_icon"><img class="nickyour-img lazy2 lazy3" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{ 'shipp.png' | asset_url }}" alt="" /></div>
           <div class="shippiing_info">
             <ul class="d-flex flex-wrap justify-content-center">
-              <li class="d-flex flex-nowrap align-items-center justify-content-center"><img class="" src="{{ section.settings.image1 | img_url: '' }}" alt="" />{{ section.settings.fr }}</li>
-              <li class="d-flex flex-nowrap align-items-center justify-content-center"><img class="" src="{{ section.settings.image2 | img_url: '' }}" alt="" />{{ section.settings.nk }}</li>
+              <li class="d-flex flex-nowrap align-items-center justify-content-center"><img class=" lazy2 lazy3" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{ section.settings.image1 | img_url: '' }}" alt="" />{{ section.settings.fr }}</li>
+              <li class="d-flex flex-nowrap align-items-center justify-content-center"><img class=" lazy2 lazy3" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{ section.settings.image2 | img_url: '' }}" alt="" />{{ section.settings.nk }}</li>
             </ul>
           </div>
         </div>
@@ -227,7 +227,7 @@
       {% comment %}
       <h2 class="t-blue">Our BALLS are Popular</h2>
       {% endcomment %}
-      <img style="display:block;width:100%;" class="our-img" src="{{ 'our.png' | asset_url }}" alt="" />
+      <img style="display:block;width:100%;" class="our-img lazy2 lazy3" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{ 'our.png' | asset_url }}" alt="" />
     </div>
 
   </div>
@@ -395,8 +395,8 @@
 
 </style>
 
-<script>
-  $(function(){
+<script type="lazyload2">
+  setTimeout(function(){
     var swiper = new Swiper(".home-mySwiper-thumb-{{product1.id}}", {
                             spaceBetween: 10,
                             slidesPerView: 5,
@@ -423,8 +423,8 @@
       }, 2000);
     })
 </script>
-<script>
-  jQuery(document).ready(function(){
+<script type="lazyload2">
+  setTimeout(function(){
 
     $("input#product-quantity-{{product1.id}}[name='quantity']").keyup(function(){
       console.log($(this).val());
@@ -469,8 +469,8 @@
 </script>
 
 
-<script>
-  $(function(){
+<script type="lazyload2">
+  setTimeout(function(){
     var swiper = new Swiper(".home-mySwiper-thumb-{{product2.id}}", {
                             spaceBetween: 10,
                             slidesPerView: 5,
@@ -497,8 +497,8 @@
       }, 2000);
     })
 </script>
-<script>
-  jQuery(document).ready(function(){
+<script type="lazyload2">
+  setTimeout(function(){
 
     $("input#product-quantity-{{product2.id}}[name='quantity']").keyup(function(){
       console.log($(this).val());
@@ -542,8 +542,8 @@
       });
 </script>
 
-<script>
-  $(document).ready(function(){
+<script type="lazyload2">
+  setTimeout(function(){
 
     $('#taller_slider').slick({
       dots: false,
@@ -588,8 +588,8 @@
 
 
 
-<script>
-  $(function(){
+<script type="lazyload2">
+  setTimeout(function(){
     $('.js-faq-question').click(function(e){
       $(this).toggleClass('faq-heading--active').next().slideToggle(200)
       $("li").removeClass("highlight");

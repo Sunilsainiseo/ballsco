@@ -44,7 +44,7 @@
 
 {{product.metafields.shogun.below}}
 
-<script>
+<script type="lazyload2">
 
 
   $('.product-main-images').slick({
@@ -80,8 +80,9 @@
   $('.product-thumb .slick-slide').on('mouseenter', function (event) {
     $('.product-main-images').slick('slickGoTo', $(this).data('slickIndex'));
   });
-
-  $(document).ready(function(){
+</script>
+<script>
+ $(document).ready(function(){
 var highestBox_tit = 0;
     var highestBox_descr = 0;
     // Select and loop the elements you want to equalise

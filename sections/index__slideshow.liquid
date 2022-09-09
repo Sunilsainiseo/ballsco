@@ -6,12 +6,12 @@
       <div class="block-rel">
         {% if block.settings.bgImage %}
         <div class="{% if block.settings.bgImage__mobile %}@mobile-tablet__hide {% endif %}">
-          {% render 'lazy_img', _image:block.settings.bgImage ,  size:'2048' %}
+          {% render 'lazy_img-4', _image:block.settings.bgImage ,  size:'2048' %}
         </div>
         {% endif %}
         {% if block.settings.bgImage__mobile %}
         <div class="@mobile-tablet__show">
-          {% render 'lazy_img', _image:block.settings.bgImage__mobile ,  size:'1024' %}
+          {% render 'lazy_img-4', _image:block.settings.bgImage__mobile ,  size:'1024' %}
         </div>
         {% endif %}
         <div class="flex  ct--l cb--l block-abc block-12/12 block-fh">
@@ -122,8 +122,8 @@
 {% comment %}
 Update Pagination on Hero Slide Home Page
 {% endcomment %}
-<script>
-  $(function(){
+<script type="lazyload2">
+  setTimeout(function(){
     $('#{{section.id}}').wbskSwiper({
       slidesPerView:1,
       pagination: {

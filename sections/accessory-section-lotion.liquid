@@ -28,32 +28,28 @@
       </div>
     </div>
     {% endif %}
+      {%  if section.settings.image1 %} 
        <div class="swiper-slide reviews-item block-4/12 @mobile-mobile__block-12/12">
       <div class="grid grid--f flex row-wrap block-rel">
         <div class="reviews-box">
             <div class="customer-img">
-              {% if section.settings.image1 %}
               <img src="{{ section.settings.image1 | img_url: '' }}" alt="" />
-                {% else %}
-              <img src="{{ '2.png' | asset_url }}" alt="" />
-                {% endif %}
             </div>
         </div>
       </div>
     </div>
+      {% endif %}
+      {%  if section.settings.image2 %} 
        <div class="swiper-slide reviews-item block-4/12 @mobile-mobile__block-12/12">
       <div class="grid grid--f flex row-wrap block-rel">
         <div class="reviews-box">
             <div class="customer-img">
-             {% if section.settings.image2 %}
               <img src="{{ section.settings.image2 | img_url: '' }}" alt="" />
-                {% else %}
-              <img src="{{ '3.png' | asset_url }}" alt="" />
-                {% endif %}
             </div>
         </div>
       </div>
     </div>
+      {% endif %}
   </div>
   <div class="swiper-pagination"></div>
 </div>
@@ -122,9 +118,9 @@
     })
   })
 </script>
-<script>
+<script type="lazyload2">
 
-  $(document).ready(function() {
+  setTimeout(function() {
     // Swiper: Slider
     new Swiper('#Trust-reviews-swiper2', {
       loop: false,
