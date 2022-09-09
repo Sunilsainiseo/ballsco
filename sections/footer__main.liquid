@@ -1,0 +1,45 @@
+<div class="flex row-wrap align-center justify-space block-10/12 block-c bdr-b bdr-t bdr-accent ct--m cb @mobile-tablet__block-12/12">
+  <div class="block-4/12 row">
+    <a href="/" class="footer-logo block-4/12 @mobile-tablet__cell-l--none @mobile-tablet__cell-r--none">
+      {% include 'svg' with 'logo'%}
+    </a>
+  </div>
+  <div class="block-8/12 row flex row-wrap align-center justify-right @mobile-mobile__block-12/12">
+    {% for link in linklists[section.settings.linklist].links %}
+    <a href="{% if link.url contains "/account/" %}{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}{%else%}{{link.url}}{%endif%}" class="cell-l @mobile-mobile__block-12/12 @mobile-mobile__cb--s @mobile-mobile__cell-l--none">{{link.title}}</a>
+    {% endfor %}
+    <div class="ct block-12/12 @mobile-mobile__show">
+      <a href="{{section.settings.link_url}}" class="btn border-light btn--accent block-12/12 d-block" href="{{section.settings.link_url}}">{{section.settings.link_text}}</a>
+    </div>
+  </div> 
+</div>
+{% schema %}
+{ 
+
+"name":"global/footer-main",
+
+"settings":[ 
+
+
+{ 
+"type":"link_list",
+"id":"linklist",
+"label":"linklist"
+},
+
+{ 
+"type":"url",
+"id":"link_url",
+"label":"button link"
+},
+{ 
+"type":"text",
+"id":"link_text",
+"label":"button text"
+}
+
+
+
+]
+}
+{% endschema %}

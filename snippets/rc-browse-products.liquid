@@ -1,0 +1,146 @@
+{%- assign pageUrl = content_for_header | split:'"pageurl":"' | last | split:'"' | first | split:'.myshopify.com' | last |
+   replace:'\/','/' | 
+   replace:'%20',' ' | 
+   replace:'\u0026','&'
+-%}
+
+{% if pageUrl contains 'ajax-rc-browse-upsells' %}
+
+<div class="ajax-rc-browse-upsells">
+{% if collections['all'].all_types.size > 1 %}
+  <div class="rc-select select rc-browse-select" data-dropdown data-size="{{collections['all'].all_types.size}}">
+    <div class="select__input" data-dropdown-trigger></div>
+    <input class="select__input rc-input--hidden" data-dropdown-trigger readonly value="Select reason" name="retention_strategy_id" type="text">
+    <ul class="select__list" data-dropdown-content>
+      {% for product_type in collections['all'].all_types %}
+      <li class="select__item" data-dropdown-value="{{ product_type | handle }}" data-dropdown-text="{{product_type}}">{{product_type}}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  {% for product_type in collections['all'].all_types %}
+    {% for product in collections['all'].products %}
+    {% if product.type == product_type and product.metafields.subscriptions.subscription_id %}
+
+
+    {% assign discount_percentage = product.metafields.subscriptions.discount_percentage | round: 2 %}
+    {% assign discount_floor = product.metafields.subscriptions.discount_percentage | floor %}
+    {% if discount_percentage == discount_floor %}
+        {% assign discount_percentage = discount_floor %}
+    {% endif %}
+
+	
+	{% assign original_to_hidden_variant_map = product.metafields.subscriptions.original_to_hidden_variant_map | json %}
+	{% assign variantMap = original_to_hidden_variant_map | split: ':{' | last %}
+	{% assign variantMaps = variantMap | replace: '}}', '' | replace: '"', '' %}
+
+	{% assign discount_variant_id = variantMaps | split: ',' | first %}
+	{% assign discount_variant_price = variantMaps | split: ',' | last %}
+
+
+	{% assign discount_variant_id = discount_variant_id | split: ':' | last %}
+	{% assign discount_variant_price = discount_variant_price | split: ':' | last | ceil | times: 100 | money %}
+	
+
+      <div class="rc-upsell-tile bg-white {{ product_type | handle }}" data-product>
+      <!--17-->
+        <div class="rc-upsell-tile__container">
+          <div class="rc-upsell-tile__image-wrapper">
+            <img class="rc-upsell-tile__image" src="{{ product.featured_image.src | img_url: '200x' }}">
+          </div>
+          <div class="rc-upsell-tile__content-wrapper">
+            <p class="rc-text rc-text--medium text-primary">{{ product.title }}</p>
+            {% if product.first_available_variant.title != product.title %}
+            <p class="rc-text text-grey-dark">{{ product.first_available_variant.title }}</p>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="rc-upsell-tile__btn-container rc-upsell-tile__btn-container--double">
+          <button class="rc-upsell-tile__btn btn btn--single btn--light" add-to-subscription data-shopify_variant_id="{{product.first_available_variant.id}}">
+            <div class="rc-upsell-tile__btn-inner">
+              <span class="rc-text rc-text--medium text-primary">One-time<span class="screen-xs-up"> Purchase</span></span>
+              <span class="rc-text rc-text--medium text-secondary"><span data-price>{{ product.first_available_variant.price | money }}</span></span>
+            </div>
+          </button>
+
+            <button class="rc-upsell-tile__btn btn btn--sub btn--light" add-new-subscription data-variant-id="{{discount_variant_id}}">
+              <div class="rc-upsell-tile__btn-inner">
+                <span class="rc-text rc-text--medium text-primary">Subscribe <span class="screen-xs-up">{% if discount_percentage > 0 %} Save {{ discount_percentage }}%{% endif %}</span></span>
+                <span class="rc-text rc-text--medium text-secondary">{{discount_variant_price}}</span>
+              </div>
+            </button>
+
+        </div>
+      </div>
+    {% endif %}
+    {% endfor %}
+  {% endfor %}
+
+{% else %}
+  
+    {% for product in collections['all'].products %}
+    {% if product.metafields.subscriptions.subscription_id %}
+
+
+    {% assign discount_percentage = product.metafields.subscriptions.discount_percentage | round: 2 %}
+    {% assign discount_floor = product.metafields.subscriptions.discount_percentage | floor %}
+    {% if discount_percentage == discount_floor %}
+        {% assign discount_percentage = discount_floor %}
+    {% endif %}
+
+  <script>window._rc = {{product.metafields.subscriptions | json}};</script>
+	{% assign original_to_hidden_variant_map = product.metafields.subscriptions.original_to_hidden_variant_map | json %}
+	{% assign variantMap = original_to_hidden_variant_map | split: ':{' | last %}
+	{% assign variantMaps = variantMap | replace: '}}', '' | replace: '"', '' %}
+
+	{% assign discount_variant_id = variantMaps | split: ',' | first %}
+	{% assign discount_variant_price = variantMaps | split: ',' | last %}
+
+
+	{% assign discount_variant_id = discount_variant_id | split: ':' | last %}
+	{% assign discount_variant_price = discount_variant_price | split: ':' | last | ceil | times: 100 | money %}
+
+      <div class="rc-upsell-tile bg-white {{ product_type | handle }}" data-product>
+      <!--17-->
+        <div class="rc-upsell-tile__container">
+          <div class="rc-upsell-tile__image-wrapper">
+            <img class="rc-upsell-tile__image" src="{{ product.featured_image.src | img_url: '200x' }}">
+          </div>
+          <div class="rc-upsell-tile__content-wrapper">
+            <p class="rc-text rc-text--medium text-primary">{{ product.title }}</p>
+            {% if product.first_available_variant.title != product.title %}
+            <p class="rc-text text-grey-dark">{{ product.first_available_variant.title }}</p>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="rc-upsell-tile__btn-container rc-upsell-tile__btn-container--double">
+          <button class="rc-upsell-tile__btn btn btn--single btn--light" add-to-subscription data-shopify_variant_id="{{product.first_available_variant.id}}">
+            <div class="rc-upsell-tile__btn-inner">
+              <span class="rc-text rc-text--medium text-primary">One-time<span class="screen-xs-up"> Purchase</span></span>
+              <span class="rc-text rc-text--medium text-secondary"><span data-price>{{ product.first_available_variant.price | money }}</span></span>
+            </div>
+          </button>
+          	{% if product.metafields.subscriptions.shipping_interval_unit_type == 'Days' %}
+			{% assign next_period = product.metafields.subscriptions.shipping_interval_frequency | times: 86400 %}
+          	{% assign next_charge_scheduled_at = 'now' | date: '%s' | plus: next_period | date: '%Y-%m-%d' %}
+          	{% endif %}
+            <button class="rc-upsell-tile__btn btn btn--sub btn--light" add-new-subscription data-variant-id="{{product.first_available_variant.id}}" data-next_charge_scheduled_at="{{ next_charge_scheduled_at }}" data-interval_frequency="{{product.metafields.subscriptions.shipping_interval_frequency}}" data-interval_unit="{{product.metafields.subscriptions.shipping_interval_unit_type}}">
+              <div class="rc-upsell-tile__btn-inner">
+                <span class="rc-text rc-text--medium text-primary">Subscribe <span class="screen-xs-up">{% if discount_percentage > 0 %} Save {{ discount_percentage }}%{% endif %}</span></span>
+                <span class="rc-text rc-text--medium text-secondary">{{discount_variant_price}}</span>
+              </div>
+            </button>
+
+        </div>
+      </div>
+    {% endif %}
+    {% endfor %}
+  
+
+{% endif %}
+
+</div>
+  
+{% endif %}

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="612" height="610.794" viewBox="0 0 612 610.794">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="612" height="610.794" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="wbsk-ui-sidebar__close-icon" clip-path="url(#clip-path)">
+    <g id="wbsk-ui-sidebar__close-icon-2" data-name="wbsk-ui-sidebar__close-icon" transform="translate(0 -0.603)">
+      <g id="cross">
+        <g id="Group_1" data-name="Group 1">
+          <path id="Path_1" data-name="Path 1" d="M612,36,576.521.6,306,270.608,35.478.6,0,36,270.522,306.011,0,576l35.478,35.4L306,341.411,576.521,611.4,612,576,341.459,306.011Z" fill="#ffffff"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

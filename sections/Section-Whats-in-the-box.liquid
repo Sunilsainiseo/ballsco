@@ -1,0 +1,153 @@
+<div class="header-text">
+  <div class="grid grid--f row--l text-center">
+    <h2 class="t-white head-h2">{{ section.settings.title}}</h2>
+    <p>{{ section.settings.text}}</p>
+  </div>
+</div>
+<div class="block-reviews d-flex flex-nowrap grid grid--f flex row-wrap block-rel">
+  
+  {% if product.handle == 'tondeuse-balls' or product.handle == 'balls-electric-trimmer' %}
+  <div class="block-12/12 @mobile-mobile__block-12/12">
+    <div class="grid grid--f flex row-wrap flex-column block-rel">
+      <img src="{{ 'what-in-box-2x.png' | file_url }}" alt="" />
+    </div>
+    <div class="grid grid--f flex row-wrap block-rel">
+      <ul class="d-flex flex-wrap"style="max-width: 490px;">
+        <li style="width:100%;">• Tondeuse BALLS™</li>
+        <li style="width:100%;">• Protections SackSafe™</li>
+		<li style="width:100%;">• Support BALLS™</li>
+        <li style="width:100%;">• Brosse de nettoyage</li>
+        <li style="width:100%;">• Câble de charge</li>
+      </ul>
+    </div>
+  </div>
+  {% endif %}
+  {% if product.handle contains 'balls-ultimate-package' %}
+  <div class="block-12/12 @mobile-mobile__block-12/12">
+    <div class="grid grid--f flex row-wrap flex-column block-rel">
+      <img src="{{ 'Ultimate-Package-Box.png' | file_url }}" alt="" />
+    </div>
+    <div class="grid grid--f flex row-wrap block-rel">
+      <ul class="d-flex flex-wrap" style="max-width: 490px;">
+        <li style="width:100%;">• Tondeuse BALLS™</li>
+        <li style="width:100%;">• BALLS™ Lotion</li>
+        <li style="width:100%;">• 2x BALLS™ Blade</li>
+        <li style="width:100%;">• Protections SackSafe™</li>
+        <li style="width:100%;">• Support BALLS™</li>
+        <li style="width:100%;">• Câble de charge</li>
+        <li style="width:100%;">• Brosse de nettoyage</li>
+      </ul>
+    </div>
+  </div>
+  {% endif %}
+  {% if product.handle contains 'balls-starter-kit' %}
+  <div class="block-12/12 @mobile-mobile__block-12/12">
+    <div class="grid grid--f flex row-wrap flex-column block-rel">
+      <img src="{{ 'Starter-Kit-Box.png' | file_url }}" alt="" />
+    </div>
+    <div class="grid grid--f flex row-wrap block-rel">
+      <ul class="d-flex flex-wrap" style="max-width: 490px;">
+        <li style="width:100%;">• Tondeuse BALLS™</li>
+        <li style="width:100%;">• BALLS™ Cleanse & Recharge Wash</li>
+        <li style="width:100%;">• BALLS™ Lotion</li>
+        <li style="width:100%;">• Adjustable SackSafe™ guard</li>
+        <li style="width:100%;">• Support BALLS™</li>
+        <li style="width:100%;">• Câble de charge</li>
+        <li style="width:100%;">• Brosse de nettoyage</li>
+      </ul>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+
+<style>
+  .section-whats-in-the-box {
+    padding: 55px 0;
+    background-color: rgba(58,93,167,0.17);
+    /*
+    background-image: url({{ 'background-gradiant-black-2x.jpg' | file_url }});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;*/
+  }
+  .section-whats-in-the-box .header-text .head-h2 {
+    font-size: 52px;
+    line-height: 56px;
+    color: #000;
+    font-weight: 700;
+    text-transform: none;
+    margin: 10px 0;
+  }
+  .section-whats-in-the-box .block-rel img {
+    width: 100%;
+    height: auto;
+    max-width: 720px;
+    margin: 0 auto;
+    display: block;
+  }
+  .section-whats-in-the-box ul {
+    width: 100%;
+    margin: 55px auto 30px;
+    max-width: 520px;
+    padding: 0 20px;
+  }
+  .section-whats-in-the-box ul li {
+    width: 50%;
+    color: #000;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    line-height: 36px;
+  }
+
+  @media only screen and (max-width: 767px) {
+
+    .section-whats-in-the-box .header-text .head-h2 {
+      font-size: 42px;
+      line-height: 44px;
+      padding: 0 15px;
+    }
+    .section-whats-in-the-box .block-rel img {
+      padding: 0 20px;
+    }
+    .section-whats-in-the-box ul li {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.6px;
+      line-height: 30px;
+    }
+    .section-whats-in-the-box ul {
+      max-width: 360px;
+      margin: 40px auto 0;
+    }
+
+  }
+
+</style>
+
+{% schema %}
+{
+"name": "Section Whats in the box",
+"class": "section-whats-in-the-box",
+"settings": [
+{
+"type": "text",
+"id": "title",
+"label": "Header"
+},
+{
+"type": "textarea",
+"id": "text",
+"label": "SubText"
+},
+{
+"type": "image_picker",
+"id": "image",
+"label": "Image"
+}
+]
+
+}
+{% endschema %}
+

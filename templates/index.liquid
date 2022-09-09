@@ -1,0 +1,809 @@
+{%comment %}
+<div class="orgional-design" style="overflow: hidden;">
+
+{% section 'index__slideshow' %}
+{% section 'section-press-reviews' %}
+{% section 'section-video-block' %}
+{%comment%}
+{% section 'index__intro-block' %}
+{%endcomment%}
+{% section 'Section-Feature-Set' %}
+<div class="bg-line-blue">
+  {% section 'Section-Product-Featured-Home' %}
+  {%comment%}
+  {% section 'Section-Reviews' %}
+  {%endcomment%}
+  {% section 'Section-Trustpilot' %}
+</div>
+{% section 'Section-Benefits-Bar' %}
+{% section 'Section-Three-Products' %}
+{% section 'Section-Benefits-Bar-2' %}
+
+{%comment%}
+<div class="block-12/12 js-index-wsb-anchor">
+  {% section 'index__product_3d' %}
+</div>
+
+{% section 'featured-magazine-reviews' %}
+{% section 'guarantee' %}
+{% section 'index__instagram' %}
+{%endcomment%}
+
+{{content_for_index}}
+
+<style>
+  .bg-line-blue {
+    background-image: url({{ 'line-bg.png' | file_url }});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+  }
+</style>
+{%endcomment %}
+
+<div class="new-design" >
+  {% section 'index__slideshow' %}
+  {% section 'Section-Trustpilot-new' %}
+  {% section 'Section-designed-with' %}
+  {% section 'home-featured-products' %}
+  {% render 'our-balls' %}
+  {% section 'Section-choose-bundle' %}
+  {% section 'Section-Benefits-Bar-2' %}
+
+  {{content_for_index}}
+  
+</div>
+  
+  
+
+<style>
+  .section-feature-set .setheader-new{
+        max-width: 830px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding:0 15px;
+  }
+  .section-benefits-bar-new .header-text .head-h2 strong {
+    font-size: 1.3em;
+    font-weight: 700;
+}
+  #taller_slider .slick-arrow{
+    left: 50%;
+    position: absolute;
+    bottom: 20px;
+    -webkit-transform: translate(0%, -50%);
+    -moz-transform: translate(0%, -50%);
+    -o-transform: translate(0%, -50%);
+    -ms-transform: translate(0%, -50%);
+    transform: translate(0%, -50%);
+    color: #00baff;
+    background: #fff;
+    border: 3px solid #00baff;
+    border-radius: 100%;
+    width: 52px;
+    height: 52px;
+    text-align: center;
+    font-size: 40px;
+    padding: 0;
+  }
+  #taller_slider .slick-arrow i{
+  }
+  #taller_slider .slick-prev {
+    left: calc(50% - 70px);
+  }
+  #taller_slider .slick-next {
+    left: calc(50% + 25px);
+  }
+  .section-benefits-bar-new .header-text .head-h2{
+    font-size: 48px;
+    line-height: 50px;
+    margin-top: 0;
+  }
+  .section-benefits-bar-new{
+    padding-top: 0;
+  }
+  .our_balls_img{
+    display: block;
+    width: 100%;
+    position: relative;
+  }
+  .our_balls_img .bg_center{
+    background-color: #3060ac;
+    display: block;
+    width: 100%;
+    height: 450px;
+  }
+  .our_balls_img .bg_top{
+    background: -webkit-gradient(linear, left top, right top, from(#3060ac), to(#ffffff));
+    background: -webkit-linear-gradient(top, #3060ac, #ffffff);
+    background: -moz-linear-gradient(top, #3060ac, #ffffff);
+    background: -o-linear-gradient(top, #3060ac, #ffffff);
+    background: -ms-linear-gradient(top, #3060ac, #ffffff);
+    background: linear-gradient(top, #3060ac, #ffffff);
+    background-color: #3060ac;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+    display: block;
+    width: 100%;
+    height: 400px;
+  }
+  .our_balls_img .bg_bot{
+    background: -webkit-gradient(linear, left top, right top, from(#3060ac), to(#ffffff));
+    background: -webkit-linear-gradient(top, #3060ac, #ffffff);
+    background: -moz-linear-gradient(top, #3060ac, #ffffff);
+    background: -o-linear-gradient(top, #3060ac, #ffffff);
+    background: -ms-linear-gradient(top, #3060ac, #ffffff);
+    background: linear-gradient(top, #3060ac, #ffffff);
+    background-color: #3060ac;
+    display: block;
+    width: 100%;
+    height: 300px;
+  }
+  .our_balls{
+    display: block;
+    position: relative;
+    margin-top: 50px;
+    overflow: hidden;
+  }
+  .our_balls .heading_ball{
+    color: #005cba;
+    font-size: 60px;
+    margin: 0;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    left: 0;
+  }
+  .our_balls .heading_ball span{
+    color: #005cba;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 60px;
+    margin: 0;
+  }
+  .our_balls .heading_ball .icon_eye{
+    max-width: 100px;
+    margin-left: 20px;
+  }
+  .our_balls h2.heading_ball{
+  }
+  .our_balls .img_bg{
+    display: block;
+    width: 100%;
+    position: relative;
+  }
+  .our_balls .hero_img{
+    display: block;
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    bottom: 0;
+    max-width: 600px;
+    width: 100%;
+    height: auto;
+  }
+  .our_balls .logo_img{
+    max-width: 600px;
+    display: block;
+    margin-left: auto;
+  }
+  .logo_group{
+    padding: 0 30px;
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    position: absolute;
+    top: 42%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 1340px;
+  }
+
+
+  .price_pro{
+    display: block;
+    margin-bottom: 15px;
+  }
+  .price_pro .first_price{
+    color: #000;
+    font-size: 26px;
+    text-decoration: line-through;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .price_pro .save-percent-price{
+    display: flex;
+    align-items: center;
+  }
+  .price_pro .save-percent-price .var_price{
+    color: #000;
+    font-size: 26px;
+  }
+  .price_pro .save-percent-price .yousave{
+    background-image: url(https://cdn.shopify.com/s/files/1/0243/7772/0909/files/save.png?v=1655348415);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 3px;
+    padding-left: 16px;
+    padding-right: 8px;
+    margin-left: 12px
+  }
+  .Section-Feature-Set{
+    margin-bottom: 80px;
+  }
+  .pro_testimonial{
+    display: block;
+    margin: 0 auto;
+    max-width: 455px;
+    text-align: center;
+    margin-top: 30px;
+  }
+  .pro_testimonial .title_tes{
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #000;
+    font-style: italic;
+    text-align: center;
+    font-size: 24px;
+    display: block;
+    margin-bottom: 10px;
+  }
+  .pro_testimonial .title_tes p{
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #000;
+    font-style: italic;
+    text-align: center;
+    font-size: 24px;
+  }
+  .pro_testimonial .text_tes{
+    color: #000;
+    font-size: 18px;
+    text-align: center;
+    line-height: 24px;
+  }
+  .pro_testimonial .text_tes p{
+    color: #000;
+    font-size: 18px;
+    text-align: center;
+    line-height: 24px;
+  }
+  .pro_testimonial .authr{
+    font-size: 18px;
+    text-align: center;
+    line-height: 24px;
+    margin-top: 10px;
+  }
+  .Crossel-des_product .descr-pro{
+    height: 66px;
+  }
+  .pro_gallery .main_img{
+    -webkit-box-shadow: 0px 0px 5px #c3c3c3;
+    -moz-box-shadow: 0px 0px 5px #c3c3c3;
+    box-shadow: 0px 0px 5px #c3c3c3;
+  }
+  .pro_gallery .wr_thumb{
+    max-width: 70%;
+    display: block;
+    margin: 0 auto;
+    margin-top: 30px;
+  }
+  .pro_gallery .swiper-container-thumbs .swiper-slide {
+    -webkit-box-shadow: 0px 0px 5px #c3c3c3;
+    -moz-box-shadow: 0px 0px 5px #c3c3c3;
+    box-shadow: 0px 0px 5px #c3c3c3;
+    border: 1px solid #cacaca;
+  }
+  .pro_info{
+  }
+  .pro_info .pro_title{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0;
+  }
+  .pro_info .pro_title span{
+    color: #000;
+    font-size: 46px;
+    max-width: 265px;
+    line-height: 46px;
+    margin-top: 0;
+  }
+  .pro_info .pro_title img{
+    display: block;
+    max-width: 140px;
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+  }
+  .pro_info .include{
+    display: inline-block;
+    margin-top: 15px;
+  }
+  .pro_info .include h4{
+    margin-top: 0;
+    color: #015db9;
+    margin-bottom: 25px;
+    font-size: 20px;
+  }
+  .pro_info .include p{
+    line-height: 22px;
+    position: relative;
+    display: block;
+    padding-left: 25px;
+  }
+  .pro_info .include strong{
+    color: #000;
+    font-weight: 700;
+    position: relative;
+  }
+  .pro_info .include strong:before{
+    content:"";
+    position:absolute;
+    width: 5px;
+    height: 5px;
+    background: #000;
+    border-radius: 100%;
+    left: -20px;
+    top: 8px;
+  }
+  .pro_info .include .include_left{
+    display: inline-block;
+    width: 52%;
+    float: left;
+    padding-right: 35px;
+  }
+  .pro_info .include .include_right{
+  }
+  .qty_add.form-product{
+    display: block;
+    padding-top: 22px;
+  }
+  .pay_icon{
+    border-bottom: 2px solid #ccc;
+    display: block;
+  }
+  .pay_icon img{
+    display: block;
+    width: 100%;
+  }
+  .qty_add.form-product > form > div{
+    justify-content: space-between;
+    padding: 0;
+  }
+  #index__slideshow{
+    margin-bottom: 0;
+  }
+  .bg-line-blue {
+    background-image: url({{ 'line-bg.png' | file_url }});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+  }
+  .pro_info.mobile{
+    display:none;
+  }
+   .original-descr{
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 30px;
+  }
+        .new_section_mob .highlight {
+    background: transparent;
+}
+      
+     @media only screen and (min-width: 640px) {
+.new_section_mob .include{
+margin-top: 30px;
+    margin-bottom: 30px;
+}
+  }
+  
+  @media only screen and (max-width: 1366px) {
+
+  }
+   @media only screen and (max-width: 1199px) and (min-width: 992px) {
+    .Crossel-des_product a.btn, .Crossel-des_product button.btn {
+      font-size: 16px;
+      right: 15px;
+      line-height: 40px;
+      height: 38px;
+    }
+      .section-choose-bundle .header-text h1 {
+      font-size: 36px;
+      max-width: 545px;
+    }
+   }
+  @media only screen and (max-width: 1199px) {
+    .section-choose-bundle .header-text h1 {
+      font-size: 52px;
+      max-width: 650px;
+    }
+    .section-choose-bundle .header-text p {
+      font-size: 28px;
+      line-height: 32px;
+    }
+    .our_balls h2.heading_ball span,
+    .our_balls h2.heading_ball {
+    }
+    .our_balls .hero_img {
+      max-width: 500px;
+    }
+    .our_balls .logo_img {
+      max-width: 500px;
+    }
+    .our_balls_img .bg_top {
+      height: 300px;
+    }
+    .our_balls_img .bg_center {
+      height: 400px;
+    }
+
+    .our_balls_img .bg_bot {
+      height: 200px;
+    }
+    .section-benefits-bar-new .header-text .head-h2 {
+    }
+
+
+  }
+  @media only screen and (max-width: 991px) {
+    .our_balls .heading_ball .icon_eye {
+      max-width: 80px;
+    }
+    .our_balls .heading_ball span, .our_balls .heading_ball {
+      font-size: 52px;
+    }
+    .our_balls .logo_img {
+      max-width: 380px;
+    }
+    .our_balls .hero_img {
+      max-width: 380px;
+    }
+    .our_balls_img .bg_center {
+      height: 280px;
+    }
+    .section-benefits-bar-new .header-text .head-h2 {
+      font-size: 44px;
+      line-height: 45px;
+    }
+    #taller_slider{
+      position: relative;
+      padding-bottom: 70px;
+
+    }
+
+
+  }
+  @media only screen and (max-width: 767px) {
+    .section-choose-bundle .header-text p {
+      font-size: 25px;
+      line-height: 30px;
+    }
+    .section-choose-bundle .header-text h1 {
+      font-size: 42px;
+      max-width: 545px;
+    }
+    .featured_pro .wr_pro {
+      flex-direction: column;
+    }
+    .our_balls .hero_img {
+      max-width: 320px;
+    }
+    .our_balls .logo_img {
+      max-width: 300px;
+    }
+    .our_balls_img .bg_top {
+      height: 200px;
+    }
+    .our_balls_img .bg_bot {
+      height: 160px;
+    }
+    .our_balls_img .bg_center {
+      height: 260px;
+    }
+    .logo_group {
+      top: 48%;
+    }
+    .pro_info.mobile{
+      display:block;
+      margin-bottom: 24px;
+    }
+    .pro_info.desk .pro_title,
+    .pro_info.desk .price_pro{
+      display:none;
+    }
+
+  }
+
+  @media only screen and (max-width: 639px) {
+    .pro_testimonial .title_tes {
+    font-size: 20px;
+}
+    .section-choose-bundle .header-text {
+      padding: 0 20px;
+    }
+    .our_balls .hero_img {
+      max-width: 220px;
+    }
+    .our_balls .logo_img {
+      max-width: 240px;
+    }
+    .our_balls .heading_ball span, .our_balls .heading_ball {
+      font-size: 42px;
+    }
+    .our_balls .heading_ball .icon_eye {
+      max-width: 54px;
+      margin-left: 11px;
+    }
+    .our_balls_img .bg_top {
+      height: 150px;
+    }
+    .our_balls_img .bg_center {
+      height: 160px;
+    }
+    .section-benefits-bar-new .header-text .head-h2 {
+      font-size: 42px;
+      line-height: 44px;
+    }
+    .pro_info .include .include_left {
+      width: 100%;
+      padding-right: 0;
+    }
+    .pro_info_new{
+      margin-bottom:15px;
+    }
+    .pro_info .include h4 {
+        margin-top: 30px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+    }
+    .pro_info .pro_title span {
+      font-size: 36px;
+      max-width: 205px;
+      line-height: 38px;
+    }
+    .pro_info .pro_title img {
+      display: block;
+      max-width: 140px;
+      width: 108px;
+      height: 108px;
+    }
+    .our_balls {
+    margin-top: 0;
+    }
+  }
+  @media only screen and (max-width: 479px) {
+    .Crossel-des_product a.btn, .Crossel-des_product button.btn {
+      font-size: 16px;
+      right: 15px;
+      line-height: 40px;
+      height: 38px;
+    }
+    .section-choose-bundle .header-text h1 {
+      font-size: 36px;
+      max-width: 545px;
+    }
+    .our_balls .heading_ball span, .our_balls .heading_ball {
+    }
+    .our_balls .hero_img {
+      max-width: 160px;
+    }
+    .logo_group {
+      padding: 0 12px;
+    }
+    .our_balls .logo_img {
+      max-width: 193px;
+    }
+    .our_balls_img .bg_bot {
+      height: 83px;
+    }
+    .pro_info .pro_title span {
+      font-size: 28px;
+      max-width: 160px;
+      line-height: 32px;
+    }
+
+    .pro_info .pro_title img {
+      width: 90px;
+      height: 90px;
+    }
+    .qty_add.form-product button.btn.btn--accent{
+          width: 140px;
+    font-size: 16px;
+    }
+  .qty_add.form-product .mobileqty .cus-qty input {
+    max-width: 36px;
+    opacity: 1;
+    height: 36px;
+    font-size: 20px;
+    }
+     .qty_add.form-product .mobileqty .cus-qty input.qty {
+    width: 42px;
+    min-width: 42px;
+}
+  }
+   @media only screen and (max-width: 409px) {
+   .our_balls .heading_ball span, .our_balls .heading_ball {
+      font-size: 38px;
+    }
+  .our_balls .heading_ball .icon_eye {
+    max-width: 43px;
+    margin-left: 5px;
+}
+  }
+  @media only screen and (max-width: 379px) {
+  .our_balls .heading_ball span, .our_balls .heading_ball {
+    font-size: 34px;
+}
+    .Crossel-des_product a.btn, .Crossel-des_product button.btn {
+      font-size: 14px;
+      right: 15px;
+      line-height: 38px;
+      height: 35px;
+    }
+    .pairs_wellwith h2 {
+      font-size: 24px;
+      line-height: 28px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      max-width: 125px;
+    }
+
+  }
+</style>
+{% comment %} 
+<script type="application/ld+json">
+	{
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "SackSafe™ Blade",
+      "image": [
+        "https://cdn.shopify.com/s/files/1/0310/3817/7325/products/4__7__copy_1024x.jpg?v=1587552125",
+        "https://cdn.shopify.com/s/files/1/0310/3817/7325/products/3__4__copy__1__1_1024x.jpg?v=1587552125",
+        "https://cdn.shopify.com/s/files/1/0310/3817/7325/products/photoblade2_1024x.jpg?v=1587552150"
+       ],
+      "description": "Nobody wants to be the owner of a pair of basic balls. If you’re tired of nicking your sack, the BALLS™ trimmer is designed to glide over those bad boys using SackSafe™ technology. No snags, no cuts: just beautiful, shining balls. It’s the glo up of the century.",
+      "brand": {
+        "@type": "Brand",
+        "name": "BALLS"
+      },
+      "review": {
+        "@type": "Review",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Alex C"
+        }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "523"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://fr.balls.co/products/sacksafe-lame-hygienique",
+        "priceCurrency": "EUR",
+        "price": "19",
+        "availability": "http://schema.org/InStock",
+        "seller": {
+          "@type": "Organization",
+          "name": "BALLS"
+        }
+      }
+    }
+</script>
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "Balls Trimmer",
+      "image": [
+        "https://cdn.shopify.com/s/files/1/0310/3817/7325/products/Hey_Balls_Jan_8_2020_Lifestyle-2_2_1024x.jpg?v=1580463749",
+        "https://cdn.shopify.com/s/files/1/0310/3817/7325/products/4_1024x.jpg?v=1580463725",
+        "https://cdn.shopify.com/s/files/1/0310/3817/7325/products/Hey_Balls_Jan_8_2020_Lifestyle-7_2_1024x.jpg?v=1580463797"
+       ],
+      "description": "Nobody wants to be the owner of a pair of basic balls. If you’re tired of nicking your sack, the BALLS™ trimmer is designed to glide over those bad boys using SackSafe™ technology. No snags, no cuts: just beautiful, shining balls. It’s the glo up of the century.",
+      "brand": {
+        "@type": "Brand",
+        "name": "BALLS"
+      },
+      "review": {
+        "@type": "Review",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Alex C"
+        }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "523"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://fr.balls.co/products/tondeuse-balls",
+        "priceCurrency": "EUR",
+        "price": "64",
+        "availability": "http://schema.org/InStock",
+        "seller": {
+          "@type": "Organization",
+          "name": "BALLS"
+        }
+      }
+    }
+</script>
+{% endcomment %} 
+<script type="application/ld+json">
+  { "@context": "https://schema.org",
+"@type": "Organization",
+"name": "BALLS",
+"legalName" : "SQUID VENTURES LIMITED",
+"url": "https://eu.balls.co/",
+
+"logo": "https://cdn.shopify.com/s/files/1/0310/3817/7325/files/0001.jpg?v=1580463974",
+"foundingDate": "2019",
+"address": {
+"@type": "PostalAddress",
+"streetAddress": "The Mill Pury Hill Business Park, Alderton Raod, Towcester, United Kingdom, NN12 7LS ",
+"addressLocality": "Alderton Raod",
+"addressRegion": "Towcester",
+"postalCode": "Towcester",
+"addressCountry": "United Kingdom"
+},
+
+"contactPoint": {
+"@type": "ContactPoint",
+"contactType": "customer support",
+"email": "help@balls.co​"
+},
+"founders": [
+{
+"@type": "Person",
+"name": "Matt Edge",
+"jobTitle": "Director"
+},
+{
+"@type": "Person",
+"name": "Tyler Ball",
+"jobTitle": "Director"
+} ],
+    "sameAs": [
+          "https://www.instagram.com/ballsco"
+      ]}
+</script>
+    
+<link rel="alternate" hreflang="en-us" href="https://balls.co"> 
+<link rel="alternate" hreflang="en-gb" href="https://uk.balls.co"> 
+<link rel="alternate" hreflang="en-ca" href="https://ca.balls.co"> 
+<link rel="alternate" hreflang="en-au" href="https://au.balls.co"> 
+<link rel="alternate" hreflang="es-es" href="https://es.balls.co"> 
+<link rel="alternate" hreflang="de-de" href="https://de.balls.co"/> 
+<link rel="alternate" hreflang="fr-fr" href="https://fr.balls.co"/>
+<link rel="alternate" hreflang="en" href="https://eu.balls.co"/>
+<link rel="alternate" hreflang="x-default" href="https://int.balls.co"/>

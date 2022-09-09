@@ -1,0 +1,84 @@
+{% render 'subscription-cart-footer' %}
+{% assign has_subscriptions = false %}
+{% for i in cart.items %}
+	{% for p in i.properties %}
+		{% if p.first == 'shipping_interval_frequency' %}
+			{% assign has_subscriptions = true %}
+		{% endif %}
+	{% endfor %}
+{% endfor %}
+
+<form action="/cart" method="post" class="wbsk-ui-scroll-flex- ">
+  <div class="wbsk-ui-scroll-flex__scroll-">
+    {% if cart.item_count == 0 %}
+    <p class="cell-l cell-r tac ct--m cb">{{ 'general.empty_cart' |t }}</p>
+    {% else %}
+    <ul class="row">
+      {% for item in cart.items %}
+      <li class="flex row-wrap align-center bdr-b bdr-grey cell-l cell-r ct cb">
+        <div class="block-3/12 block-rel far-image far-image--square">
+          {% render 'lazy_img', size: '256' ,  _image:item.image  %}
+        </div>
+        <div class="block-9/12 cell-l">
+         
+          <h3 class="h-style h5-style row--xs">{{item.product.title}}</h3>
+          <span class="d-block row--xs t-small">{{item.variant.title}}</span>
+          {% if item.properties %}
+            <div class="cart-item-properties d-block row--xs t-small">
+              {% for property in item.properties %}
+              {% unless property.last == blank or property.first == "subscription_id" %}
+              <div class="cart-item-property">
+                <span style="display:none;" class="cart-item-property-label">
+                  {{ property.first }}:
+                </span>
+                {% if property.last contains '/uploads/' %}
+                <a
+                   class="cart-item-property-image"
+                   href="{{ property.last }}">
+                  {{ property.last | split: '/' | last }}
+                </a>
+                {% else %}
+                <span class="cart-item-property-value">
+                  {{ property.last }}
+                </span>
+                {% endif %}
+              </div>
+              {% endunless %}
+              {% endfor %}
+            </div>
+            {% endif %}
+          <span  class="d-block row--xs t-small t-grey">{{item.quantity}} x {{item.price | money}}</span>
+ 
+          <a href="/cart/change?line={{ forloop.index }}&quantity=0"  class="wbsk-cart__remove-from-cart t-small t-accent"><u>remove</u></a>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+  {% if cart.item_count > 0 %}
+  <div class="wbsk-ui-scroll-flex__fixed- cell-l cell-r">
+    <div class="flex row-wrap align-center justify-space row">
+      <span class="cell-r">{{ 'general.subtotal' |t }}</span>
+      <div class="cell-l h-style h4-style">
+        <span>
+        {% if cart.original_total_price != cart.total_price %}
+        {{ cart.total_price | money }}
+        <strike><small>{{cart.original_total_price | money}}</small></strike>
+        {% else %}
+        {{ cart.total_price | money }}
+        {% endif %}
+        </span>
+      </div>
+    </div>
+    <input name="checkout" class="btn btn--accent block-12/12" type="{% if has_subscriptions %}button{%else%}submit{% endif %}" value="{{ 'general.checkout_button' | t }}">
+    <ul class="wbsk-ui-payment-icons flex row-wrap align-center justify-center ct cb">
+      {% for type in shop.enabled_payment_types %}
+      <li class="cell-l--xs cell-r--xs">
+        {{ type | payment_type_svg_tag }}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</form>

@@ -1,0 +1,61 @@
+
+{% for block in section.blocks %}
+{% if page.handle == block.settings.title %}
+{% assign hasHero = true %}
+{% if  block.settings.bgImage %}
+<div class="block-12/12 block-fh{% if block.settings.bgImage__mobile %}@mobile-mobile__hide {% endif %}">
+  {% render 'lazy_img', _image:block.settings.bgImage , size:'1024' %}
+  {% endif %}
+</div>
+{% if  block.settings.bgImage__mobile %}
+<div class="block-12/12 @mobile-mobile__show">
+  {% render 'lazy_img', _image:block.settings.bgImage__mobile , size:'1024' %}
+</div>
+{% endif %}
+{% endif %}
+{% endfor %}
+
+
+{% unless hasHero %}
+<div class="block-12/12 block-fh{% if block.settings.bgImage__mobile %}@mobile-mobile__hide {% endif %}">
+  {% render 'lazy_img', _image:block.settings.bgImage__mobile , size:'1024' %}
+</div>
+<div class="block-12/12 @mobile-mobile__show">
+  {% render 'lazy_img', _image:block.settings.bgImage__mobile , size:'1024' %}
+</div>
+{% endunless%}
+
+
+{% schema %}
+
+{ 
+ 
+  "name":"global/page-heroes",
+  "max_blocks":50,
+
+  "blocks":[ 
+    { 
+      "type":"block",
+      "name":"block",
+      "settings":[ 
+        { 
+          "type":"image_picker",
+          "id":"bgImage",
+          "label":"Image"
+        },
+        { 
+          "type":"image_picker",
+          "id":"bgImage__mobile",
+          "label":"Image"
+        },
+        { 
+          "type":"page",
+          "id":"title",
+          "label":"page"
+        }
+       
+      ]
+    }
+  ]
+}
+{% endschema %}

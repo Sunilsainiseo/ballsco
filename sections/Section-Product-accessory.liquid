@@ -1,0 +1,313 @@
+{% assign featuredProduct = product %}
+
+<div class="block-rel block-oh section-product-featured">
+  <div class="grid grid--f flex row-wrap justify-center block-rel">
+    <div class="mobile_slider" style="height: 0; margin-bottom: 0;" >
+       <div class="swiper mySwiper_mob">
+          <div class="swiper-wrapper">
+            {% for image in featuredProduct.images %}
+            {% assign variantTitles = image.variants | map:'title' | join:' ' %}
+            {% unless variantTitles contains '24k' %}
+            <div class="swiper-slide" data-imageId="{{image.id}}">  
+              <div class="wr_img">
+              <img imgID="{{image.id}}" class="lazyload" data-src="{{ image | product_img_url: '1024x' }}" src="{{ image | product_img_url: '1024x' }}"/>
+            </div>
+              </div>
+            {% endunless %}
+            {% endfor %}
+          </div>
+           <div class="swiper-pagination"></div>
+        </div>
+        <script>
+        var swiper0 = new Swiper(".mySwiper_mob", {
+          slidesPerView: "auto",
+          centeredSlides: true,
+          grabCursor: true,
+      loop: true,
+          spaceBetween: 16,
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+        });
+      </script>
+    
+    </div>
+    
+    <div class=" desk_slider  {% if featuredProduct.media.size > 1 %} has_thumb {% endif %}{% if featuredProduct.media.size < 2 %}just-one-media{% endif %} home-Pdp-img block-6/12 cell-l cell-r row--l  @mobile-mobile__block-12/12">
+     <div class="sticky_wr">
+            <div class="swiper mySwiper2">
+        <div class="swiper-wrapper">
+          {% for image in featuredProduct.images %}
+          {% assign variantTitles = image.variants | map:'title' | join:' ' %}
+          {% unless variantTitles contains '24k' %}
+          <div class="swiper-slide" data-imageId="{{image.id}}">  
+            <img imgID="{{image.id}}" class="lazyload" data-src="{{ image | product_img_url: '1024x' }}" src="{{ image | product_img_url: '1024x' }}"/>
+          </div>
+          {% endunless %}
+          {% endfor %}
+        </div>
+      </div>
+
+      {% if featuredProduct.media.size > 1 %}
+      <div thumbsSlider="" class="swiper mySwiper-thumb">
+        <div class="swiper-wrapper">
+          {% for image in featuredProduct.images %}
+          {% comment %} remove the imagek gold tweezers image {% endcomment %}
+          {% assign variantTitles = image.variants | map:'title' | join:' ' %}
+          {% unless variantTitles contains '24k' %}
+          <div class="swiper-slide" data-imageId="{{image.id}}">
+            {% render 'lazy_img', size: '767' ,  _image:image , class:'swiper-lazy block-12/12' %}    
+          </div>
+          {% endunless %}
+          {%endfor%}
+        </div>
+      </div>
+      {% endif %}
+      <script>
+        {% if featuredProduct.media.size > 1 %}
+        $(function(){
+          var swiper = new Swiper(".mySwiper-thumb", {
+            spaceBetween: 10,
+            slidesPerView: 5,
+            noSwiping: true,
+
+          });
+          var swiper2 = new Swiper(".mySwiper2", {
+            spaceBetween: 10,
+            thumbs: {
+              swiper: swiper,
+            },
+          });
+        })
+        {% endif %}
+      </script>
+    </div>
+    </div>
+    <div class="accessory-right block-6/12 cell-l cell-r row--l  @mobile-mobile__block-12/12 testclass123">
+      {% comment %}
+      <div class="block-9/12 block-c @mobile-tablet__block-11/12 @mobile-mobile__block-12/12">
+        <h2 class="h-style h1-style row--s">{{featuredProduct.title}}</h2>
+        <div class="flex row-wrap align-center justify-space row--m">
+          <a href="/products/balls-electric-trimmer#reviews"><span class="stamped-product-reviews-badge stamped-main-badge" 
+                                                                   data-id="{{ featuredProduct.id }}" 
+                                                                   data-product-sku="{{ featuredProduct.handle }}">{{ featuredProduct.metafields.stamped.badge }}</span>
+          </a>
+        </div>
+        <div class="rte-content row--m">
+          <p>{{block.paragraph}}</p>
+        </div>
+        <div class="block-12/12">
+          <a href="{{featuredProduct.url}}" class="btn btn--accent block-12/12 d-iblock">{{ 'general.view_product' | t }}</a>
+        </div> 
+      </div>
+      {% endcomment %}
+      {% render 'product__form_accessory' , product:featuredProduct %}
+
+    </div>
+  </div>
+</div>
+
+<style>
+   .accessory-right{
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+         .accessory-right .accessory-wr{
+    padding-bottom: 0;
+  }
+    .new_section_mob .cstomfaq{
+    display: flex;
+       align-items: center;
+      text-transform: uppercase;
+          padding-right: 20px;
+    font-size: 17px;
+  }
+   .new_section_mob .cstomfaq span{
+        display: block;
+    width: 50px;
+     -ms-flex: 0 0 50px;
+    flex: 0 0 50px;
+    max-width: 50px;
+     text-align:center;
+  }
+  .new_section_mob .cstomfaq img{
+        display: block;
+    max-width: 50px;
+    margin:0 auto;
+  }
+  .mobile_slider{
+      overflow: hidden;
+    padding: 0 35px;
+    margin-bottom: 23px;
+  }
+  .mobile_slider .swiper-slide {
+    width: 100%;
+    max-width: 400px;
+    height: calc(100vw - 48px);
+    max-height: 400px;
+}
+  .mobile_slider .mySwiper_mob .swiper-slide .wr_img{
+  }
+  .mobile_slider .mySwiper_mob img{
+     border-radius: 16px;
+    display: block;
+    -webkit-box-shadow: 0px 0px 10px #000000;
+    -moz-box-shadow: 0px 0px 10px #000000;
+    box-shadow: 0px 0px 5px #dbdbdb;
+  }
+  #shopify-section-Section-Product-Featured {
+    margin-top: 55px;
+  }
+  #shopify-section-Section-Product-Featured hr.custom-hr {
+    display: none;
+  }
+  .section-product-featured .swiper.mySwiper2 {
+    overflow: hidden;
+  }
+  .section-product-featured {
+    padding-top: 75px;
+  }
+  .home-Pdp-img .mySwiper-thumb {
+    margin-top: 12px;
+    overflow: hidden;
+  }
+
+  .home-Pdp-img .mySwiper-thumb .swiper-wrapper .swiper-slide {
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  .home-Pdp-img .mySwiper-thumb .swiper-wrapper .swiper-slide.swiper-slide-thumb-active {
+    border: 1px solid #145db9;
+  }
+  .payment-icon {
+    margin-top: 20px;
+  }
+  .payment-icon ul li {
+    margin-right: 5px;
+  }
+  .section-product-featured h1.h1-style {
+    color: #000;
+    font-weight: 700;
+  }
+  .section-product-featured .prod-bar-info {
+    display: none!important;
+  }
+  a.View-pdp-btn {
+    padding: 5px 10px;
+    color: #fff;
+    background-color: #145db9;
+    border-radius: 8px;
+  }
+  a.View-pdp-btn:hover {
+    background-color: #000;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+
+  @media only screen and (min-width: 1025px) {
+    .home-Pdp-img {
+      position: relative;
+      padding-left: 110px;
+    }
+    .just-one-media.home-Pdp-img {
+      padding-left: 0;
+    }
+    .home-Pdp-img .mySwiper-thumb {
+      position: absolute;
+      left: 20px;
+      top: 0;
+      width: 75px;
+      overflow: hidden;
+      z-index: 2;
+    }
+    .home-Pdp-img .mySwiper-thumb .swiper-wrapper {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      transform: none!important;
+    }
+    .home-Pdp-img .mySwiper-thumb .swiper-wrapper .swiper-slide {
+      width: 100%!important;
+      max-width: 100%;
+      margin: 0 0 15px!important;
+      max-height: 75px;
+      overflow: hidden;
+    }
+    .home-Pdp-img .mySwiper-thumb .swiper-wrapper .swiper-slide img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+    .home-Pdp-img .mySwiper-thumb {
+      margin-top: 0;
+    }
+
+  }
+
+  @media only screen and (max-width: 991px) {
+    .payment-icon ul {
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+    }
+    .payment-icon ul li:first-child {
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin: 10px 0 20px;
+    }
+    .product .payment-icon ul li:first-child {
+      display: none;
+    }
+
+  }
+
+  @media only screen and (max-width: 767px) {
+    .mobile_slider{
+          height: auto !important;
+    }
+    .desk_slider{
+          display:none;
+    }
+    .section-product-featured {
+      padding-top: 35px;
+    }
+    .section-product-featured .home-Pdp-img {
+      margin-bottom: 30px;
+    }
+    .section-product-featured h1.h1-style {
+      text-align: center;
+    }
+    .section-product-featured .stamped-badge,
+    .section-product-featured .rte-content {
+      text-align: center;
+    }
+    a.View-pdp-btn {
+      padding: 7px 12px;
+      font-size: 22px;
+    }
+    .payment-icon ul li:first-child {
+      margin: 10px 0 30px;
+    }
+
+  }
+
+
+</style>
+
+
+{% schema %}
+{ 
+
+"name":"Section Accessory Product",
+
+"settings":[ 
+
+
+]
+}
+{% endschema %}

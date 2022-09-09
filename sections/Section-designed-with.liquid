@@ -1,0 +1,340 @@
+<div class="grid grid--f section-feature-set">
+
+  <div class="Fset-wrap">
+    <div class="swiper-container" id="feature-set-swiper">
+      <h2 class="block-rel Fset-Top">
+        <h2 class="h-style h1-style t-accent setheader setheader-new head-h2">
+          {{ section.settings.title }}
+        </h2>
+        {% comment %}
+        <a href="{{ section.settings.url }}" class="get_trimming">GET TRIMMING</a>
+        {% endcomment %}
+      </h2>
+
+      <div class="list-Feature">
+        {% for block in section.blocks %}
+        <div class="item-slide-set item_{{forloop.index}}">
+          <div class="set-text">
+            <h3>{{ block.settings.title }}</h3>
+            <h4>{{ block.settings.text }}</h4>
+          </div>
+          <div class="set-img">
+            <img class="{% if block.settings.image_mob %}desk_img_new{% endif %}" src="{{ block.settings.image | img_url: '' }}" alt="" />
+          {% if block.settings.image_mob %}
+            <img class="mob_img"  src="{{ block.settings.image_mob | img_url: '' }}" alt="" />
+            {% endif %}
+          </div>
+          {% if forloop.index == 2 %}
+            <a href="{{ section.settings.url }}" id="get_trimming_btn" class="get_trimming">VOIR LA TONDEUSE</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+ 
+  a.get_trimming{
+    background: #fff;
+    color: #000;
+    font-size: 32px;
+    text-align: center;
+    display: block;
+    margin: 40px auto;
+    padding: 15px 10px 10px;
+    max-width: 275px;
+  }
+   a#get_trimming_btn{
+     border-radius: 10px;
+      z-index: 2;
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translate(-50%, 0%);
+    -moz-transform: translate(-50%, 0%);
+    -o-transform: translate(-50%, 0%);
+    -ms-transform: translate(-50%, 0%);
+    transform: translate(-50%, 0%);
+    bottom: 10%;
+    margin: 0;
+    max-width: 400px;
+    width: 100%;
+  }
+  .section-feature-set .setheader-new {
+    text-align: center;
+    color: #fff;
+  }
+  .section-feature-set .setheader.setheader-new,
+  .section-feature-set .setheader.setheader-new p {
+    font-size: 52px;
+    font-weight: 700;
+        line-height: 64px;
+    color: #fff;
+    margin-top: 0;
+  }
+  .section-feature-set {
+    padding-top: 45px;
+    max-width: 100%;
+  }
+  body.product .section-feature-set {
+    padding-top: 45px;
+  }
+  .Section-Feature-Set {
+    background-color: #010101;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .list-Feature{
+  }
+  .list-Feature .item-slide-set{
+    display: block;
+    position: relative;
+  }
+  .list-Feature .item-slide-set .set-text{
+    position: absolute;
+    top: 100px;
+    width: 100%;
+    left: 0;
+    display: block;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+  }
+  .list-Feature .item-slide-set.item_1 .set-text{
+    top: 176px;
+  }
+  .list-Feature .item-slide-set .set-text h3{
+    display: block;
+    font-size: 44px;
+    margin: 0;
+        font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .list-Feature .item-slide-set .set-text h4{
+    display: block;
+    font-size: 18px;
+    margin: 0 auto;
+    max-width: 480px;
+    line-height: 24px;
+    font-weight: 400;
+  }
+  .list-Feature .item-slide-set .set-img{
+    display: block;
+    position: relative;
+    width: 100%;
+  }
+  .list-Feature .item-slide-set .set-img img{
+    display: block;
+    position: relative;
+    width: 100%;
+  }
+  .list-Feature .item-slide-set .set-img img.mob_img{
+    display: none;
+  }
+  @media only screen and (max-width: 1699px){
+    .section-feature-set .setheader.setheader-new, 
+    .section-feature-set .setheader.setheader-new p {
+
+    }
+    a.get_trimming {
+      font-size: 28px;
+      max-width: 255px;
+    }
+    .list-Feature .item-slide-set .set-text h3 {
+    }
+    .list-Feature .item-slide-set .set-text h4 {
+      max-width: 450px;
+    }
+
+  }
+  @media only screen and (max-width: 1499px){
+
+  }
+
+  @media only screen and (max-width: 1367px){
+
+    .list-Feature .item-slide-set .set-text {
+      top: 70px;
+    }
+    .list-Feature .item-slide-set.item_1 .set-text{
+      top: 126px;
+    }
+  }
+
+  @media only screen and (max-width: 1199px){
+    .section-feature-set .setheader.setheader-new, .section-feature-set .setheader.setheader-new p {
+      font-size: 50px;
+          line-height: 60px;
+    }
+    a#get_trimming_btn {
+       bottom: 10%;
+  }
+    .list-Feature .item-slide-set .set-text h3 {
+      font-size: 42px;
+    }
+    .list-Feature .item-slide-set .set-text {
+      top: 40px;
+    }
+    .list-Feature .item-slide-set.item_1 .set-text {
+      top: 100px;
+    }
+  }
+
+
+  @media only screen and (max-width: 991px) {
+    .section-feature-set .setheader.setheader-new, .section-feature-set .setheader.setheader-new p {
+      font-size: 46px;
+          line-height: 54px;
+    }
+    a.get_trimming {
+      font-size: 20px;
+      margin: 26px auto;
+      max-width: 236px;
+    }
+    a#get_trimming_btn {
+    max-width: 256px;
+    width: 100%;
+}
+    .list-Feature .item-slide-set .set-text h3 {
+      font-size: 34px;
+      margin-bottom: 16px;
+    }
+    .list-Feature .item-slide-set .set-text {
+    }
+    .list-Feature .item-slide-set.item_1 .set-text {
+      top: 90px;
+    }
+    .list-Feature .item-slide-set.item_2 .set-text {
+      top: 20px;
+    }
+     .list-Feature .item-slide-set .set-img img.desk_img_new{
+    display: none;
+  }
+     .list-Feature .item-slide-set .set-img img.mob_img{
+    display: block;
+  }
+  }
+
+  @media only screen and (max-width: 767px) {
+    .list-Feature .item-slide-set .set-text {
+      top: 15px;
+    }
+    .list-Feature .item-slide-set.item_1 .set-text {
+      top: 45px;
+    }
+    .list-Feature .item-slide-set.item_2 .set-text {
+      top: 10px;
+    }
+    a.get_trimming {
+       padding: 12px 10px 10px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  a#get_trimming_btn {
+    max-width: 200px;
+  }
+
+  }
+
+  @media only screen and (max-width: 639px) {
+    .section-feature-set {
+      padding-top: 30px;
+    }
+    .section-feature-set .setheader.setheader-new, .section-feature-set .setheader.setheader-new p {
+      font-size: 42px;
+      line-height: 44px;
+    }
+    .list-Feature .item-slide-set .set-text h3 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+    .list-Feature .item-slide-set.item_1 .set-text {
+      top: 30px;
+    }
+  .list-Feature .item-slide-set.item_3 .set-text {
+      top: 33px;
+    }
+  }
+
+  @media only screen and (max-width: 479px) {
+    .Fset-Top-Blue .header-text h1 {
+      top: 45px;
+    }
+    .list-Feature .item-slide-set .set-text {
+      padding: 0 20px;
+    }
+    .list-Feature .item-slide-set .set-img img {
+      min-height: 360px;
+      object-fit: cover;
+    }
+    .list-Feature .item-slide-set.item_2 .set-img img {
+      min-height: 450px;
+    }
+    .list-Feature .item-slide-set.item_4 .set-img img {
+      min-height: 400px;
+    }
+     .list-Feature .item-slide-set.item_3 .set-text {
+      top: 33px;
+    }
+
+  }
+
+</style>
+
+{% schema %}
+{
+"name": "Section Feature Set",
+"class": "Section-Feature-Set",
+"settings": [
+{
+"type": "richtext",
+"id": "title",
+"label": "Header"
+},
+{
+"type": "url",
+"id": "url",
+"label": "Button - URL"
+}
+
+],
+"blocks": [
+{
+"name": "Block",
+"type": "Block",
+"settings": [
+{
+"type": "image_picker",
+"id": "image",
+"label": "Image - Desktop"
+},
+{
+"type": "image_picker",
+"id": "image_mob",
+"label": "Image - mobile"
+},
+{
+"type": "text",
+"id": "title",
+"label": "Feature Set Title"
+},
+
+{
+"type": "richtext",
+"id": "text",
+"label": "Text"
+}
+]
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+
+
+{% endjavascript %}

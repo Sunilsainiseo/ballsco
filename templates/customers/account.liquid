@@ -1,0 +1,144 @@
+<div class="Recharge-Balls-Wr">
+  <div class="container-fluid">
+    <div class="recharge-wrapper">
+      <!--<hr class="hr--small">-->
+      <div class="rc-grid">
+
+        <div class="account-details rc-grid__item recharege-portal-header">
+          <h4>
+            Sup, <span class="cus_name">{{ customer.first_name }}!</span>
+          </h4>
+
+          <select class="account-navigation__dropdown recharege-portal-inner js-account-dropdown">
+            <option value="/account" selected>Historique de Commandes</option>
+            <option value="/account/addresses">Compte</option>
+            <option value="/tools/recurring/login/">Abonnement</option>   
+          </select>
+          <ul class="account-navigation__list d-flex flex-nowrap justify-content-center">
+            <li class="navigation-item"><a class="account-navigation__item-link is-active" href="/account">Historique de Commandes</a></li>
+            <li class="navigation-item"><a href="/account/addresses">Compte</a></li>
+            <li class="navigation-item"><a class="account-navigation__item-link" href="/tools/recurring/login/">Abonnement</a>
+            </li>
+          </ul>
+        </div>
+
+        <div id="dashboard-contents" class="account-contents rc-grid__item">
+          <ul class="rc-orders_list">
+            <h4>Mes commandes</h4>
+            {%if  customer.orders.size > 0%}
+            {% paginate customer.orders by 20 %}
+            {% for order in customer.orders%}
+            <li class="rc-order_list--item d-flex flex-nowrap align-items-center">
+              <div class="list-img--wrapper">
+                <img src="{{order.line_items[0].image | image_url: width: 150, height: 150}}">
+              </div>
+              <div class="product-title--wrapper">
+                <p class="sub-product--order">Order #{{order.name}}</p>
+                <p class="sub-product--title">{{order.line_items[0].title}} </p>
+                <p class="sub-product--price">Total: {{order.total_price | money}}</p>
+                <div class="btn-manage-subs-wrapper">
+                  <a class="re-btn" href="{{order.customer_url}}" target="_blank">Voir la Commande</a>
+                  <a class="re-btn" href="{{order.order_status_url}}" target="_blank">Suivre la Commande</a>
+                </div>
+              </div>
+            </li>
+            {% endfor %}
+            {% endpaginate %}
+            {%else%}
+            <div class="rte-content tac">
+              <p>{{'customer.account_main.no_orders' | t}}</p>
+            </div>
+            {%endif%}
+
+          </ul>
+        </div>
+      </div>
+    </div>
+    {%include 'account__crumbs',page:false%}
+  </div>
+</div>
+
+
+
+{% comment %}
+<div class="cell-l cell-r block-6/12 @mobile-tablet__block-12/12 row--m">
+
+  <div class="ct cb row flex row-wrap align-center justify-space bdr-b bdr-grey">
+    <h2 class="h-style h3-style">{{'customer.account_main.default_address' | t}}</h2>
+    <a class="t-accent" href="/account/addresses"><u>{{'customer.account_main.edit' | t}} / {{'customer.account_main.add' | t}}</u></a>
+  </div>
+  <div class="rte-content cb ">
+    {%if  customer.addresses.size > 0%}
+    {% for address in customer.addresses %}
+    {% if address == customer.default_address %}
+    {{address | format_address}}       
+    {%endif%}
+    {% endfor %}
+    {%else%}
+    <p>{{'customer.account_main.no_address' | t}}</p>
+    {%endif%}
+
+  </div>
+</div>
+
+<div class="cell-l cell-r block-6/12 @mobile-tablet__block-12/12 row--m" >
+  <div class="block-12/12 ac__block">
+    <div class="ct cb flex row row-wrap align-center justify-space bdr-b bdr-grey">
+      <h2 class="h-style h3-style">{{'customer.account_main.recent_orders' | t}}</h2>
+    </div>
+
+    <br>  
+
+
+    <a href="/tools/recurring/login/" id="manage_subscription" class="btn btn--fancy d-block row--m block-12/12">{{'customer.account_main.manage_subscription' | t}}</a>
+
+    <div class=" cb">
+      {%if  customer.orders.size > 0%}
+      {% paginate customer.orders by 20 %}
+      {% for order in customer.orders%}
+      <div class="flex row-wrap align-center justify-space row--s">
+        <p> {{order.created_at| date: "%d/%m/%Y" }} / {{order.name}} / {{order.total_price | money}} / {%if order.cancelled == true%}{{'customer.orders.cancelled'|t}}{%else%}<a class="orng-txt" target="_blank" href="{{order.order_status_url}}"><u>{{'general.status' | t}}</u></a>{%endif%}</p>
+        <a href="{{order.customer_url}}" data-id="{{order.order_number}}" class="orng-txt"><u>{{'general.view' | t}}</u></a>
+      </div>
+      {% endfor %}
+      <div class="block-c @mobile-large__block-12/12 pagination flex row-wrap align-center justify-center tac row-top--m row--r">
+        {% if paginate.previous.is_link %}
+        <a href="{{ paginate.previous.url }}" class="pagination__button">&larr;</a>
+        {% endif %}
+        {% for part in paginate.parts %}
+        {% if part.is_link %}
+        <a href="{{ part.url }}">{{part.title}}</a>
+        {%else%}     
+        <span class="active {{part.title | handleize}}">{{part.title}}</span>
+        {% endif %}
+        {% endfor %}
+        {% if paginate.next.is_link %}
+        <a href="{{ paginate.next.url }}" class="pagination__button">&rarr;</a>
+        {% endif %}
+      </div>
+      {% endpaginate %}
+      {%else%}
+      <div class="rte-content tac">
+        <p>{{'customer.account_main.no_orders' | t}}</p>
+      </div>
+      {%endif%}
+
+    </div>
+  </div>
+</div>
+{% endcomment %}
+
+
+<script>
+  $('main').removeClass('visible-hide');
+  {% comment %}
+  {% if customer %}
+  if(window.localStorage.getItem('user') == null) {
+    window.localStorage.setItem('user', 'logged in');
+    window.location.href="/tools/recurring/login/";
+  } else {
+    $('main').removeClass('visible-hide')
+  }
+  {% endif %}
+  {% endcomment %}
+</script>

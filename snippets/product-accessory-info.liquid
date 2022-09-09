@@ -1,0 +1,80 @@
+<div class="how-to-use">
+<ul>
+<li class="faq-item cell-l cell-r ">
+<p class="h-style h3-style t-accent ct--m cb--m faq-heading js-faq-question cstomfaq">
+<span><img src="{{ 'bottle.png' | asset_url }}" alt="" /></span>how to use
+</p>
+<div class="rte-content rte-content--l js-faq-question cb--m t-accent" style="display:none">
+<div class="faqcontent">{{ product.metafields.custom.how_to_use }}</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="info-featured">
+<div class="item-featured">
+<p><img src="{{ 'no-sulfate.png' | asset_url }}" alt="" /><span>No Sulphates</span></p>
+</div>
+<div class="item-featured">
+<p><img src="{{ 'hypoallergenic.png' | asset_url }}" alt="" /><span>100% Vegan</span></p>
+</div>
+<div class="item-featured">
+<p><img src="{{ 'leaf.png' | asset_url }}" alt="" /><span>All Natural</span></p>
+</div>
+<div class="item-featured">
+<p><img src="{{ 'animal-kingdom.png' | asset_url }}" alt="" /><span>Cruelty Free</span></p>
+</div>
+</div>
+<div class="ingredients">
+<h4 class="title_custom">Ingredients</h4>
+<div class="ingredients-content">{{ product.metafields.custom.ingredients }}</div>
+<ul>
+<li class="faq-item cell-l cell-r bdr-b ">
+<p class="h-style h3-style t-accent ct--m cb--m faq-heading js-ingredients cstomfaq">
+<span><img src="{{ 'macadamia-nut.png' | asset_url }}" alt="" /></span>Macademia Seed Oil
+</p>
+<div class="rte-content rte-content--l js-faq-question cb--m t-accent" style="display:none">
+<div class="faqcontent">{{ product.metafields.custom.ingredients_tab_1 }}</div>
+</div>
+</li>
+  <li class="faq-item cell-l cell-r bdr-b ">
+<p class="h-style h3-style t-accent ct--m cb--m faq-heading js-ingredients cstomfaq">
+<span><img src="{{ 'leaf-2.png' | asset_url }}" alt="" /></span>Tea Tree
+</p>
+<div class="rte-content rte-content--l js-faq-question cb--m t-accent" style="display:none">
+<div class="faqcontent">{{ product.metafields.custom.ingredients_tab_2 }}</div>
+</div>
+</li>
+  <li class="faq-item cell-l cell-r bdr-b ">
+<p class="h-style h3-style t-accent ct--m cb--m faq-heading js-ingredients cstomfaq">
+<span><img src="{{ 'rosemary.png' | asset_url }}" alt="" /></span>Rosemary & Peppermint
+</p>
+<div class="rte-content rte-content--l js-faq-question cb--m t-accent" style="display:none">
+<div class="faqcontent">{{ product.metafields.custom.ingredients_tab_3 }}</div>
+</div>
+</li>
+  <li class="faq-item cell-l cell-r ">
+<p class="h-style h3-style t-accent ct--m cb--m faq-heading js-ingredients cstomfaq">
+<span><img src="{{ 'eucalyptus-2.png' | asset_url }}" alt="" /></span>Eucalyptus
+</p>
+<div class="rte-content rte-content--l js-faq-question cb--m t-accent" style="display:none">
+<div class="faqcontent">{{ product.metafields.custom.ingredients_tab_4 }}</div>
+</div>
+</li>
+</ul>
+</div>
+<script>
+$(function(){
+$('.js-ingredients').click(function(e){
+$(this).toggleClass('faq-heading--active').next().slideToggle(200)
+$("li").removeClass("highlight");
+$(this).parent('li').addClass("highlight");
+})
+})
+</script>
+<style>
+ .ingredients .faq-heading:after{
+  background-image: url('https://cdn.shopify.com/s/files/1/0270/1190/7619/files/faq-heading-icon_5cc88ca5-a5fb-43a4-a8ab-5a8ac1336905.svg?v=1657696214'); 
+  }
+</style>
+
+

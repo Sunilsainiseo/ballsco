@@ -1,0 +1,1 @@
+<script>window.__sumoShopify = {product:{% if product %}{ id: "{{ product.id }}" }{% else %}null{% endif %}, customer: {% if customer %} {email: "{{ customer.email }}", first_name: "{{ customer.first_name }}", last_name: "{{ customer.last_name }}", name: "{{ customer.name }}", id: "{{ customer.id }}", total_spent: {{ customer.total_spent }} }{% else %}null{% endif %}};</script>

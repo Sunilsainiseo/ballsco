@@ -1,0 +1,340 @@
+
+<div class="block-9/12 block-c ct--m cell-l cell-r cb--m @mobile-grid__block-11/12 @mobile-tablet__block-12/12">
+  <meta itemprop="priceCurrency" content="{{ shop.currency }}" />
+  <meta itemprop="seller" content="{{ shop.name | escape }}" />
+  <meta itemprop="availability" content="{% if product.available %}in_stock{% else %}out_of_stock{% endif %}" />
+  <meta itemprop="itemCondition" content="New" />
+  <p itemprop="name" class="d-block h-style h1-style row--s"  itemprop="name" style="font-weight: bold;color: #000;">{{product.title}}</p>
+  <div class="row">
+    <span class="stamped-product-reviews-badge stamped-main-badge" 
+          data-id="{{ product.id }}" 
+          data-product-sku="{{ product.handle }}">{{ product.metafields.stamped.badge }}</span>
+  </div>
+    {% if product.handle == 'usb-charger-replacement' or product.handle == 'replacement-blade-comb-set' %}
+  <div class="price_cus">
+    <span class="e">{{ product.variants.first.price | money}}</span>
+  </div>
+  {% endif %}
+  <div itemprop="description" class="rte-content rte-content--l row--m">
+    {% assign short = product.description | split:'[short]' | first | split:'[/short]' | last | replace: '<short>', ''  | replace: '</short>', '' %}
+    {{short}}
+  </div>
+    {% unless product.handle == 'usb-charger-replacement' or product.handle == 'replacement-blade-comb-set' %}
+  <div class="product-form12 text bold flex-apart">
+    <p class="left">Expédition Gratuite 🇫🇷 </p>
+    <p class="right">Emballage discret {%comment%}<img class="" src="{{ '1f333.png' | asset_url }}" />{%endcomment%}</p>
+  </div>
+   <hr style="border-color: #145db9;margin-bottom: 40px;">
+  {% endunless %}
+
+  <form class="block-12/12 wbsk-cart__atc-form form-product" action="/cart/add" method="post" enctype="multipart/form-data" data-productid="{{product.id}}">
+    {% if template == 'regular' %}
+    <select name="id" class="block-12/12 ct cb cell-l cell-r wbsk-ui-select bdr bdr-grey row {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}hide{% endif%}">
+      {% for variant in product.variants %}
+      <option value="{{variant.id}}">{{variant.title}} - {{variant.price | money }}</option>
+      {% endfor %}
+    </select>
+    {% else %}
+    {% render 'product__variant-selectors' , variants:product.variants%}
+    {% endif %}
+    {% unless product.handle == 'usb-charger-replacement' or product.handle == 'replacement-blade-comb-set' %}
+    <div class="bg-accent t-white block-12/12 flex row-wrap align-stretch justify-left js-prod-sticky-atc__top-anchor defaultbtn">
+      <div class="mobileqty ddd "> 
+        <div class="cus-qty">
+          <input type='button' value='-' class='qtyminus hidden' field='quantity' onclick="TextBox_AddToIntValue('product-quantity-{{product.id}}',-1)" />
+          <input type='number' name='quantity' value='1' class='qty' id="product-quantity-{{product.id}}"/>
+          <input type='button' value='+' class='qtyplus hidden' field='quantity' onclick="TextBox_AddToIntValue('product-quantity-{{product.id}}',+1)" />
+        </div>
+      </div>
+      <!--   //Quantity Selector   -->   
+      <button class="btn btn--accent block-10/12">
+        <span>{{'general.add_to_cart' | t}}</span>
+      </button>
+    </div>
+    {% endunless %}
+    <div class="bg-accent t-white block-12/12 flex row-wrap align-stretch justify-left js-prod-sticky-atc__top-anchor rechargebttn rechdesktop mobile-hide">
+      <div class="mobileqty"> 
+        <div class="cus-qty">
+          <input type='button' value='-' class='qtyminus hidden' field='quantity' onclick="TextBox_AddToIntValue('product-quantity-{{product.id}}',-1)" />
+          <input type='number' name='quantity' value='1' class='qty' id="product-quantity-{{product.id}}"/>
+          <input type='button' value='+' class='qtyplus hidden' field='quantity' onclick="TextBox_AddToIntValue('product-quantity-{{product.id}}',+1)" />
+        </div>
+      </div>
+      <!--   //Quantity Selector   -->   
+      <button class="btn btn--accent block-10/12 cstmatcbtn">
+        <span>{{'general.add_to_cart' | t}}</span>
+      </button>
+    </div>
+    <div class="bg-accent t-white block-12/12 flex row-wrap align-stretch justify-left js-prod-sticky-atc__top-anchor rechargebttn rechmobile dsktop-hide">
+      <div class="mobileqty"> 
+        <div class="cus-qty">
+          <input type='button' value='-' class='qtyminus hidden' field='quantity' onclick="TextBox_AddToIntValue('product-quantity-{{product.id}}',-1)" />
+          <input type='number' name='quantity' value='1' class='qty' id="product-quantity-{{product.id}}"/>
+          <input type='button' value='+' class='qtyplus hidden' field='quantity' onclick="TextBox_AddToIntValue('product-quantity-{{product.id}}',+1)" />
+        </div>
+      </div>
+      <button class="btn btn--accent block-10/12 cstmatcbtn">
+        <span>{{'general.add_to_cart' | t}}</span>
+      </button>
+    </div>
+    <div class="under-text">
+
+
+    </div>
+  </form>
+</div>
+<style>
+  .under-text{
+    position: relative;
+    display: block;
+    width: 85%;
+    margin: auto;
+    float: right;
+  }
+  .under-text p{
+    margin: auto;
+    max-width: 200px;
+    width: 100%;
+    text-align: center;
+    margin-top: 6px;
+    padding-bottom: 12px;
+    padding-top: 3px;
+    color: #015db9;
+  }
+  .icon-shipping{
+    max-width: 35px;
+    margin-bottom: -6px;
+  }
+  .form-product .hidden{
+    display:none !important;
+  }
+
+  .form-product .bg-accent .mobileqty{
+    max-width: 100%;
+    background: #015db9;
+    width: 15%;
+    border-right: 1px solid #fff;
+    float: left;
+  }
+  .form-product .bg-accent .mobileqty .cus-qty{
+    max-width: 100%;
+    display: inline-flex;
+    background: #015db9;
+    color: #fff;
+    padding-left: 5px;
+    height: 61.5px;
+  }
+  .form-product .bg-accent .mobileqty .qty {
+    max-width: 100%;
+    text-align: center;
+    background: #015db9;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    margin: 0;
+  }
+  .form-product .btn.btn--accent{
+    width: 85%;
+    max-width: 100%;
+    float: left;
+    margin: 0;
+  }
+  .form-product .qtyminus,
+  .qtyplus{
+    max-width: 30%;
+    font-size: 16px;
+    text-align: center;
+    background: #015db9;
+    color: #fff;
+    border: none;
+  }
+  .qtyminus:focus,
+  .qtyplus:focus,
+  .form-product .bg-accent .mobileqty .qty:focus{
+    outline: none;
+    box-shadow: none;
+    border: none;
+
+  }
+
+  @media screen and (max-width: 1199px) {
+    .form-product .bg-accent .mobileqty{
+      width: 18%;
+    }
+    .form-product .btn.btn--accent {
+      width: 82%;
+    }
+  } 
+  @media screen and (max-width: 1024px) {
+    .under-text {
+      width: 90%;
+    }
+
+    .form-product .bg-accent .mobileqty{
+      width: 10%;
+    }
+    .form-product .btn.btn--accent {
+      width: 90%;
+    }
+  } 
+  @media screen and (max-width: 767px) {
+    .form-product .bg-accent .mobileqty{
+      width: 12%;
+    }
+    .form-product .btn.btn--accent {
+      width: 88%;
+    }
+    .under-text p{
+      font-size: 14px;
+    }
+  } 
+  @media screen and (max-width: 639px) {
+    .form-product .bg-accent .mobileqty{
+      width: 15%;
+    }
+    .form-product .btn.btn--accent {
+      width: 85%;
+    }
+  } 
+  @media screen and (max-width: 639px) {
+    .form-product .bg-accent .mobileqty{
+      width: 18%;
+    }
+    .form-product .btn.btn--accent {
+      width: 82%;
+    }
+  }
+  @media screen and (max-width: 479px) {
+    .form-product .bg-accent .mobileqty{
+      width: 18%;
+    }
+    .form-product .btn.btn--accent {
+      width: 72%;
+    }
+    /* .form-product .bg-accent .mobileqty .qty{
+    font-size: 14px;
+  }
+    .form-product .bg-accent .mobileqty .qty {
+    max-width: 30%;
+  }*/
+    .form-product .qtyminus, .qtyplus{
+      max-width: 35%;
+    }
+  }
+
+</style>
+<script>
+  jQuery(document).ready(function(){
+
+    $("input[name='quantity']").keyup(function(){
+      console.log($(this).val());
+      $("input[name='quantity']").val($(this).val());
+    });
+
+    // This button will increment the value
+    $('.qtyplus').click(function(e){
+      // Stop acting like a button
+      e.preventDefault();
+      // Get the field name
+      fieldName = $(this).attr('field');
+      // Get its current value
+      var currentVal = parseInt($('input[name='+fieldName+']').val());
+      // If is not undefined
+      if (!isNaN(currentVal)) {
+        // Increment
+        $('input[name='+fieldName+']').val(currentVal + 1);
+      } else {
+        // Otherwise put a 0 there
+        $('input[name='+fieldName+']').val(0);
+      }
+    });
+    // This button will decrement the value till 0
+    $(".qtyminus").click(function(e) {
+      // Stop acting like a button
+      e.preventDefault();
+      // Get the field name
+      fieldName = $(this).attr('field');
+      // Get its current value
+      var currentVal = parseInt($('input[name='+fieldName+']').val());
+      // If it isn't undefined or its greater than 0
+      if (!isNaN(currentVal) && currentVal > 0) {
+        // Decrement one
+        $('input[name='+fieldName+']').val(currentVal - 1);
+      } else {
+        // Otherwise put a 0 there
+        $('input[name='+fieldName+']').val(0);
+      }
+    });
+  });
+</script>
+
+<script>
+  /*
+$(document).ready(function(){
+  $('.rechdesktop').click(function(){
+    var variant_id = $('.cstmvid').attr("vid");
+    addItemToCartcustom(variant_id, 1, "3", "Months", "232104")
+  })
+
+function addItemToCartcustom (variant_id, quantity, shipping_interval_frequency, shipping_interval_unit_type, subscription_id) {
+  data = {
+      "quantity": quantity,
+      "id": variant_id,
+      "properties[shipping_interval_frequency]": shipping_interval_frequency, 
+	"properties[shipping_interval_unit_type]": shipping_interval_unit_type,            
+	"properties[subscription_id]": subscription_id
+    }
+  jQuery.ajax({
+      type: 'POST',
+      url: '/cart/add.js',
+      data: data,
+      dataType: 'json',
+      success: function() { 
+
+      }
+  });
+
+}
+});
+
+$(document).ready(function(){
+  $('.rechmobile').click(function(){
+    var variant_id = $('.cstmvid').attr("vid");
+    addItemToCartcustom(variant_id, 1, "3", "Months", "232104")
+  })
+
+function addItemToCartcustom (variant_id, quantity, shipping_interval_frequency, shipping_interval_unit_type, subscription_id) {
+  data = {
+      "quantity": quantity,
+      "id": variant_id,
+      "properties[shipping_interval_frequency]": shipping_interval_frequency, 
+	"properties[shipping_interval_unit_type]": shipping_interval_unit_type,            
+	"properties[subscription_id]": subscription_id
+    }
+  jQuery.ajax({
+      type: 'POST',
+      url: '/cart/add.js',
+      data: data,
+      dataType: 'json',
+      success: function() { 
+       window.location.href = '/cart';
+      }
+  });
+
+}
+});
+*/
+</script>
+
+<style>
+  @media (min-width:768px)  {.dsktop-hide{display:none !important; display: inline-flex;}  }
+  @media (max-width:767px)  {
+    .mobile-hide{display:none !important;
+    } 
+    .defaultbtn{display:none !important;
+
+    }
+
+
+  }
+</style>

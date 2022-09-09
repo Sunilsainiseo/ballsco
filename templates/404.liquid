@@ -1,0 +1,23 @@
+<div class="block-rel row--l">
+ 
+  <div class="{% if settings.notFoundMobile %}@mobile-tablet__hide {% endif %}">
+    {% render 'lazy_img', _image:settings.notFoundDesktop ,  size:'2048' %}
+  </div>
+  {% if settings.notFoundMobile %}
+  <div class="@mobile-tablet__show">
+    {% render 'lazy_img', _image:settings.notFoundMobile ,  size:'1024' %}
+  </div>
+  {% endif %}
+  <div class="flex  ct--l cb--l block-abc block-12/12 block-fh">
+    <div class="flex col-wrap align-center justify-center grid grid--f">
+      <div class="grid grid--f flex row-wrap align-center justify-left t-white @mobile-tablet__tac  @mobile-tablet__align-center">
+        <div class="cell-l cell-r block-7/12 @mobile-grid__block-8/12 @mobile-large__block-9/12 @mobile-tablet__block-12/12">
+          <h1 class="h-style hxl-style row--m">{{settings.notFoundHeading}}</h1>
+          <div class="rte-content block-8/12 @mobile-tablet__block-c @mobile-mobile__block-11/12">
+          {{settings.notFoundParagraph}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+<div id="pro_reviews" class="grid grid--f cell-l cell-r row--l">
+  <div class="bdr-t bdr-b bdr-thick t-accent ct--m cb--m  block-oh">
+    <div class="swiper-container swiper-container--review-heading" id="reviewsHeading">
+      <ul class="swiper-wrapper">
+        {% for i in (1..4) %}
+        <li class="swiper-slide tac">
+          <div class="flex row-wrap align-center justify-center">
+            <span class="review-heading__stars cell-r--l @mobile-tablet__hide">{% render 'svg' with '5star' %}</span>
+            <div class="h-style hxl-style">{{ 'general.customer_reviews' | t }}</div>
+            <span class="review-heading__stars cdll-l--l @mobile-tablet__hide">{% render 'svg' with '5star' %}</span>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="grid grid--f row--m" data-js-wbksrollto-anchor="productReviews">
+  <div class="cell-l cell-r">
+    <div id="stamped-main-widget"   
+         data-widget-style="standard" 
+  	     data-product-id="{{ product.id }}"   
+         data-name="{{ product.title | escape }}"   
+         data-url="{{ shop.url }}{{ product.url }}"   
+         data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}" 
+         data-description="{{ product.description | escape }}"   
+         data-product-sku="{{product.handle}}">   
+      {{ product.metafields.stamped.reviews }}   
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function(){
+    $('#reviewsHeading').wbskSwiper({
+      slidesPerView: 1,
+      loop:true,
+      spaceBetween:0,
+      freeMode:true,
+      autoplay: {delay: .0000000001, },
+      speed:5000,
+      simulateTouch: false,
+      breakpoints: {
+        767: {
+          slidesPerView:1,
+        },
+        512: {
+          slidesPerView:1,
+        }
+      }
+      
+    })
+  })
+    
+  $(window).on('resize',function(){
+    var swiper = $('#reviewsHeading').data('wbskSwiper').swiper,
+        swiperContentWidth = $('.js-review-slider-content').width(),
+        swiperSlideWidth = $('#reviewsHeading li').width()
+    
+    swiper.slideTo(0,0,false)
+    swiper.autoplay.start()
+  }.debounce(20))
+
+</script>
+
+<style>
+  .review-heading__stars {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+</style>
+

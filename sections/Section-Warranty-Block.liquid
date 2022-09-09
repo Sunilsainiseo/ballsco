@@ -1,0 +1,200 @@
+<div class="header-text">
+  <div class="grid grid--f row--l text-center">
+    <h2 class="t-blue head-h2">{{ section.settings.title}}</h2>
+    <p>{{ section.settings.text}}</p>
+  </div>
+</div>
+<div class="block-reviews d-flex flex-nowrap grid grid--f flex row-wrap block-rel">
+  {% for block in section.blocks %}
+  <div class="block-4/12 cell-l cell-r row--m  @mobile-mobile__block-4/12">
+    <div class="grid grid--f flex row-wrap block-rel">
+      <div class="reviews-box">
+        <div class="customer-img">
+          <img src="{{ block.settings.image | img_url: '' }}" alt="" />
+        </div>
+        <h3>{{ block.settings.title_1}}</h3>
+        {{ block.settings.text_2}}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% if section.settings.link != blank %}
+<div class="footer-text">
+  <div class="grid grid--f text-center">
+    <a href="{{ section.settings.link }}" class="btn">SUBSCRIBE</a>
+  </div>
+</div>
+{% endif %}
+
+<style>
+  .section-warranty-block {
+    background-color: #015db9;
+    padding-top: 55px;
+    padding-bottom: 55px;
+  }
+  .section-warranty-block .header-text {
+    text-align: center;
+  }
+  .section-warranty-block .header-text .head-h2 {
+    font-size: 52px;
+    line-height: 56px;
+    font-weight: 700;
+    text-transform: none;
+    color: #fff;
+    margin: 10px 0;
+  }
+  .section-warranty-block .block-reviews {
+    max-width: 740px;
+  }
+  .section-warranty-block .reviews-box {
+    text-align: center;
+    width: 100%;
+  }
+  .section-warranty-block .reviews-box .customer-img {
+    max-width: 135px;
+    margin: 0 auto;
+    display: block;
+    overflow: hidden;
+  }
+  .section-warranty-block .reviews-box .customer-img img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .section-warranty-block .reviews-box h3 {
+    font-size: 22px;
+    line-height: 26px;
+    margin: 15px 0 10px;
+    color: #fff;
+    text-transform: none;
+    font-weight: 900;
+  }
+  .section-warranty-block .reviews-box p {
+    margin: 0px 0 10px;
+    font-size: 24px;
+    line-height: 26px;
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .footer-text a.btn {
+    background: #fff;
+    color: #015db9;
+    display: block;
+    text-align: center;
+    padding: 15px 30px;
+    border: 1px solid #fff;
+    border-radius: 50px;
+    overflow: hidden;
+    max-width: 230px;
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0 auto;
+  }
+  .footer-text a.btn:hover {
+    opacity: 0.9;
+  }
+
+
+  @media only screen and (min-width: 992px) {
+    .section-warranty-block .reviews-box p {
+      padding: 0 15px;
+    }
+  }
+
+  @media only screen and (max-width: 991px) and (max-width: 768px) {
+    .section-warranty-block .reviews-box h3 {
+      font-size: 18px;
+      line-height: 22px;
+    }
+    .section-warranty-block .reviews-box p {
+      font-size: 18px;
+    }
+
+  }
+
+  @media only screen and (max-width: 767px) {
+    .section-warranty-block .block-reviews {
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+    }
+    .section-warranty-block .reviews-box {
+      max-width: 320px;
+      margin: 0 auto;
+    }
+    .section-warranty-block .header-text .head-h2 {
+      font-size: 42px;
+      line-height: 44px;
+      padding: 0 15px;
+    }
+
+  }
+
+  @media only screen and (max-width: 479px) {
+    .section-warranty-block .block-reviews .row--m {
+      padding: 0 10px;
+      margin-bottom: 0;
+    }
+    .section-warranty-block .reviews-box .customer-img {
+      max-width: 95px;
+    }
+    .section-warranty-block .reviews-box p {
+      font-size: 16px;
+      line-height: 18px;
+    }
+
+  }
+
+
+</style>
+
+{% schema %}
+{
+"name": "Section Warranty Block",
+"class": "section-warranty-block",
+"max_blocks": 4,
+"settings": [
+{
+"type": "text",
+"id": "title",
+"label": "Header"
+},
+{
+"type": "textarea",
+"id": "text",
+"label": "SubText"
+},
+{
+"type": "url",
+"id": "link",
+"label": "Button"
+}
+],
+"blocks": [
+{
+"name": "Block",
+"type": "Block",
+"settings": [
+{
+"type": "image_picker",
+"id": "image",
+"label": "Image"
+},
+{
+"type": "text",
+"id": "title_1",
+"label": "Heading"
+},
+
+{
+"type": "richtext",
+"id": "text_2",
+"label": "Text"
+}
+]
+}
+]
+}
+{% endschema %}
+

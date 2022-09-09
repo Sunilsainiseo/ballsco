@@ -1,0 +1,30 @@
+{% if request.path contains '/tools/recurring/portal' or request.path contains '/account/orders' or template == 'customers/account' %}
+{% section 'footer__newsletter' %}
+{% endif %}
+<footer class="footer-wr grid grid--f cell-l cell-r t-white">
+  {% section 'footer__main' %}
+  {% section 'footer__bottom' %}
+</footer>
+
+<style>
+  footer.footer-wr {
+    background-color: #015db9;
+    max-width: 100%;
+  }
+  footer.footer-wr .footer-logo svg * {
+    fill: #fff;
+  }
+  .btn.border-light {
+    border: 1px solid #fff;
+  }
+
+  @media only screen and (max-width: 767px) {
+    #shopify-section-footer__bottom .rte-content {
+      text-align: center;
+    }
+    #shopify-section-footer__bottom .rte-content a {
+      display; block;
+    }
+
+  }
+</style>

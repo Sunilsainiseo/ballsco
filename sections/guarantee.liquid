@@ -1,0 +1,67 @@
+{% assign block = section.settings %}
+<div class="grid grid--f flex row-wrap align-center justify-center block-rel">
+  <div class="block-6/12 cell-l cell-r row--l @mobile-mobile__block-12/12 ">
+     <div class="block-12/12 far-image far-image--square block-rel">
+      {% assign _image = block.image %}
+      <img class="lazyload block-12/12 d-block" 
+           alt="{{_image.alt}}" 
+           data-src="{{_image.src  | img_url:'1024x' }}"
+           data-sizes="auto"
+           data-srcset="{{_image.src | img_url:'1024x'}} 1024w,
+           {{_image.src | img_url:'256x' }} 256w,
+           {{_image.src | img_url:'512x' }} 512w,
+           {{_image.src | img_url:'767x' }} 767w,
+           {{_image.src | img_url:'1024x' }} 1024w,
+           {{_image.src | img_url:'2048x' }} 2048w"> 
+    </div>
+  </div>
+  <div class="block-6/12 cell-l cell-r row--l @mobile-mobile__block-12/12">
+    <div class="block-9/12 block-c @mobile-tablet__block-11/12 @mobile-mobile__block-12/12 " >
+      <h2 class="h-style h1-style t-accent row">{{block.heading}}</h2>
+      <div class="rte-content {% if block.button_url%}row--m {% endif %}">
+        <p>{{block.paragraph}}</p>
+      </div>        
+      {% if block.button_url %}
+        <a href="{{block.button_url}}"  class="btn btn--fancy d-iblock">{{block.button_text}}</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+{ 
+ 
+  "name":"global/guarantee-block",
+ 
+  "settings":[ 
+   
+    { 
+      "type":"image_picker",
+      "id":"image",
+      "label":"image"
+    },
+    
+    { 
+      "type":"text",
+      "id":"heading",
+      "label":"heading"
+    },
+    { 
+      "type":"textarea",
+      "id":"paragraph",
+      "label":"paragraph"
+    },
+    { 
+      "type":"text",
+      "id":"button_text",
+      "label":"button text"
+    },
+    { 
+      "type":"url",
+      "id":"button_url",
+      "label":"button url"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,146 @@
+<div class="header-text">
+  <div class="grid grid--f row--l text-center">
+    <h2 class="t-blue head-h2">{{ section.settings.title}}</h2>
+    <p>{{ section.settings.text}}</p>
+  </div>
+</div>
+<div class="block-reviews d-flex flex-nowrap grid grid--f flex row-wrap block-rel">
+  {% for block in section.blocks %}
+  <div class="block-4/12 cell-l cell-r row--l  @mobile-mobile__block-6/12">
+    <div class="grid grid--f flex row-wrap block-rel">
+      <div class="reviews-box">
+        <div class="customer-img">
+          <img src="{{ block.settings.image | img_url: '' }}" alt="" />
+        </div>
+        <h3>{{ block.settings.title_1}}</h3>
+        {{ block.settings.text_2}}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<style>
+  .section-benefits-bar {
+    background-color: #015db9;
+    padding-top: 55px;
+  }
+  .section-benefits-bar .header-text {
+    text-align: center;
+  }
+  .section-benefits-bar .header-text .head-h2 {
+    font-size: 38px;
+    line-height: 42px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  .section-benefits-bar .header-text .head-h2 strong {
+    font-size: 1.3em;
+    font-weight: 700;
+  }
+  .section-benefits-bar .reviews-box {
+    text-align: center;
+    width: 100%;
+  }
+  .section-benefits-bar .reviews-box .customer-img {
+    max-width: 120px;
+    margin: 0 auto;
+    display: block;
+    overflow: hidden;
+  }
+  .section-benefits-bar .reviews-box .customer-img img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .section-benefits-bar .reviews-box h3 {
+    font-size: 22px;
+    line-height: 26px;
+    margin: 20px 0 10px;
+    color: #fff;
+    text-transform: uppercase;
+  }
+  .section-benefits-bar .reviews-box p {
+    margin: 12px 0;
+    font-size: 16px;
+    line-height: 22px;
+    color: #fff;
+  }
+
+
+  @media only screen and (min-width: 992px) {
+    .section-benefits-bar .reviews-box p {
+      padding: 0 15px;
+    }
+  }
+
+  @media only screen and (max-width: 767px) {
+    .section-benefits-bar .block-reviews {
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+    }
+    .section-benefits-bar .reviews-box {
+      max-width: 320px;
+      margin: 0 auto;
+    }
+    .section-benefits-bar .header-text .head-h2 {
+      font-size: 42px;
+      line-height: 44px;
+      padding: 0 15px;
+    }
+    .section-benefits-bar .header-text .head-h2 strong {
+      display: block;
+    }
+    .section-benefits-bar {
+      padding-top: 30px;
+    }
+  }
+
+
+</style>
+
+{% schema %}
+{
+"name": "Section Benefits Bar",
+"class": "section-benefits-bar",
+"max_blocks": 4,
+"settings": [
+{
+"type": "text",
+"id": "title",
+"label": "Header"
+},
+{
+"type": "textarea",
+"id": "text",
+"label": "SubText"
+}
+],
+"blocks": [
+{
+"name": "Block",
+"type": "Block",
+"settings": [
+{
+"type": "image_picker",
+"id": "image",
+"label": "Image"
+},
+{
+"type": "text",
+"id": "title_1",
+"label": "Heading"
+},
+
+{
+"type": "richtext",
+"id": "text_2",
+"label": "Text"
+}
+]
+}
+]
+}
+{% endschema %}
+

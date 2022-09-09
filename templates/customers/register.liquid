@@ -1,0 +1,75 @@
+<div class="grid grid--f flex row-wrap align-center justify-center wbsk-ui-form-grey-input wbsk-ui-form-hidden-label">
+  <div class="block-6/12  cell-l cell-r cell-r ct--l cb--l  @mobile-large__block-10/12 @mobile-tablet__block-12/12">
+    {% form 'create_customer' , class:'block-12/12'%}
+    <div class="block-c tac">
+      <h1 class="h-style h1-style row--s t-accent">{{'customer.signup.heading' | t}}</h1>
+      <div class="rte-content row">
+        <p>{{'customer.signup.paragraph' | t}}</p>
+      </div>
+    </div>
+    {%if form.errors%}
+    <div class="block-12/12 row t-small t-red">
+      {{ form.errors | default_errors }}
+    </div>
+    {%endif%}
+    <div class="block-12/12 row">
+      <label class="row--xs d-block">{{'customer.login.first_name' | t}}:</label>
+      <input type="text" 
+      name="customer[first_name]" 
+      id="FirstName" 
+      class="wbsk-ui-input block-12/12" 
+      placeholder="{{'customer.login.first_name' | t}}" 
+      {% if form.first_name %}value="{{ form.first_name }}"{% endif %} 
+      autocapitalize="words" 
+      autofocus 
+      required> 
+    </div>
+    <div class="block-12/12 row">
+      <label class="row--xs d-block">{{'customer.login.last_name' | t}}:</label>
+      <input type="text" 
+      class="wbsk-ui-input block-12/12"
+      name="customer[last_name]" 
+      id="LastName" class="" 
+      placeholder="{{'customer.login.last_name' | t}}" 
+      {% if form.last_name %}value="{{ form.last_name }}"{% endif %} 
+      autocapitalize="words" 
+      required>
+    </div>
+    <div class="block-12/12 row">
+      <label class="row--xs d-block">{{'customer.login.email' | t}}:</label>
+      <input type="email" 
+      name="customer[email]" 
+      id="Email" 
+      class="wbsk-ui-input block-12/12" 
+      placeholder="{{'customer.login.email' | t}}" 
+      {% if form.email %} value="{{ form.email }}"{% endif %} 
+      autocorrect="off" 
+      autocapitalize="off" 
+      required>
+    </div>
+    <div class="block-12/12 row">
+      <label class="row--xs d-block">{{'customer.login.password' | t}}:</label>
+      <input type="password" 
+        name="customer[password]" 
+        id="CreatePassword" 
+        class="wbsk-ui-input block-12/12" 
+        placeholder="{{'customer.login.password' | t}}" 
+        required>
+    </div>
+    <div class="block-12/12 row">
+      <label class="row--xs d-block">{{'customer.login.confirm_password' | t}}:</label>  
+      <input type="password" 
+        name="customer[password_confirmation]" 
+        class="wbsk-ui-input block-12/12" 
+        placeholder="{{'customer.login.confirm_password' | t}}" 
+        required>      
+    </div>
+    <div class="block-12/12 block-r row">
+      <button class="btn btn--accent block-12/12">{{'customer.signup.button' | t}}</button>
+    </div>
+    <div class="block-c tac flex row-wrap align-center justify-center">
+      <a  href="/account"><u>{{'customer.signup.sign_in_link' | t}}</u></a>
+    </div>
+    {%endform%}
+  </div>
+</div>

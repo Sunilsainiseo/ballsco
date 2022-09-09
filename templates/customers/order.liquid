@@ -1,0 +1,145 @@
+<div class="Order-Details-Wr cb--m">
+  <div data-aos="fade-up" class="grid grid--f">
+    <div class="ac__main block-c block-10/12 @mobile-tablet__block-12/12 flex row-wrap align-top justify-left">
+      {%assign orderid = order.name%}
+      <div class="account-details rc-grid__item recharege-portal-header">
+        <ul class="account-navigation__list d-flex flex-nowrap justify-content-center">
+          <li class="navigation-item"><a class="account-navigation__item-link t-white is-active" href="/account">Mon Compte</a></li>
+          <li class="navigation-item">{{'customer.order.title' | t}} #{{order.name}}</li>
+        </ul>
+        <h4 class="t-white">
+          Sup, <span class="cus_name">{{ customer.first_name }}!</span>
+        </h4>
+        <div class="cell-r" style="padding: 0;">
+          <a href="/account/logout" class="btn btn--small btn--accent d-block">{{'customer.account_main.sign_out' | t}}</a>
+        </div>
+      </div>
+      <div class="cell-l cell-r block-12/12 @mobile-tablet__block-12/12">
+        <div class="block-12/12 ac__block">
+          {%comment%}
+          <div class="ct cb flex row-wrap align-center justify-space bdr-b bdr-grey orderviewpage">
+            <h2 class="h-style h3-style">{{'customer.order.title' | t}} {{order.name}}</h2>
+          </div>
+          {%endcomment%}
+          <div class="rte-content cb ">
+            <div class="List-OrderItems d-flex flex-nowrap align-items-start">
+              <div class="OrderItems-Img">
+                {% for line_item in order.line_items %}
+                <div class="list-img--wrapper bg-white">
+                  <img src="{{order.line_items[0].image | image_url: width: 300, height: 300}}">
+                </div>
+                {%endfor%}
+              </div>
+              <div class="OrderItems-Cost bg-white">
+                <label class=" row--s orderpageheading"><strong>{{'customer.order.items' | t}}:</strong></label>
+                {% for line_item in order.line_items %}
+                <div class="row--s  cb--s bdr-b bdr-grey flex flex-nowrap row-wrap align-top justify-space">
+                  <a style="text-decoration: none;" href="{{line_item.url}}"><span>{{line_item.quantity}} * {{line_item.title | truncate:50}}</span></a>
+                  <span class="acnt--f_gr">{{line_item.line_price|money}}</span>
+                </div>
+                {%endfor%}
+
+                {%comment%}
+                <div class="row--s   flex row-wrap align-center justify-space">
+                  <span style="text-transform: uppercase;"><strong>{{'customer.order.subtotal' | t}}:</strong></span>
+                  <span class="acnt--f_gr">{{order.subtotal_price | money}}</span>
+                </div>
+                {%endcomment%}
+                <div class="row--s flex row-wrap align-center justify-space">
+                  <span><strong>{{'customer.order.shipping' | t}}:</strong></span>
+                  {% assign order.shipping_price | money == order_shipping_price %}
+                  <span class="acnt--f_gr">{% if order_shipping_price == $0 %}FREE{% else %}{{order.shipping_price | money}}{% endif %}</span>
+                </div>
+                 {%comment%}
+                {% for tax_line in order.tax_lines %}
+                <div class="row--s flex row-wrap align-center justify-space">
+                  <span><strong>{{ tax_line.title }}:</strong></span>
+                  <span class="acnt--f_gr">{{ tax_line.price | money }}</span>                
+                </div>
+                {% endfor %}
+                {%endcomment%}
+                {%if  order.discounts.size > 0%}
+                {% for discount in order.discounts %}
+                <div class="row--s  flex row-wrap align-center justify-space">
+                  <span><strong>Discount code:</strong></span>
+                  <span class="acnt--f_gr">{{discount.savings | money}}</span>
+                </div>
+                {%endfor%}
+                {%endif%}
+                <div class="row--s flex row-wrap align-center justify-space">
+                  <span style="text-transform: uppercase;font-size: 1.1em;"><strong>{{'customer.order.total' | t}}:</strong></span>
+                  <span class="acnt--f_gr">{{order.total_price | money}}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="order-placed row--s flex row-wrap flex-nowrap align-center justify-space">
+              <span class="orderpageheading"><strong>ORDER {{'customer.order.placed' | t}}:</strong></span>
+              <span class="line-dots-strong"></span>
+              <span class="acnt--f_gr">{{order.created_at | date: "%b %d, %Y"}}</span>
+            </div>
+            <div class="order-address b-bottom flex row-wrap flex-nowrap align-top justify-space">
+              <div class="address-item shipping_address block-6/12 @mobile-tablet__block-12/12 bg-white">
+                <label class="lbl--block orderpageheading">{{'customer.order.shipping_address' | t}}:</label>
+                {{order.shipping_address | format_address}}
+              </div>
+              <div class="address-item billing_address block-6/12 @mobile-tablet__block-12/12 bg-white">
+                <label class="lbl--block orderpageheading">{{'customer.order.billing_address' | t}}:</label>
+                {{order.billing_address | format_address}}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div data-order="{{order.order_number}}" class="cell-l cell-r block-12/12 @mobile-tablet__block-12/12">
+        <div class="block-12/12 ac__block">
+          {%comment%}
+          <div class="ct cb flex row-wrap align-center justify-space bdr-b bdr-grey orderviewpage">
+            <h2 class="h-style h3-style">{{'customer.order.contact_form_title' | t}} {{order.name}}</h2>
+          </div>
+          {%endcomment%}
+          <div class="Rc-gr-button d-flex flex-nowrap align-items-center">
+            <a class="re-btn btn" href="{{order.order_status_url}}" target="_blank">Suivre</a>
+            <button id="Rc-Contact" class="re-btn btn">Nous Contacter</button>
+          </div>
+          <div class="rte-content ct cb fs1 hidden-label contactformorderpage" style="display: none;">
+            {% form 'contact' %}
+            {% if form.posted_successfully? %}
+            <p class="note success row--s">{{'customer.order.contact_form_sent' | t}}</p>
+            {%else%}
+            {{ form.errors | default_errors }}
+            <div class="block-12/12 row--xs">
+              <label class="row--s orderpageheading">Name:</label>
+              <input class="ipbox" type="text" value="{{customer.name}}" name="contact[name]" size="30"  placeholder="{{'customer.addresses.first_name'| t}}e" required/>
+            </div>
+            <div class="block-12/12 row--xs">
+              <label class="row--s orderpageheading">Email:</label>
+              <input class="ipbox" type="email" value="{{customer.email}}"  name="contact[email]" size="30" placeholder="you@email.com" required/>
+            </div>
+            <div class="block-12/12 row--xs">
+              <label class="row--s orderpageheading">Subject:</label>
+              <input class="ipbox" type="text" value="{{'customer.order.order'|t}} {{order.name}}" name="contact[subject]" size="30" placeholder="{{'general.subject' | t}}" required/>
+            </div>
+            <div class="block-12/12 row--xs">
+              <textarea class="hlpbox" rows="5" placeholder="How can we help ?"  name="contact[body]" required></textarea>
+            </div>
+            <div class="block-12/12">
+              <button class="btn btn--accent block-12/12" type="submit">Send</button>
+            </div>
+            {% endif %}
+            {% endform %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    $("#Rc-Contact").click(function(){
+      $(".contactformorderpage").show();
+    });
+  });
+</script>

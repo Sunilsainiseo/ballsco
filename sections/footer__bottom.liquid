@@ -1,0 +1,46 @@
+
+<div class="flex row-wrap align-center justify-space block-10/12 block-c ct @mobile-tablet__block-12/12">
+  {%comment%}
+  <div class="@mobile-mobile__show row">
+    <a href="/" class="footer-logo block-4/12 @mobile-tablet__cell-l--none @mobile-tablet__cell-r--none">
+      {% include 'svg' with 'logo'%}
+    </a>
+  </div>
+
+  <ul class="block-6/12 row flex row-wrap align-center justify-right order-two  @mobile-mobile__no-order">
+    {% if section.settings.instagram != "" %}
+    <li class="cell-l @mobile-mobile__cell-r">
+      <a href="{{section.settings.instagram}}" target="_blank" class="s-icon s-icon--instagram d-block"></a>
+    </li>
+    {% endif %}
+  </ul> 
+  {%endcomment%}
+  <div class="block-6/12 row order-one @mobile-mobile__block-12/12">
+    <div class="rte-content">{{section.settings.text}}<span class="@mobile-mobile__hide"> | </span><a href="mailto:{{settings.contactEmail}}">{{settings.contactEmail}}</a></div>
+  </div>
+</div>
+
+{% schema %}
+{ 
+
+"name":"global/footer-social",
+
+"settings":[ 
+
+
+{ 
+"type":"textarea",
+"id":"text",
+"label":"text"
+},
+
+{ 
+"type":"text",
+"id":"instagram",
+"label":"instagram URL"
+} 
+
+
+]
+}
+{% endschema %}

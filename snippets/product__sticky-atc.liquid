@@ -1,0 +1,49 @@
+<div class="prod-sticky-atc flex row-wrap align-center justify-left ct cb">
+  <div class="prod-sticky-atc__image far-image far-image--square block-rel @mobile-mobile__hide">
+    {% render 'lazy_img', size: '256' ,  _image:product.images[0]  %}    
+  </div>
+  <div class="h-style h3-style cell-l cell-r @mobile-tablet__hide ">{{product.title}}</div>
+  <form class="block-6/12 wbsk-cart__atc-form flex row-wrap align-stretch justify-right cell-l--s cell-r--s block-r @mobile-grid__block-5/12 @mobile-large__block-6/12 @mobile-tablet__block-8/12 @mobile-mobile__block-12/12" 
+        action="/cart/add" 
+        method="post" 
+        enctype="multipart/form-data" >
+    <div class="block-6/12 cell-r--s cell-l--s @mobile-mobile__row @mobile-mobile__block-12/12">
+      <select name="id" class="js-sticky-atc-selector block-12/12 block-fh wbsk-ui-select bdr bdr-grey">
+        {% for variant in product.variants %}
+        <option value="{{variant.id}}">{{variant.title}} - {{variant.price | money }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="block-6/12 cell-l--s cell-r--s @mobile-mobile__block-12/12">
+      <div class="bg-accent t-white block-12/12 flex row-wrap align-stretch justify-left">
+        <input class="reset-input block-mfrh block-2/12 t-white cell-l--s cell-r--s bdr-r tac" name="qty" type="number" value="1" min="1">
+        <button class="btn btn--accent block-10/12">
+          <span>{{'general.add_to_cart' | t}}</span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+<script>
+  $(function(){
+    var prodStickyATC = $('.prod-sticky-atc'),
+        showHideAnchorTop = $('.js-prod-sticky-atc__top-anchor')
+    $(window).on('load resize scroll',function(){
+      var prodStickyATC_pos = prodStickyATC[0].getBoundingClientRect(),
+          showHideAnchorTop_pos = showHideAnchorTop[0].getBoundingClientRect()
+      if(showHideAnchorTop_pos.top < 0 ){
+        prodStickyATC.addClass('prod-sticky-atc--is-stuck')
+      }else{
+        prodStickyATC.removeClass('prod-sticky-atc--is-stuck')
+      }
+      
+      if(prodStickyATC_pos.y + prodStickyATC_pos.height < $(window).height()){
+        prodStickyATC.addClass('prod-sticky-atc--is-bottom')
+      }else{
+        prodStickyATC.removeClass('prod-sticky-atc--is-bottom')
+      }
+    })
+  })
+</script>

@@ -1,0 +1,147 @@
+{% assign block = section.settings %}
+<div class="grid grid--f flex row-wrap align-center justify-center block-rel section-video-block row--l">
+  <div class="block-8/12 cell-l cell-r @mobile-mobile__block-12/12 ">
+    <div class="balls-responsive-video">
+    {%comment%}  <iframe width="560" height="315" src="//www.youtube.com/embed/{{ block.video_url.id }}?autoplay=1&showinfo=0&controls=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>   {% endcomment %}   
+      <div style="padding:57% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/698587616?h=489f6f97e4" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+    </div> 
+  </div>
+  <div class="block-4/12 cell-l cell-r @mobile-mobile__block-12/12 mobile-order-1">
+    <div class="block-9/12 block-c @mobile-tablet__block-11/12 @mobile-mobile__block-12/12 text-center video-balls-t">
+      {% render 'svg' with 'logo'%}
+      <h2 class="h-style h1-style t-accent row">{{block.heading}}</h2>
+      {% if block.paragraph != blank %}
+      <div class="rte-content {% if block.button_url%}row--m {% endif %}">
+        <p>{{block.paragraph}}</p>
+      </div>  
+      {% endif %}
+      {% if block.button_text != blank %}
+      <a href="{{block.button_url}}"  class="btn btn--fancy d-iblock">{{block.button_text}}</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+  /* -- Responsive video embed -- */
+  .balls-responsive-video {
+    /*  padding-bottom: 56.25%; 
+    padding-top: 25px;
+    height: 0;
+    */
+    position: relative;
+  }
+  
+  .balls-responsive-video iframe,
+  .balls-responsive-video object,
+  .balls-responsive-video embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .balls-responsive-video:before {
+    content: "";
+    background-image: url({{ 'Rectangle-grey-2x-3.png' | file_url }});
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center left;
+    height: 80%;
+    width: 200%;
+    position: absolute;
+    top: 50%;
+    left: -200%;
+    z-index: -1;
+    -webkit-transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg) translate(0%, -50%);
+    -moz-transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg) translate(0%, -50%);
+    -o-transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg) translate(0%, -50%);
+    -ms-transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg) translate(0%, -50%);
+    transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg) translate(0%, -50%);
+  }
+  .balls-responsive-video:after {
+    content: "";
+    background-image: url({{ 'Rectangle-grey-2x-3.png' | file_url }});
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center left;
+    height: 80%;
+    width: 200%;
+    position: absolute;
+    top: 50%;
+    right: -200%;
+    z-index: -1;
+    -webkit-transform: translate(0%, -50%);
+    -moz-transform: translate(0%, -50%);
+    -o-transform: translate(0%, -50%);
+    -ms-transform: translate(0%, -50%);
+    transform: translate(0%, -50%);
+  }
+   
+  .video-balls-t svg {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  .video-balls-t svg path {
+    fill: #015db9;
+  }
+ 
+  @media only screen and (max-width:991px) {
+
+    .video-balls-t h2 {
+      font-size: 20px;
+    }
+
+  }
+
+  @media only screen and (max-width:767px) {
+
+    .section-video-block .mobile-order-1 {
+      -ms-flex-order: -1;
+      order: -1;
+    }
+    .video-balls-t svg {
+      max-width: 180px;
+      margin-bottom: 10px;
+    }
+    .video-balls-t h2 {
+      font-size: 20px;
+      max-width: 180px;
+      margin: 0 auto 25px;
+    }
+
+  }
+</style>
+
+
+{% schema %}
+{ 
+
+"name":"Video Block",
+
+"settings":[ 
+{
+"type":"text",
+"id":"heading",
+"label":"heading"
+},
+{ 
+"type":"textarea",
+"id":"paragraph",
+"label":"paragraph"
+},
+{ 
+"type":"text",
+"id":"button_text",
+"label":"button text"
+},
+{ 
+"type":"url",
+"id":"button_url",
+"label":"button url"
+}
+]
+}
+{% endschema %}

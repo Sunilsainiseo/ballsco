@@ -1,0 +1,524 @@
+<ul class=" balls--trimmer-listVar flex row-wrap align-stretch justify-left prod-bar-selector bdr-t bdr-l bdr-accent row">
+  {% for variant in variants %}
+  <li {% if variant.image %}
+      data-variant-imageId="{{variant.image.id}}"
+      {% endif %}
+      class="variantIndex_{{forloop.index}} block-4/12 bdr-b bdr-r prod-bar-selector__item 
+
+             {% if product.handle == 'balls-trimmer-2' or product.handle == 'ballbag' %}
+             {% if forloop.index == 1 %}prod-bar-selector__item--active{% endif %}
+             {% endif %}
+
+             {% if forloop.index == 2 %}prod-bar-selector__item--active{% endif %}
+             {% unless product.handle == 'balls-gift-card' %}
+             {% if forloop.index == 3 %}
+
+             {% endif %}
+             {% endunless %}
+             @mobile-mobile__block-4/12             ">
+    <div class="wr-option-custom">
+      <div class="wr-title-top ct cb cell-l cell-r d-flex align-items-center flex-no-wrap">
+        <div class="Check-Box"></div>
+  
+        <span itemprop="price" content="{{ variant.price | money_without_currency }}" class="h-style h4-style">
+          {{ variant.price | money | split:',' | first |  split:'.' | first}} 
+        </span>
+        <span class="P-Title-Bold">
+          {{product.title}}
+          {% if forloop.index == 2 %}<span class="small-text">+ Subscription</span>{% endif%}
+        </span>
+
+        {% if forloop.index == 2 %}
+
+        {% unless product.handle == 'balls-gift-card' %}
+        <div class="save-percent">
+          {% assign minPrice = variants[0].price %}
+          {% assign RRP = variants[1].price %}    
+          {% assign youSave = minPrice | minus:RRP %}
+          {%comment%}
+          <span class="yousave">Save {{youSave | times:100 | divided_by: minPrice | round:2}}%</span>
+          {%endcomment%}
+          <span class="yousave">Gagne €{{ RRP | minus: minPrice | remove: '00' | remove: '-' }}</span>
+        </div>
+        {% endunless %}
+
+        {% comment %}
+        <input type="hidden" name="properties[subscription_id]" value="245201" class="subscription_id">
+        <input type="hidden" name="properties[shipping_interval_frequency]" value="3" class="shipping_interval_frequency">
+        <input type="hidden" name="properties[shipping_interval_unit_type]" value="Months" class="shipping_interval_unit_type">
+        {% endcomment %}
+        {% comment %}Note: Important for Checkout - This is just for INT/CA/HB{% endcomment %}
+        <input type="hidden" name="selling_plan" value="{{product.selling_plan_groups[0].selling_plans[0].id}}">
+
+        {% endif %}
+      </div>
+      <div class=" cell-l cell-r">
+        {% if forloop.index == 1 %}
+
+        <input class="js-prod-bar-selector__radio"  type="radio" value="{{variant.id}}" name="id" data-productid="{{ product.id }}">
+        {% endif %}
+
+        {% if forloop.index == 2 %}
+
+        <!--       <p>Blade Subscription</p> -->
+        <input class="js-prod-bar-selector__radio cstmvid" type="radio" vid="{{variant.id}}" name="id" data-productid="{{ product.id }}" checked="true" value="{{variant.id}}">
+        {% endif %}
+        {% if forloop.index == 3 %}
+
+        <input class="js-prod-bar-selector__radio js-prod-bar-selector-tweezer"  type="radio" value="{{variant.id}}" name="id" data-productid="{{ product.id }}">
+        {% endif %}
+
+      </div>
+    </div>
+
+  </li>
+  {% endfor %}
+</ul>
+
+{% unless product.handle == 'balls-ultimate-package' %}
+<div "display:none;">
+  <input type="hidden" name="properties[subscription_id]" value="245201" class="subscription_id">
+  <input type="hidden" name="properties[shipping_interval_frequency]" value="3" class="shipping_interval_frequency">
+  <input type="hidden" name="properties[shipping_interval_unit_type]" value="Months" class="shipping_interval_unit_type">
+</div>
+{% endunless %}
+
+<script>
+  $(function(){
+
+    $("input[name='qtt_frequency']").click(function() {
+      var frequency = this.value;
+      $('.shipping_interval_frequency').val(frequency);
+    });
+
+    //change event for hidden radio selector
+    $('.js-prod-bar-selector__radio').change(function(e){
+      var $parent = $(this).closest('.prod-bar-selector__item'),
+          //swiperGallery = $('#prodMainGal')[0].swiper,
+          variantImageId = $parent.attr('data-variant-imageId') ? $parent.attr('data-variant-imageId') : false;
+
+      // show / hide the info box
+      /*
+      $parent.index() == 1 ? $('.prod-bar-info').show() : $('.prod-bar-info').hide();
+      $parent.index() == 1 ? $('.rechargebttn').show() : $('.rechargebttn').hide(); 
+      $parent.index() == 1 ? $('.defaultbtn').hide() : $('.defaultbtn').show();
+*/
+
+      if( $parent.index() == 1 ){
+        $('.prod-bar-info').show();
+        $('.rechargebttn').show();
+        $('.defaultbtn').hide();
+        $('input.subscription_id').attr('name','properties[subscription_id]');
+        $('input.shipping_interval_frequency').attr('name','properties[shipping_interval_frequency]');
+        $('input.shipping_interval_unit_type').attr('name','properties[shipping_interval_unit_type]');
+      }else{
+        $('.prod-bar-info').hide();
+        $('.rechargebttn').hide();
+        $('.defaultbtn').show();
+        $('input.subscription_id').attr('name','');
+        $('input.shipping_interval_frequency').attr('name','');
+        $('input.shipping_interval_unit_type').attr('name','');
+      }
+
+
+      var variantImgId = $parent.attr('data-variant-imageId');
+      //console.log(variantImgId);
+      $(".product-main-images img").each(function(){
+        var imageURL = $(this).attr("imgID");
+        if (imageURL == variantImgId){
+          var indexItem = $(this).parent().parent().parent().parent().parent().attr('data-slick-index');
+          $('.product-main-images').slick('slickGoTo', indexItem, false);
+          //console.log("indexItem - "+indexItem);
+        }
+      });
+
+
+      // show / hide the tweezers slide
+      $parent.index() == 2 ? $('.js-tweezer-img').show() : $('.js-tweezer-img').hide();
+      // update the class
+      $parent.addClass('prod-bar-selector__item--active').siblings().removeClass('prod-bar-selector__item--active');
+
+      /*
+      //update the variant image
+      if(variantImageId){
+        var slide = $(swiperGallery.slides).filter(function(index,slide){
+          return $(slide).attr('data-imageId') == variantImageId;
+        });
+        slide = slide.length ? slide[0] : false;
+        if(slide){
+          swiperGallery.slideTo($(slide).index());
+        }
+      } 
+      */
+
+      //update the secondat selector
+      $('.js-sticky-atc-selector').val($(this).val());
+    });
+
+    //call it on DOM so it updates 
+    $('.js-prod-bar-selector__radio').eq(1).trigger('change');
+
+    //resize event for hidden selector
+    $(window).on('resize',function(){
+      if($('.js-prod-bar-selector-tweezer').is(':hidden:checked')){
+        $('.js-prod-bar-selector__radio').eq(1).trigger('change');
+      }    
+    }.debounce(100));
+
+
+  })
+</script>
+<style>
+  .variantIndex_3{
+    display:none;
+  }
+  .form-product .mobileqty .cus-qty {
+    width: 125px;
+    height: 100%;
+    position: relative;
+  }
+  .form-product .mobileqty .cus-qty:before {
+    content: "QUANTITY";
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: -13px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #000;
+    font-size: 10px;
+    line-height: 12px;
+  }
+  .form-product .mobileqty .cus-qty input {
+    position: initial;
+    width: 100%;
+    max-width: 33.3333%;
+    opacity: 1;
+    height: 34px;
+    font-size: 22px;
+    text-align: center;
+  }
+  .form-product .mobileqty .cus-qty input.qtyminus,
+  .form-product .mobileqty .cus-qty input.qtyplus {
+    background-color: #c4c4c4;
+    color: #fff;
+  }
+  .form-product .mobileqty .cus-qty input.qty {
+    border: 1px solid #c4c4c4;
+    color: #000;
+    margin: 0 2px;
+    text-align: center;
+    font-size: 20px;
+    width: 52px;
+    min-width: 52px;
+  }
+  .section-product-featured .balls--trimmer-listVar .prod-bar-selector__item{
+    width:100% !important; 
+  }
+  .section-product-featured .balls--trimmer-listVar .prod-bar-selector__item.variantIndex_1 {
+    -ms-flex-order: 1;
+    order: 1;
+  }
+  .section-product-featured .balls--trimmer-listVar .prod-bar-selector__item.variantIndex_2 {
+    -ms-flex-order: -1;
+    order: -1;
+  }
+
+  .form-product .btn.btn--accent{
+    z-index: 9999999;
+  }
+
+  .wr-option-custom {
+    display: block;
+    height: 100%;
+  }
+  .prod-bar_item--active{
+    color: #fff;
+    background: #015db9;
+  }
+  .prod-bar-selector__item--active .wr-option-custom{
+    background: none;
+  }
+  .prod-bar-selector .prod-bar_item--active .wr-option-custom:hover{
+    background: none;
+  }
+
+  .save-percent{
+    display: inline-block;
+    text-align: center;
+    border: 2px solid #015db9;
+    padding: 7px 7px;
+    position: absolute;
+    top: -18px;
+    background: #fff;
+    right: 10px;
+    width: auto;
+    max-width: 115px;
+    font-size: .925rem;
+  }
+  .save-percent span{
+    font-size: 13px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .prod-bar-selector__item--active .save-percent {
+    top: -28px;
+  }
+  .section-product-featured .balls--trimmer-listVar .save-percent {
+    position: absolute;
+    margin-left: 5px;
+    background: #015db9;
+    border: none;
+    padding: 10px 10px;
+    color: #fff;
+    top: 15px;
+    right: 10px;
+  }
+  .prod-bar-selector .wr-option-custom{
+    border-top: 2px solid;
+    border-left: 1.5px solid;
+    border-right: 1.5px solid;
+    border-bottom: 1.5px solid;
+
+  }
+  .prod-bar-selector__item--active .wr-option-custom{
+    border-bottom: 0 solid;
+    border: unset;
+  }
+  .custom-border{
+    border-bottom: 2px solid;
+  }
+  .prod-bar-selector__item .h4-style{
+    font-weight: 700;
+    text-align: left;
+    font-size: 24px;
+    margin-right: 10px;
+    border-right: 1.5px solid #3e60a9;
+    padding-right: 10px;
+  }
+  .prod-bar-selector__item .P-Title-Bold {
+    font-weight: 700;
+    font-size: 24px;
+    white-space: nowrap;
+  }
+  .prod-bar-selector__item p{
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .prod-bar-selector .wr-option-custom:hover{
+    background: #f8f8f8;
+    /*
+    -webkit-transform: translateY(2px);
+    transform: translateY(2px);
+    */
+  }
+
+
+  .save-percent {
+    -webkit-animation: jiggle 0.6s infinite;
+    -moz-animation-duration: 0.6s;
+    -moz-animation-name: jiggle;
+    -moz-animation-iteration-count: infinite;
+    -webkit-transform: rotate(-3deg);
+    -moz-transform: rotate(-3deg);
+  }
+
+  .prod-bar-selector__item.hide-subscription{
+    display:none;
+  }
+
+
+  /* New Style */
+
+  .section-product-featured .balls--trimmer-listVar {
+    border: none;
+  }
+  .section-product-featured .balls--trimmer-listVar .prod-bar-selector__item {
+    background: none;
+    border: none;
+    color: #3e60a9;
+  }
+  .section-product-featured .balls--trimmer-listVar .prod-bar-selector__item .wr-option-custom {
+    border: none;
+    background: transparent;
+  }
+  .section-product-featured .balls--trimmer-listVar .prod-bar-selector__item.prod-bar-selector__item--active .wr-option-custom {
+    border: 1px solid #3e60a9;
+    position: relative;
+  }
+  .wr-title-top .Check-Box {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    border: 1px solid #3e60a9;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    margin-right: 15px;
+    position: relative;
+  }
+  .prod-bar-selector__item--active .wr-title-top .Check-Box:before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background-color: #3e60a9;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+  }
+  .small-text {
+    font-size: 12px;
+    margin-left: 5px;
+    margin-top: 3px;
+    margin-right: 7px;
+    font-weight: 400;
+  }
+  .wr-title-top {
+    padding-top: 15px;
+    padding-left: 10px;
+    position: relative;
+  }
+  .extra-info.wr-des {
+    display: block;
+    padding-left: 123px;
+  }
+  .extra-info.wr-des p {
+
+  }
+  .balls--trimmer-listVar .form-product .btn.btn--accent {
+    width: 85%;
+    max-width: 100%;
+    margin: 0;
+    max-width: 150px;
+    padding: 0 12px;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 20px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+    z-index: 1;
+  }
+
+
+  @-moz-keyframes jiggle {
+    0% {
+      -moz-transform: rotate(-1deg);
+    }
+    50% {
+      -moz-transform: rotate(1deg);
+    }
+  }
+
+  @-webkit-keyframes jiggle {
+    0% {
+      -webkit-transform: rotate(-1deg);
+    }
+    50% {
+      -webkit-transform: rotate(1deg);
+    }
+  }
+
+  @media only screen and (max-width: 1199px){
+
+    .section-product-featured .balls--trimmer-listVar .save-percent {
+      position: absolute;
+    }
+    .prod-bar-selector__item .h4-style,
+    .prod-bar-selector__item .P-Title-Bold {
+      font-size: 22px;
+    }
+    .extra-info.wr-des {
+      padding-left: 100px;
+    }
+
+  }
+
+  @media only screen and (max-width: 991px) and (min-width: 768px){
+    .extra-info.wr-des {
+      padding-left: 20px;
+    }
+    .prod-bar-selector__item .h4-style, .prod-bar-selector__item .P-Title-Bold {
+      font-size: 18px;
+    }
+
+  }
+
+  @media only screen and (max-width: 767px){
+    .section-product-featured .balls--trimmer-listVar .save-percent {
+      position: absolute;
+    }
+    .prod-bar-selector__item .h4-style, .prod-bar-selector__item .P-Title-Bold {
+      font-size: 20px;
+    }
+    .small-text {
+      display: block;
+      margin-left: 0;
+      margin-top: 7px;
+    }
+    .prod-bar-selector__item .h4-style {
+      margin-right: 10px;
+      border-right: none;
+      padding-right: 0;
+    }
+    .prod-bar-selector__item .P-Title-Bold {
+      padding-left: 10px;
+      border-left: 1px solid #2360ad;
+    }
+    .prod-bar-selector__item p {
+      font-size: 12px;
+    }
+    .extra-info.wr-des {
+      padding-left: 100px;
+      margin-top: 5px;
+      margin-bottom: 10px;
+    }
+    .wr-title-top .Check-Box {
+      margin-right: 10px;
+    }
+
+  }
+
+  @media only screen and (max-width: 639px){
+    .prod-bar-selector__item .h4-style, .prod-bar-selector__item .P-Title-Bold {
+      font-size: 18px;
+    }
+  }
+
+  @media only screen and (max-width: 420px){
+    .info-starter-kit .custom-text.rte-content {
+      font-size: 15px;
+    }
+    .prod-bar-selector__item .h4-style, .prod-bar-selector__item .P-Title-Bold {
+      font-size: 17px;
+    }
+
+  }
+  @media only screen and (max-width: 359px){
+    .info-starter-kit .custom-text.rte-content {
+      font-size: 13px;
+    }
+    .prod-bar-selector__item .h4-style, .prod-bar-selector__item .P-Title-Bold {
+      font-size: 16px;
+    }
+
+  }
+  @media only screen and (max-width: 339px){
+    .prod-bar-selector__item .h4-style, .prod-bar-selector__item .P-Title-Bold {
+      font-size: 14px;
+    }
+  }
+</style>

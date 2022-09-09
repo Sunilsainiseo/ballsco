@@ -1,0 +1,295 @@
+<ul class=" {% if product.handle == 'balls-electric-trimmer' %}balls--trimmer-listVar {% endif %}flex row-wrap align-stretch justify-left prod-bar-selector bdr-t bdr-l bdr-accent row">
+  {% for variant in variants %}
+  <li {% if variant.image %}
+      data-variant-imageId="{{variant.image.id}}"
+      {% endif %}
+      class="variantIndex_{{forloop.index}} block-4/12 bdr-b bdr-r prod-bar-selector__item 
+             {% if forloop.index == 2 %}prod-bar-selector__item--active{% endif %}
+             @mobile-mobile__block-4/12             ">
+    <div class="wr-option-custom">
+      <div class="ct cb cell-l cell-r bdr-b ">
+        {% if variant.price < variant.compare_at_price %} 
+        <span class="compare_at_price" style="display: block;text-decoration: line-through;font-size: 20px;"> {{ variant.compare_at_price | money }}</span>
+        {% endif %}
+        <span itemprop="price" content="{{ variant.price | money_without_currency }}" class="h-style h4-style">{{ variant.price | money | split:',' | first |  split:'.' | first}} </span>
+      </div>
+      <div class="ct cb cell-l cell-r">
+        {% if forloop.index == 1 %}
+        {% if product.metafields.content1.option1 != blank %}
+        <p>{{ product.metafields.content1.option1 }}</p>
+        {% endif %}
+        {% if product.metafields.content2.option1 != blank %}
+        <p>{{ product.metafields.content2.option1 }}</p>
+        {% endif %}
+        {% if product.metafields.content3.option1 != blank %}
+        <p>{{ product.metafields.content3.option1 }}</p>
+        {% endif %}
+        <input class="js-prod-bar-selector__radio"  type="radio" value="{{variant.id}}" name="id">
+        {% endif %}
+        {% if forloop.index == 2 %}
+        {% if product.metafields.content1.option2 != blank %}
+        <p>{{ product.metafields.content1.option2 }}</p>
+        {% endif %}
+
+        {% if product.metafields.content2.option2 != blank %}
+        <p>{{ product.metafields.content2.option2 }}</p>
+        {% endif %}
+
+        {% if product.metafields.content3.option2 != blank %}
+        <p>{{ product.metafields.content3.option2 }}</p>
+        {% endif %}
+
+        <!--       <p>Blade Subscription</p> -->
+        <input class="js-prod-bar-selector__radio cstmvid" type="radio" vid="{{variant.id}}" name="id" checked="true" value="{{variant.id}}">
+        {% endif %}
+        {% if forloop.index == 3 %}
+        {% if product.metafields.content1.option3 != blank %}
+        <p>{{ product.metafields.content1.option3 }}</p>
+        {% endif %}
+
+        {% if product.metafields.content2.option3 != blank %}
+        <p>{{ product.metafields.content2.option3 }}</p>
+        {% endif %}
+
+        {% if product.metafields.content3.option3 != blank %}
+        <p>{{ product.metafields.content3.option3 }}</p>
+        {% endif %}
+        <input class="js-prod-bar-selector__radio js-prod-bar-selector-tweezer"  type="radio" value="{{variant.id}}" name="id">
+        {% endif %}
+
+        {% if forloop.index == 4 %}
+        {% if product.metafields.content1.option4 != blank %}
+        <p>{{ product.metafields.content1.option4 }}</p>
+        {% endif %}
+        {% if product.metafields.content2.option4 != blank %}
+        <p>{{ product.metafields.content2.option4 }}</p>
+        {% endif %}
+        {% if product.metafields.content3.option4 != blank %}
+        <p>{{ product.metafields.content3.option4 }}</p>
+        {% endif %}
+        <input class="js-prod-bar-selector__radio"  type="radio" value="{{variant.id}}" name="id">
+        {% endif %}
+
+      </div>
+    </div>
+
+  </li>
+  {% endfor %}
+</ul>
+
+<script>
+  $(function(){
+
+    $("input[name='qtt_frequency']").click(function() {
+      var frequency = this.value;
+      $('.shipping_interval_frequency').val(frequency);
+    });
+
+    //change event for hidden radio selector
+    $('.js-prod-bar-selector__radio').change(function(e){
+      var $parent = $(this).closest('.prod-bar-selector__item'),
+          swiperGallery = $('#prodMainGal')[0].swiper,
+          variantImageId = $parent.attr('data-variant-imageId') ? $parent.attr('data-variant-imageId') : false;
+
+      // show / hide the info box
+      /*
+      $parent.index() == 1 ? $('.prod-bar-info').show() : $('.prod-bar-info').hide();
+      $parent.index() == 1 ? $('.rechargebttn').show() : $('.rechargebttn').hide(); 
+      $parent.index() == 1 ? $('.defaultbtn').hide() : $('.defaultbtn').show();
+*/
+
+      /*
+      if( $parent.index() == 1 ){
+        $('.info-starter-kit').hide();
+        $('.prod-bar-info').show();
+        $('.rechargebttn').show();
+        $('.rechargebttn').addClass('active');
+        //$('.defaultbtn').hide();
+        $('.defaultbtn').removeClass('active');
+        $('input.subscription_id').attr('name','properties[subscription_id]');
+        $('input.shipping_interval_frequency').attr('name','properties[shipping_interval_frequency]');
+        $('input.shipping_interval_unit_type').attr('name','properties[shipping_interval_unit_type]');
+      }else{
+        if( $parent.index() == 2 ){
+           $('.info-starter-kit').show();
+        }else{
+           $('.info-starter-kit').hide();
+        }
+        $('.prod-bar-info').hide();
+        $('.rechargebttn').hide();
+        $('.rechargebttn').removeClass('active');
+        $('.defaultbtn').show();
+        $('.defaultbtn').addClass('active');
+        $('input.subscription_id').attr('name','');
+        $('input.shipping_interval_frequency').attr('name','');
+        $('input.shipping_interval_unit_type').attr('name','');
+      }
+      */
+
+      var variantImgId = $parent.attr('data-variant-imageId');
+      // console.log(variantImgId);
+      $(".product-main-images img").each(function(){
+        var imageURL = $(this).attr("imgID");
+        if (imageURL == variantImgId){
+          var indexItem = $(this).parent().parent().parent().parent().parent().attr('data-slick-index');
+          $('.product-main-images').slick('slickGoTo', indexItem, false);
+          // console.log("indexItem - "+indexItem);
+        }
+      });
+
+      // show / hide the tweezers slide
+      $parent.index() == 2 ? $('.js-tweezer-img').show() : $('.js-tweezer-img').hide();
+      // update the class
+      $parent.addClass('prod-bar-selector__item--active').siblings().removeClass('prod-bar-selector__item--active');
+
+      //update the variant image
+      if(variantImageId){
+        var slide = $(swiperGallery.slides).filter(function(index,slide){
+          return $(slide).attr('data-imageId') == variantImageId;
+        });
+        slide = slide.length ? slide[0] : false;
+        if(slide){
+          swiperGallery.slideTo($(slide).index());
+        }
+      } 
+
+      //update the secondat selector
+      $('.js-sticky-atc-selector').val($(this).val());
+      $('form.form-product').attr('data-variantid',$(this).val());
+    });
+
+    //call it on DOM so it updates 
+    $('.js-prod-bar-selector__radio').eq(1).trigger('change');
+
+    //resize event for hidden selector
+    $(window).on('resize',function(){
+      if($('.js-prod-bar-selector-tweezer').is(':hidden:checked')){
+        $('.js-prod-bar-selector__radio').eq(1).trigger('change');
+      }    
+    }.debounce(100));
+
+
+  })
+</script>
+
+<style>
+  {% if product.handle == 'balls-electric-trimmer' %}
+  .balls--trimmer-listVar .variantIndex_3{
+  }
+  {% endif %}
+
+  .wr-option-custom {
+    display: block;
+    height: 100%;
+  }
+  .prod-bar_item--active{
+    color: #fff;
+    background: #015db9;
+  }
+  .prod-bar-selector__item--active .wr-option-custom{
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+    background: #0e6cc9;
+  }
+  .prod-bar-selector .prod-bar_item--active .wr-option-custom:hover{
+    background: #015db9;
+  }
+
+  .save-percent{
+    display: inline-block;
+    text-align: center;
+    border: 2px solid #015db9;
+    padding: 7px 7px;
+    position: absolute;
+    top: -18px;
+    background: #fff;
+    right: 10px;
+    width: auto;
+    max-width: 115px;
+    font-size: .925rem;
+  }
+  .save-percent span{
+    font-size: 13px;
+    color: #015db9;
+  }
+  .prod-bar-selector__item--active .save-percent {
+    top: -28px;
+  }
+  .prod-bar-selector .wr-option-custom{
+    border-top: 2px solid;
+    border-left: 1.5px solid;
+    border-right: 1.5px solid;
+    border-bottom: 1.5px solid;
+
+  }
+  .prod-bar-selector__item--active .wr-option-custom{
+    border-bottom: 0 solid;
+    border: unset;
+  }
+  .custom-border{
+    border-bottom: 2px solid;
+  }
+  .prod-bar-selector__item .h4-style{
+    font-weight: 600;
+    text-align: left;
+    font-size: 33px;
+  }
+  .prod-bar-selector__item p{
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .prod-bar-selector .wr-option-custom:hover{
+    background: #f8f8f8;
+    /*
+    -webkit-transform: translateY(2px);
+    transform: translateY(2px);
+    */
+  }
+  .prod-bar-selector__item--active .wr-option-custom:hover{
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+    background: #0e6cc9;
+  }
+
+  .save-percent {
+    -webkit-animation: jiggle 0.6s infinite;
+    -moz-animation-duration: 0.6s;
+    -moz-animation-name: jiggle;
+    -moz-animation-iteration-count: infinite;
+    -webkit-transform: rotate(-3deg);
+    -moz-transform: rotate(-3deg);
+  }
+
+  .prod-bar-selector__item.hide-subscription{
+    display:none;
+  }
+
+  @-moz-keyframes jiggle {
+    0% {
+      -moz-transform: rotate(-1deg);
+    }
+    50% {
+      -moz-transform: rotate(1deg);
+    }
+  }
+
+  @-webkit-keyframes jiggle {
+    0% {
+      -webkit-transform: rotate(-1deg);
+    }
+    50% {
+      -webkit-transform: rotate(1deg);
+    }
+  }
+
+  @media only screen and (max-width: 420px){
+    .info-starter-kit .custom-text.rte-content {
+      font-size: 15px;
+    }
+  }
+  @media only screen and (max-width: 359px){
+    .info-starter-kit .custom-text.rte-content {
+      font-size: 13px;
+    }
+  }
+</style>

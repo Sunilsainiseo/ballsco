@@ -1,0 +1,424 @@
+
+<div class="footer_new">
+<div class="wr-section-footer">
+<div class="footer_col1">
+<div class="wr_link">
+<a href="/" class="footer-logo block-4/12 @mobile-tablet__cell-l--none @mobile-tablet__cell-r--none">
+    {% include 'svg' with 'logo'%}
+  </a>
+</div>
+</div>
+<div class="footer_col2">
+<div class="wr_link">
+<p class="header_link">{{ section.settings.header1 }}</p>
+{% for link in linklists[section.settings.nav1].links %}
+<a href="{{link.url}}" class="link_item">{{link.title}}</a>
+{% endfor %}
+</div>
+<div class="klaviyo-form-TLY8Y6 mobile-hide"></div>
+</div>
+<div class="footer_col3">
+<div class="wr_link">
+<p class="header_link">{{ section.settings.header2 }}</p>
+{% for link in linklists[section.settings.nav2].links %}
+<a href="{{link.url}}" class="link_item">{{link.title}}</a>
+{% endfor %}
+</div>
+
+  <div class="wr_link mobile-hide">
+<p class="header_link">{{ section.settings.header4 }}</p>
+{% for link in linklists[section.settings.nav4].links %}
+<a href="{{link.url}}" class="link_item">{{link.title}}</a>
+{% endfor %}
+</div>
+  
+</div> 
+  <div class="footer_col0">
+  <div class="wr_link">
+<p class="header_link">{{ section.settings.header4 }}</p>
+{% for link in linklists[section.settings.nav4].links %}
+<a href="{{link.url}}" class="link_item">{{link.title}}</a>
+{% endfor %}
+</div>
+  
+</div> 
+<div class="footer_col4">
+<div class="wr_link">
+<p class="header_link">{{ section.settings.header3 }}</p>
+{% for link in linklists[section.settings.nav3].links %}
+<a href="{{link.url}}" class="link_item">{{link.title}}</a>
+{% endfor %}
+</div>
+  <div class="socials_footer mobile-hide">
+    {% if section.settings.in %}
+      <a href="{{ section.settings.in }}" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+      {% endif %}
+        {% if section.settings.tw %}
+      <a href="{{ section.settings.tw }}" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+      {% endif %}
+        {% if section.settings.fb %}
+      <a href="{{ section.settings.fb }}" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+      {% endif %}
+    {% if section.settings.tik != blank %}
+      <a href="{{ section.settings.tik }}" target="_blank"> {% include 'tiktok-icon'%}</a>
+      {% endif %}
+  </div>
+</div> 
+  <div class="footer_col5">
+<div class="wr_link">
+  <div class="klaviyo-form-TLY8Y6"></div>
+</div>
+  <div class="socials_footer">
+    {% if section.settings.in %}
+      <a href="{{ section.settings.in }}" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+      {% endif %}
+        {% if section.settings.tw %}
+      <a href="{{ section.settings.tw }}" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+      {% endif %}
+        {% if section.settings.fb %}
+      <a href="{{ section.settings.fb }}" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+      {% endif %}
+    {% if section.settings.tik != blank %}
+      <a href="{{ section.settings.tik }}" target="_blank"> {% include 'tiktok-icon'%}</a>
+      {% endif %}
+  </div>
+</div> 
+</div>
+</div>
+<style>
+.footer_new{
+    background-color: #015db9;
+    color: #fff;
+  padding: 55px 0;
+}
+.footer_new .wr-section-footer{
+      max-width: 1340px;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: auto;
+    margin-left: auto;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    width: 100%;
+    padding: 0 20px;
+}
+.footer_new .footer_col5,
+  .footer_new .footer_col0{
+    display:none;
+  }
+.footer_new .footer_col1{
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%;
+    position: relative;
+}
+.footer_new .footer_col2{
+    -ms-flex: 0 0 27%;
+    flex: 0 0 27%;
+    max-width: 27%;
+    position: relative;
+      padding-right: 40px;
+}
+.footer_new .footer_col3{
+    -ms-flex: 0 0 24%;
+    flex: 0 0 24%;
+    max-width: 24%;
+    position: relative;
+      padding-right: 20px;
+}
+.footer_new .footer_col4{
+    -ms-flex: 0 0 24%;
+    flex: 0 0 24%;
+    max-width: 24%;
+    position: relative;
+}
+.footer_new svg * {
+    fill: #fff;
+}
+.footer_new .wr_link{
+display: block;
+    margin-bottom: 50px;
+}
+.footer_new .header_link{
+  
+    font-weight: bold;
+    display: block;
+    font-size: 20px;
+    margin-bottom: 24px;
+}
+.footer_new a.link_item{
+    display: block;
+    width: 100%;
+    font-size: 17px;
+    margin-bottom: 20px;
+}
+.footer_new .socials_footer{
+
+}
+  .footer_new .socials_footer a{
+    margin-right: 20px;
+}
+  .footer_new .socials_footer i{
+    font-size: 26px;
+}
+  .footer_new .footer_col1 svg{
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+  }
+  .footer_new .footer_col4 .socials_footer{
+    display: flex;
+    align-items: center;
+}
+.footer_new .socials_footer svg{
+    max-width: 20px;
+    max-height: 22px;
+}
+  .footer_new .footer_col1 a{
+        display: block;
+    width: 100%;
+  }
+ .footer_new .footer_col1 .wr_link {
+  display: flex;
+    align-items: center;
+    height: 100%;
+}
+ .footer_new .klaviyo-form .ql-editor p{
+ text-align:left !important;
+}
+ .footer_new .klaviyo-form .ql-editor p strong,
+ .footer_new .klaviyo-form .ql-editor p{
+ font-size: 20px !important;
+    color: #fff !important;
+}
+ .footer_new .klaviyo-form .ql-editor p span{
+ font-size: 16px !important;
+    color: #fff !important;
+}
+ .footer_new .klaviyo-form button{
+}
+ .footer_new .klaviyo-form input[type="email"]{
+}
+    @media only screen and (max-width: 1199px) {
+    }
+     @media only screen and (max-width: 991px) {
+     .footer_new .footer_col1 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    position: relative;
+    text-align: center;
+  }
+  .footer_new .footer_col1 .wr_link {
+    display: block;
+    align-items: center;
+    height: auto;
+    text-align: center;
+    margin-bottom: 30px;
+}
+       
+.footer_new .footer_col1 svg {
+    margin: 0 auto;
+}
+.footer_new .footer_col2 {
+    -ms-flex: 0 0 33.3%;
+    flex: 0 0 33.3%;
+    max-width: 33.3%;
+    position: relative;
+    padding-right: 30px;
+}
+  .footer_new .footer_col3 {
+    -ms-flex: 0 0 33.3%;
+    flex: 0 0 33.3%;
+    max-width: 33.3%;
+    position: relative;
+    padding-right: 30px;
+}
+.footer_new .footer_col4 {
+    -ms-flex: 0 0 33.3%;
+    flex: 0 0 33.3%;
+    max-width: 33.3%;
+    position: relative;
+    padding-right: 0px;
+}
+    }
+   @media only screen and (max-width: 767px) {
+   .footer_new .footer_col2 {
+  -ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+  max-width: 50%;
+  position: relative;
+  padding-right: 30px;
+}
+   .footer_new .footer_col3 {
+  -ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+  max-width: 50%;
+  position: relative;
+  padding-right: 0px;
+}
+   .footer_new .footer_col4 {
+  -ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+  max-width: 50%;
+  position: relative;
+  padding-right: 0px;
+}
+  .footer_new .footer_col0{
+    display:block;
+      -ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+  max-width: 50%;
+  position: relative;
+  padding-right: 30px;
+  }
+  .mobile-hide{
+  display:none;
+  }
+    .footer_new .footer_col5{
+     display:block;
+      -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  max-width: 100%;
+  position: relative;
+  }
+   .footer_new .klaviyo-form .ql-editor p{
+ text-align:center !important;
+}
+  }
+   @media only screen and (max-width: 639px) {
+   .footer_new .footer_col0,
+    .footer_new .footer_col2 {
+    padding-right: 20px;
+}
+  .footer_new .header_link {
+    font-size: 18px;
+  }
+  .footer_new .footer_col5{
+     display:block;
+      -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  max-width: 100%;
+  position: relative;
+  }
+  .footer_new .socials_footer {
+    text-align: center;
+}.footer_new .socials_footer a {
+    margin-right: 14px;
+    margin-left: 14px;
+}
+  .footer_new .socials_footer a {
+    margin-right: 14px;
+    margin-left: 14px;
+}
+  }
+   @media only screen and (max-width: 479px) {
+   .footer_new .header_link {
+    font-size: 16px;
+  }
+      .footer_new .footer_col0,
+    .footer_new .footer_col2 {
+    padding-right: 10px;
+}
+.footer_new a.link_item {
+    font-size: 15px;
+    margin-bottom: 18px;
+}
+  }
+</style>
+
+
+
+
+{% schema %}
+  {
+    "name": "Footer New",
+    "settings": [
+    {
+        "type": "header",
+        "content": "Column 1"
+    },
+    {
+        "type": "text",
+        "id": "header1",
+        "label": "Header"
+      },
+    { 
+      "type":"link_list",
+      "id":"nav1",
+      "label":"linklist"
+    },
+    {
+        "type": "header",
+        "content": "Column 2"
+    },
+    {
+        "type": "text",
+        "id": "header2",
+        "label": "Header"
+      },
+    { 
+      "type":"link_list",
+      "id":"nav2",
+      "label":"linklist"
+    },
+    {
+        "type": "text",
+        "id": "header4",
+        "label": "Header 2"
+      },
+    { 
+      "type":"link_list",
+      "id":"nav4",
+      "label":"linklist 2"
+    },
+    {
+        "type": "header",
+        "content": "Column 3"
+    },
+    {
+        "type": "text",
+        "id": "header3",
+        "label": "Header"
+      },
+    { 
+      "type":"link_list",
+      "id":"nav3",
+      "label":"linklist"
+    },
+      {
+        "type": "header",
+        "content": "Socials"
+    },
+    {
+        "type": "text",
+        "id": "fb",
+        "label": "Facebook"
+      },
+    {
+        "type": "text",
+        "id": "tw",
+        "label": "Twitter"
+      },
+    {
+        "type": "text",
+        "id": "in",
+        "label": "Instagram"
+      },
+      {
+        "type": "text",
+        "id": "tik",
+        "label": "TikTok"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

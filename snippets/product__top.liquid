@@ -1,0 +1,38 @@
+<div class="flex row-wrap align-stretch justify-center wr-product-main">
+  <div class="block-6/12 @mobile-tablet__block-12/12 block-mfrh block-rel">
+    <div class="" style="display:none;">{% render 'product__gallery' %} </div>
+    {% render 'product-images-custom' %}
+
+  </div>
+  <div class="block-6/12 flex row-wrap align-center justify-center ct--header @mobile-tablet__block-12/12 @mobile-tablet__ct--none">
+      {% if template == 'product.condom' %}
+    {% render 'product__form_condom' template:template%}
+    {% else %}
+    {% render 'product__form' template:template%}
+    {% endif %}
+  </div>
+</div>
+
+
+{% if product.handle == 'usb-charger-replacement' or product.handle == 'replacement-blade-comb-set' %}
+
+<style>
+  .price_cus{
+    display: block;
+    margin-bottom:15px;
+  }
+  .price_cus span{
+    display: block;
+    font-size: 26px;
+    font-weight: bold;
+    color: #015dba;
+  }
+  .wr-product-main{
+    align-items: flex-start;
+  }
+  .wr-product-main select.hide{
+    display:none;
+  }
+
+</style>
+{% endif %}

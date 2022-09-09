@@ -1,0 +1,14 @@
+{{ 'wbsk-three-compiled.js' | asset_url | script_tag }}
+{{ 'wbsk-3d-product-view.js' | asset_url | script_tag }}
+<div class="wbsk-3dv-container js-index-3d-viewer"></div>
+
+<script>
+ 
+  $(function(){
+    $('.js-index-3d-viewer').wbsk3dView({
+      //file:"{{ 'gadjet_for_gltf.gltf' | asset_url}}",
+      file:"gadjet_for_gltf.gltf",
+      path:"{{ 'WBSKGETASSETPATH' | asset_url | split :'WBSKGETASSETPATH' | first}}"
+    })
+  })
+</script>

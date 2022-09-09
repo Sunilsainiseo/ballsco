@@ -1,0 +1,132 @@
+<div class="block-rel">
+  <div class="grid grid--f flex row-wrap align-top justify-center">
+    <div class="prod-bf-images block-6/12 ct--xxl row--l cell-l cell-r order-two block-rel @mobile-tablet__no-order @mobile-tablet__block-12/12 @mobile-tablet__ct--none">
+      <span class="prod-bf-images__tagline">
+        {% render 'svg' with 'whats_balls' %}
+      </span>
+      <div class="block-rel">
+        <div class="far-image far-image--portrait block-rel block-r block-9/12">
+          {% include 'lazy_img', _image:section.settings.image ,  size:'756' %}
+        </div>
+        <div class="prod-bf-images__accent-img accent-frame-img far-image far-image--landscape block-6/12">
+           {% include 'lazy_img', _image:section.settings.image2 ,  size:'512' %}
+        </div>
+      </div>
+    </div>
+    <div class="block-6/12 ct--xxl row--l cell-l cell-r order-one @mobile-tablet__no-order @mobile-tablet__block-12/12 @mobile-tablet__ct--none">
+      <ul class="block-9/12 block-c @mobile-tablet__hide">
+        {% for block in section.blocks %}
+        <li class="row--l">
+          <h3 class="h-style h4-style t-accent row--s">{{block.settings.heading}}</h3>
+          <div class="rte-content">
+            {{block.settings.text}}
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      <div class="@mobile-tablet__show">
+        <div class="swiper-container js-prodocu-bf-mobile-content">
+          <ul class="swiper-wrapper block-12/12 block-c">
+            {% for block in section.blocks %}
+            <li class="row--l swiper-slide">
+              <h3 class="h-style h4-style t-accent row--s">{{block.settings.heading}}</h3>
+              <div class="rte-content">
+                {{block.settings.text}}
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function(){
+    $('.js-prodocu-bf-mobile-content').wbskSwiper({
+      //slidesPerView:1.25,
+      //spaceBetween:40,
+      slidesPerView:1,
+      spaceBetween:0,
+    })
+  })
+</script>
+
+<script>
+  var swiper = new Swiper(".js-prodocu-bf-mobile-content", {
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+  });
+</script>
+
+<style>
+  .js-prodocu-bf-mobile-content .swiper-pagination{
+    bottom: 15px;
+    left: 50%;
+    -webkit-transform: translate(-50%, 0%);
+    -moz-transform: translate(-50%, 0%);
+    -o-transform: translate(-50%, 0%);
+    -ms-transform: translate(-50%, 0%);
+    transform: translate(-50%, 0%);
+  }
+  .js-prodocu-bf-mobile-content .swiper-pagination .swiper-pagination-bullet  {
+    margin: 0 8px;
+    border: 1px solid #000;
+    background: #fff;
+    width: 11px;
+    height: 11px;
+  }
+  .js-prodocu-bf-mobile-content .swiper-pagination .swiper-pagination-bullet-active{
+    background: #106bc8;
+    border-color: #106bc8;
+  }
+
+</style>
+
+{% schema %}
+  {
+    "name": "products/below-fold",
+    "settings": [
+      { 
+        "type":"image_picker",
+        "id":"image",
+        "label":"image #1"
+      },
+      { 
+        "type":"image_picker",
+        "id":"image2",
+        "label":"image #2 (overlays img #1)"
+      }
+      
+    ],
+    "blocks":[ 
+      { 
+        "type":"block",
+        "name":"block",
+        "settings":[ 
+          { 
+            "type":"text",
+            "id":"heading",
+            "label":"heading"
+          },
+        
+          { 
+            "type":"richtext",
+            "id":"text",
+            "label":"text"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

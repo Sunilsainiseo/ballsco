@@ -1,0 +1,60 @@
+<div class="flex row-wrap align-center justify-center align-stretch row--l">
+<div class="block-6/12 block-mfrh @mobile-mobile__block-12/12">
+  <div class="block-mfrh far-image far-image--square block-rel block-12/12">
+    {% assign _image = section.settings.image %}
+    <img class="lazyload block-12/12 d-block" 
+      alt="{{_image.alt}}" 
+      data-src="{{_image.src  | img_url:'1024x' }}"
+      data-sizes="auto"
+      data-srcset="{{_image.src | img_url:'1024x'}} 1024w,
+      {{_image.src | img_url:'256x' }} 256w,
+      {{_image.src | img_url:'512x' }} 512w,
+      {{_image.src | img_url:'767x' }} 767w,
+      {{_image.src | img_url:'1024x' }} 1024w,
+      {{_image.src | img_url:'2048x' }} 2048w"> 
+  </div>
+</div>
+  <div class="block-6/12 block-mfrh bg-accent t-white flex row-wrap align-center justify-center tac @mobile-mobile__block-12/12 @mobile-tablet__ct--xxl @mobile-tablet__cb--xxl">
+     <div class="block-6/12 cell-l cell-r ct cb @mobile-grid__block-9/12 @mobile-large__block-11/12">
+      <span class="product-gt__svg row--m d-block block-c">
+      {% render 'svg' with 'balls-icon' %}
+      </span>
+      <h2 class="h-style h1-style row--m">{{section.settings.heading}}</h2>
+      <div class="rte-content">
+        {{section.settings.paragraph}}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "product/gaurentee",
+    "settings":[ 
+   
+   
+    { 
+      "type":"image_picker",
+      "id":"image",
+      "label":"image"
+    },
+ 
+    { 
+      "type":"text",
+      "id":"heading",
+      "label":"heading"
+    },
+    { 
+      "type":"richtext",
+      "id":"paragraph",
+      "label":"paragraph"
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

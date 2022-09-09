@@ -1,0 +1,228 @@
+<div class="header-text">
+  <div class="grid grid--f row--m text-center">
+    <div class="t-blue head-h2">{{ section.settings.title}}</div>
+    <p>{{ section.settings.text}}</p>
+  </div>
+</div>
+<div class="block-reviews d-flex flex-nowrap grid grid--f flex row-wrap block-rel">
+  <div id="reviews-swiper" class="swiper-container">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+      <div class="swiper-slide reviews-item block-4/12 row--l @mobile-mobile__block-12/12">
+        <div class="grid grid--f flex row-wrap block-rel">
+          <div class="reviews-box">
+            <a href="{{ block.settings.link}}">
+              <div class="customer-img">
+                <img src="{{ block.settings.image | img_url: '' }}" alt="" />
+              </div>
+              <h3>{{ block.settings.title_1}}</h3>
+              <span class="stamped-product-reviews-badge stamped-main-badge">
+                <span class="stamped-badge">
+                  <span class="stamped-starrating stamped-badge-starrating" aria-hidden="true">
+                    <i class="stamped-fa stamped-fa-star" style="color:#015eb9 !important;" aria-hidden="true"></i>
+                    <i class="stamped-fa stamped-fa-star" style="color:#015eb9 !important;" aria-hidden="true"></i>
+                    <i class="stamped-fa stamped-fa-star" style="color:#015eb9 !important;" aria-hidden="true"></i>
+                    <i class="stamped-fa stamped-fa-star" style="color:#015eb9 !important;" aria-hidden="true"></i>
+                    <i class="stamped-fa stamped-fa-star" style="color:#015eb9 !important;" aria-hidden="true"></i>
+                  </span>
+                </span>
+              </span>
+              {{ block.settings.text_2}}
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</div>
+
+
+<script>
+
+  $(document).ready(function() {
+    // Swiper: Slider
+    new Swiper('#reviews-swiper', {
+      loop: true,
+      slidesPerView: 3,
+      paginationClickable: true,
+      spaceBetween: 20,
+
+      breakpoints: {
+        1920: {
+          slidesPerView: 3,
+          spaceBetween: 20
+        },
+        1028: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+          pagination: {
+            el: ".swiper-pagination",
+          }
+        },
+        640: {
+          slidesPerView: 1,
+          spaceBetween: 20,
+          pagination: {
+            el: ".swiper-pagination",
+          },
+        }
+      }
+    });
+  });
+
+</script>
+
+<style>
+  .section-reviews {
+    padding-bottom: 55px;
+  }
+  #reviews-swiper {
+    padding-top: 80px;
+    padding-bottom: 20px;
+    max-width: 1000px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  #reviews-swiper .swiper-pagination {
+    bottom: 0;
+  }
+  .section-reviews .header-text {
+    text-align: center;
+  }
+  .section-reviews .header-text .head-h2 {
+    font-size: 50px;
+    line-height: 60px;
+    margin-bottom: 0;
+  }
+  .section-reviews .reviews-box {
+    text-align: center;
+    height: 100%;
+    margin-bottom: -55px;
+  }
+  .section-reviews .reviews-box a {
+    display: block;
+  }
+  .section-reviews .reviews-box .customer-img {
+    max-width: 120px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    -webkit-transform: translate(-50%, 0%);
+    -moz-transform: translate(-50%, 0%);
+    -o-transform: translate(-50%, 0%);
+    -ms-transform: translate(-50%, 0%);
+    transform: translate(-50%, 0%);
+  }
+  .section-reviews .reviews-box .customer-img img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .section-reviews .reviews-box h3 {
+    font-size: 22px;
+    line-height: 26px;
+    margin: 20px 0 10px;
+  }
+  .section-reviews .reviews-box p {
+    margin: 12px 0;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .section-reviews .block-reviews .reviews-item .block-rel {
+    background-color: #fff;
+    padding: 60px 10px 15px;
+    height: 100%;
+    border: 2px solid #333;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    position: relative;
+  }
+
+  @media only screen and (min-width: 992px) {
+    .section-reviews .reviews-box p {
+      padding: 0 15px;
+    }
+  }
+
+  @media only screen and (max-width: 767px) {
+    .section-reviews .block-reviews {
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+    }
+    .section-reviews .reviews-box {
+      max-width: 320px;
+      margin: 0 auto -55px;
+    }
+    .section-reviews .header-text .head-h2 {
+      font-size: 34px;
+      line-height: 40px;
+      padding: 0 15px;
+    }
+    .section-reviews .block-reviews .reviews-item {
+      margin-bottom: 40px;
+    }
+    .section-reviews .header-text .grid {
+      margin-bottom: 30px;
+    }
+  }
+
+
+</style>
+
+{% schema %}
+{
+"name": "Section Reviews",
+"class": "section-reviews",
+"max_blocks": 3,
+"settings": [
+{
+"type": "text",
+"id": "title",
+"label": "Header"
+},
+{
+"type": "textarea",
+"id": "text",
+"label": "SubText"
+}
+],
+"blocks": [
+{
+"name": "Block",
+"type": "Block",
+"settings": [
+{
+"type": "image_picker",
+"id": "image",
+"label": "Image"
+},
+{
+"type": "text",
+"id": "title_1",
+"label": "Heading"
+},
+{
+"type": "url",
+"id": "link",
+"label": "Link"
+},
+{
+"type": "richtext",
+"id": "text_2",
+"label": "Text"
+}
+]
+}
+]
+}
+{% endschema %}
+

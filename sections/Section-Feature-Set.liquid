@@ -1,0 +1,520 @@
+{% if template == 'index' %}
+<div class="Fset-Top-Blue">
+  <div class="grid grid--f">
+    <div class="header-text">
+      <h2 class="text-center head-h2">{{ section.settings.section_title}}</h2>
+    </div>
+    <div class="d-flex flex-nowrap align-items-end">
+      <div class="Fset-L">
+        <img src="{{ section.settings.section_image | img_url: '1024x1024' }}" alt="" />
+      </div>
+      <div class="Fset-R">
+        <div class="Fset-R-Inner">
+          <p>{{ section.settings.section_text }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% else %}
+{% endif %}
+
+<div class="grid grid--f section-feature-set">
+
+  <div class="Fset-wrap">
+    <div class="swiper-container" id="feature-set-swiper">
+      <div class="block-rel Fset-Top">
+        <h2 class="head-h2 h-style h1-style t-accent setheader">
+          {{ section.settings.title }}
+        </h2>
+      </div>
+      <div class="swiper-pagination-2"></div>  
+
+      <ul class="swiper-wrapper d-flex align-items-end">
+        {% for block in section.blocks %}
+        <li class="swiper-slide" style="background-image: url({{ block.settings.image | img_url: '' }})">
+
+          <div class="d-flex flex-nowrap align-items-end">
+            <div class="set-left">
+              <h3>{{ block.settings.title }}</h3>
+              <p>{{ block.settings.text }}</p>
+            </div>
+            <div class="set-right">
+              <img style="visibility: hidden;opacity: 0;" src="{{ block.settings.image | img_url: '' }}" alt="" />
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function(){
+    var menu = [
+      {% for block in section.blocks %}
+      '{{ block.settings.title }}',
+      {% endfor %}
+    ]
+    var mySwiper = new Swiper ('#feature-set-swiper', {
+      loop: true,
+      loopFillGroupWithBlank: true,
+      simulateTouch: false,
+      touchEventsTarget: 'wrapper',
+      /*
+      autoplay: {
+        delay: 10000,
+      },*/
+      // If we need pagination
+      pagination: {
+        el: '.swiper-pagination-2',
+        clickable: true,
+        renderBullet: function (index, className) {
+          return '<span class="' + className + '">' + (menu[index]) + '</span>';
+        },
+      },
+
+      // Navigation arrows
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    })
+
+    })
+</script>
+
+<style>
+  .Fset-Top {
+    margin-bottom: 10px;
+  }
+  .Fset-Top-Blue {
+    background-color: #1560b8;
+    position: relative;
+    overflow: hidden;
+  }
+  .Fset-Top-Blue .header-text .head-h2 {
+    text-align: center;
+    color: #fff;
+    font-size: 46px;
+    line-height: 56px;
+    font-weight: 900;
+    max-width: 600px;
+    margin: 0 auto;
+    position: absolute;
+    top: 65px;
+    left: 0;
+    right: 0;
+    text-transform: uppercase;
+    padding: 0 15px;
+  }
+  .section-feature-set .setheader {
+    text-align: center;
+    color: #fff;
+  }
+  .section-feature-set .setheader h1,
+  .section-feature-set .setheader p {
+    font-size: 50px;
+    line-height: 57px;
+    font-weight: 700;
+  }
+  .section-feature-set {
+    padding-top: 45px;
+  }
+  body.product .section-feature-set {
+    padding-top: 45px;
+  }
+  .Section-Feature-Set {
+    background-color: #010101;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  #feature-set-swiper .swiper-slide {
+    padding: 0 40px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center bottom;
+  }
+  .Fset-Top-Blue .grid.grid--f {
+    max-width: 100%;
+  }
+  .Fset-Top-Blue .Fset-L img {
+    margin-bottom: 0;
+    height: calc(100% + 105px);
+    width: auto;
+    object-fit: contain;
+  }
+  .Fset-Top-Blue .Fset-L {
+    width: 54%;
+    height: 800px;
+  }
+  .Fset-Top-Blue .Fset-R {
+    width: 46%;
+    padding: 292px 0 0 40px;
+    height: 800px;
+  }
+  .Fset-Top-Blue .Fset-R .Fset-R-Inner {
+    max-width: 400px;
+  }
+  .Fset-Top-Blue .Fset-R h3 {
+    color: #fff;
+    font-size: 38px;
+    line-height: 42px;
+    margin: 0 0 25px;
+  }
+  .Fset-Top-Blue .Fset-R p {
+    color: #fff;
+    font-size: 22px;
+    line-height: 28px;
+  }
+  #feature-set-swiper .swiper-slide .set-left {
+    width: 100%;
+    padding: 0 15px;
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    text-align: center;
+    max-width: 500px;
+  }
+  #feature-set-swiper .swiper-slide .set-left h3 {
+    color: #fff;
+    font-size: 32px;
+    line-height: 36px;
+    margin: 0 0 20px;
+  }
+  #feature-set-swiper .swiper-slide .set-left p {
+    color: #fff;
+    font-size: 16px;
+    line-height: 22px;
+  }
+  #feature-set-swiper .swiper-slide .set-right {
+    width: 60%;
+    padding: 0 15px;
+  }
+  #feature-set-swiper .swiper-pagination-2 {
+    bottom: auto;
+    top: 0;
+    position: relative;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+  #feature-set-swiper .swiper-pagination-2 span {
+    width: auto;
+    border-radius: 0;
+    background-color: transparent;
+    color: #8c8c8c;
+    margin: 0 10px;
+    opacity: 1;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 600;
+    height: auto;
+    line-height: 30px;
+  }
+  #feature-set-swiper .swiper-pagination-2 span.swiper-pagination-bullet-active {
+    border-bottom: 2px solid #015db9;
+    color: #fff;
+  }
+  .Fset-wrap .swiper-container .swiper-button-prev {
+    width: 120px;
+    height: 120px;
+    background-image: url({{ 'arrow-lighter-left-2x.png' | file_url }});
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center center;
+    z-index: 1;
+  }
+  .Fset-wrap .swiper-container .swiper-button-next {
+    width: 120px;
+    height: 120px;
+    background-image: url({{ 'arrow-lighter-2x.png' | file_url }});
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center center;
+    z-index: 1;
+  }
+
+  @media only screen and (max-width: 1199px) and (min-width: 992px) {
+
+    .Fset-Top-Blue .Fset-R h3 {
+      font-size: 28px;
+      line-height: 32px;
+    }
+    .Fset-Top-Blue .Fset-R {
+      padding: 218px 0 0 30px;
+    }
+    .Fset-Top-Blue .Fset-L img {
+      margin-bottom: 0px;
+    }
+    .Fset-Top-Blue .Fset-L,
+    .Fset-Top-Blue .Fset-R {
+      height: 600px;
+    }
+
+  }
+
+  @media only screen and (min-width: 992px) {
+
+    #feature-set-swiper .swiper-slide .set-right {
+      min-height: 510px;
+    }
+  }
+
+  @media only screen and (max-width: 991px) {
+    .Fset-Top-Blue .Fset-L,
+    .Fset-Top-Blue .Fset-R {
+      height: 100%;
+    }
+    .section-feature-set .setheader .h1, .section-feature-set .setheader p {
+      font-size: 44px;
+      line-height: 48px;
+    }
+    #feature-set-swiper .swiper-pagination-2 span {
+      font-size: 12px;
+    }
+    .Fset-Top-Blue .Fset-L,
+    .Fset-Top-Blue .Fset-R {
+      width: 100%;
+    }
+    .Fset-Top-Blue .d-flex {
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+    }
+    .Fset-Top-Blue .Fset-R { 
+      -ms-flex-order: -1;
+      order: -1;
+      padding: 210px 30px 0;
+      max-width: 500px;
+      text-align: center;
+      margin: 0 auto -150px;
+      z-index: 1;
+    }
+    .Fset-Top-Blue .Fset-L img {
+      margin-bottom: -94px;
+      height: auto;
+    }
+    .Fset-Top-Blue .Fset-R .Fset-R-Inner {
+      margin: 0 auto;
+    }
+    #feature-set-swiper .swiper-slide {
+      background-size: 100% auto;
+    }
+
+  }
+
+  @media only screen and (max-width: 991px) and (min-width: 768px) {
+    #feature-set-swiper .swiper-slide .set-left {
+      margin-bottom: 0;
+    }
+    #feature-set-swiper .swiper-slide .set-left h3 {
+      font-size: 24px;
+      line-height: 30px;
+    }
+    #feature-set-swiper .swiper-slide .set-right {
+      min-height: 360px;
+    }
+
+  }
+
+
+  @media only screen and (max-width: 767px) {
+
+    #feature-set-swiper .swiper-slide {
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+    }
+    #feature-set-swiper .swiper-slide .set-left,
+    #feature-set-swiper .swiper-slide .set-right {
+      width: 100%;
+      text-align: center;
+    }
+    #feature-set-swiper .swiper-slide .set-right {
+      display: none;
+      -ms-flex-order: -1;
+      order: -1;
+    }
+    #feature-set-swiper .swiper-slide .set-left {
+      padding: 0 15px;
+      margin-bottom: 30px;
+      padding-top: 205px;
+      padding-bottom: 0;
+      min-height: 100%;
+      position: initial;
+      height: auto;
+    }
+    #feature-set-swiper .swiper-slide .set-left h3 {
+      font-size: 28px;
+      line-height: 32px;
+      margin: 0 0 20px;
+      text-align: center;
+    }
+    #feature-set-swiper .swiper-slide {
+      background-repeat: no-repeat;
+      background-position: center bottom;
+      background-size: cover;
+    }
+    .Fset-Top-Blue .header-text .head-h2 {
+      font-size: 40px;
+      line-height: 48px;
+    }
+    .Fset-Top-Blue .Fset-R {
+      padding: 190px 30px 0;
+      margin: 0 auto -130px;
+    }
+    .Fset-wrap .swiper-container .swiper-button-next,
+    .Fset-wrap .swiper-container .swiper-button-prev {
+      width: 80px;
+      height: 80px;
+    }
+    .Fset-wrap .swiper-container .swiper-button-prev {
+      left: 0;
+    }
+    .Fset-wrap .swiper-container .swiper-button-next {
+      right: 0;
+    }
+    .Fset-Top-Blue .Fset-R p {
+      font-size: 18px;
+      line-height: 24px;
+    }
+
+  }
+
+  @media only screen and (max-width: 639px) {
+    .section-feature-set {
+      padding-top: 30px;
+    }
+
+
+    #feature-set-swiper .swiper-slide .set-left p {
+      font-size: 13.5px;
+      line-height: 18px;
+    }
+    #feature-set-swiper .swiper-slide .set-left h3 {
+      font-size: 24px;
+      line-height: 28px;
+      margin: 0 0 10px;
+    }
+    .Fset-Top-Blue .Fset-R h3 {
+      font-size: 28px;
+      line-height: 32px;
+    }
+    .Fset-Top-Blue .header-text h1 {
+      font-size: 28px;
+      line-height: 36px;
+    }
+    .Fset-Top-Blue .Fset-L img {
+      margin-bottom: -20px;
+    }
+    #feature-set-swiper .swiper-pagination-2 span {
+      font-size: 9px;
+      line-height: 20px;
+      margin: 0 3px;
+      letter-spacing: -0.25px;
+    }
+  }
+
+  @media only screen and (max-width: 479px) {
+    .Fset-Top-Blue .header-text h1 {
+      top: 45px;
+    }
+    .Fset-Top-Blue .Fset-R {
+      padding: 151px 30px 0;
+      margin: 0 auto -80px;
+    }
+    #feature-set-swiper .swiper-slide {
+      background-position: 52% bottom;
+      background-size: 170%;
+      height: 400px;
+    }
+
+    #feature-set-swiper .swiper-slide .set-left {
+      margin-bottom: 0;
+      position: absolute;
+      bottom: 20px;
+      top: auto;
+      left: 0;
+      right: 0;
+      min-height: auto;
+      height: auto;
+      padding: 0 20px;
+    }
+
+  }
+
+</style>
+
+{% schema %}
+{
+"name": "Section Feature Set",
+"class": "Section-Feature-Set",
+"max_blocks": 4,
+"settings": [
+{
+"type": "image_picker",
+"id": "section_image",
+"label": "Image"
+},
+{
+"type": "text",
+"id": "section_title",
+"label": "Section Title"
+},
+{
+"type": "richtext",
+"id": "section_text",
+"label": "Section text"
+},
+{
+"type": "richtext",
+"id": "title",
+"label": "Header"
+}
+
+],
+"blocks": [
+{
+"name": "Block",
+"type": "Block",
+"settings": [
+{
+"type": "image_picker",
+"id": "image",
+"label": "Image"
+},
+{
+"type": "text",
+"id": "title",
+"label": "Feature Set Title"
+},
+
+{
+"type": "richtext",
+"id": "text",
+"label": "Text"
+}
+]
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+
+
+{% endjavascript %}
+

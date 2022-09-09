@@ -1,0 +1,240 @@
+<header class="mh block-rel block-12/12 {{mh-class}} {% if template == 'product' or template == 'product.blade' or template == 'product.new-product' %} mh--abtop {% endif %}">
+  <div class="Sticky-Head">
+    <div class="custom-header mh__grid grid grid--f flex row-wrap align-center justify-center cell-l cell-r">
+      <div class="block-1/12">
+        <button class="mh__mob-toggle js-wbsk-sidebar-menu__open btn-reset">
+          {% render 'svg' with 'bars' %}
+        </button>
+      </div>
+      <nav class="flex row-wrap align-center jusity-center tac block-10/12 block-rel">
+        {% assign main-nav = settings.main_nav_list %}
+        <a href="{{linklists[main-nav].links[0].url}}" class="block-4/12 cell-l cell-r @mobile-tablet__hide">{{linklists[main-nav].links[0].title}}</a>
+        <a href="/" class="mh__logo  block-4/12 cell-l cell-r @mobile-tablet__cell-l--none @mobile-tablet__cell-r--none">
+          {% render 'svg' with 'logo'%}
+        </a>
+        <a href="{{linklists[main-nav].links[1].url}}" class="block-4/12 cell-l cell-r @mobile-tablet__hide">{{linklists[main-nav].links[1].title}}</a>
+      </nav>
+      {% comment %}
+      <div class="block-1/12 tar mobile-hide">
+        <a href="/cart" class="d-iblock mh__cart-icon btn-reset js-wbsk-sidebar-cart__open block-rel {% if cart.item_count >= 1 %} has_item{% endif %}">
+          {% render 'svg' with 'balls-icon' %}
+          <span class="mh__cart-counter d-iblock" {% if cart.item_count == 0 %}style="display:none"{% endif %} >
+            <span class="wbsk-cart__cart-count">{{cart.item_count}}</span>
+          </span>
+        </a>
+      </div>{% endcomment %}
+      <div class="block-1/12 tar ">
+        <a href="/cart" class="d-iblock mh__cart-icon btn-reset block-rel  {% if cart.item_count >= 1 %} has_item{% endif %}">
+          {% render 'svg' with 'balls-icon' %}
+          <span class="mh__cart-counter d-iblock" {% if cart.item_count == 0 %}style="display:none"{% endif %} >
+            <span class="wbsk-cart__cart-count">{{cart.item_count}}</span>
+          </span>
+        </a>
+      </div>
+      <div class="dropdown_sites">
+        <a class="curentSite" href="javascript:void(0;"><img src="{{ 'fr.png' | asset_url }}" alt/>FR</a>
+        <div class="list_sites">
+          <a href="https://uk.balls.co/"><img src="{{ 'UK_flag.png' | asset_url }}" alt/>UK</a>
+          <a href="https://balls.co/"><img src="{{ 'USflag.png' | asset_url }}" alt/>US</a>
+          <a href="https://de.balls.co/"><img src="{{ 'DE.png' | asset_url }}" alt/>DE</a>
+          <a href="https://es.balls.co/"><img src="{{ 'sp.png' | asset_url }}" alt/>ES</a>
+          <a href="https://au.balls.co/"><img src="{{ 'Au.png' | asset_url }}" alt/>AU</a>
+          <a href="https://ca.balls.co/"><img src="{{ 'ca_flag.png' | asset_url }}" alt/>CA</a>   
+          <a href="https://eu.balls.co/"><img src="{{ 'Eu-flag.png' | asset_url }}" alt/>EU</a>
+          <a href="https://balls.co/"><img style="object-fit: contain;" src="{{ 'int.png' | asset_url }}" alt/>INT</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% if template == 'index' %}
+  <div class="anouncement">{{settings.topbartext}}</div>
+  {% endif %}
+
+</header> 
+<script>
+  $(document).ready(function(){
+    $(".curentSite").click(function(){
+      $('.dropdown_sites .list_sites').toggleClass("open");
+
+    });
+
+
+    $('.mh__cart-icon.has_item').addClass("animation");
+    setTimeout(function() {
+      $('.mh__cart-icon.has_item').removeClass("animation");
+    }, 7000);
+
+    var i = 1;                  //  set your counter to 1
+    function myLoop() {         //  create a loop function
+      setTimeout(function() {   //  call a 3s setTimeout when the loop is called
+        $('.mh__cart-icon.has_item').addClass("animation");//  your code here
+
+        setTimeout(function() {
+          $('.mh__cart-icon.has_item').removeClass("animation");
+        }, 7000);
+
+        i++;                    //  increment the counter
+        if (i < 100000000) {           //  if the counter < 10, call the loop function
+          myLoop();             //  ..  again which will trigger another 
+        }
+      }, 60000);
+
+    }
+
+    myLoop(); 
+
+
+  });
+
+</script>
+<style>
+ /* - Sticky header - */
+  .Sticky-Head {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    width: 100%;
+    z-index: 999;
+    box-shadow: 0px 0px 10px rgb(0 0 0 / 10%);
+  }
+  header {
+    z-index: 201!important;
+  }
+  #shopify-section-Section-Product-Featured .section-product-featured {
+    padding-top: 0!important;
+  }
+  @media only screen and (min-width:1025px) {
+    body {
+      padding-top: 100px;
+    }
+  }
+
+  @media only screen and (max-width:1024px) {
+    body {
+      padding-top: 60px;
+    }
+  }
+
+  .mh__cart-icon.has_item.animation {
+    transition: .2s ease-in-out;
+    animation: jittery 4s infinite  !important;
+  }
+
+  @keyframes jittery {
+    5%, 50% {
+      transform: scale(1);
+    }
+    10% {
+      transform: scale(0.9);
+    }
+    15% {
+      transform: scale(1.15);
+    }
+    20% {
+      transform: scale(1.15) rotate(-5deg);
+    }
+    25% {
+      transform: scale(1.15) rotate(5deg);
+    }
+    30% {
+      transform: scale(1.15) rotate(-3deg);
+    }
+    35% {
+      transform: scale(1.15) rotate(2deg);
+    }
+    40% {
+      transform: scale(1.15) rotate(0);
+    }
+  }
+
+
+  .custom-header{
+    position: relative;
+  }
+  .dropdown_sites{
+    position: absolute;
+    right: 10%;
+    background: transparent;
+    /*background: rgba(255,255,255,0.9);*/
+    z-index: 2;
+    display: block;
+    padding: 12px;
+    width: 86px;
+  }
+  .dropdown_sites img{
+    max-height: 16px;
+    margin-right: 8px;
+    width: 100%;
+    max-width: 26px;
+  }
+  .dropdown_sites a{
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+  }
+  .dropdown_sites .list_sites{
+    display:none;
+    position: absolute;
+    top: 100%;
+    background: rgba(255,255,255,0.8);
+    padding: 0;
+    width: 86px;
+    left: 0;
+    max-height: 160px;
+    overflow-y: auto;
+    border-top: 1px solid #015cb9;
+  }
+  .dropdown_sites .list_sites.open{
+    display:block;
+  }
+  .dropdown_sites .list_sites a{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #015cb9;
+    padding: 9px 12px;
+  }
+  .dropdown_sites .list_sites a:last-child{
+    border-bottom: none;
+  }
+  @media (max-width:639px)  {
+    .dropdown_sites {
+      right: 12%;
+      padding: 12px 10px;
+      width: auto;
+    }
+    .dropdown_sites .list_sites a {
+      padding: 9px 10px;
+    }
+    .dropdown_sites .list_sites {
+      width: auto;
+    }
+  }
+  @media (max-width:479px)  {
+    .dropdown_sites {
+      right: 14%;
+      padding: 12px 5px;
+      width: auto;
+      padding-right: 10px;
+    }
+    .dropdown_sites .list_sites a {
+      padding: 10px 5px;
+      padding-right: 10px;
+    }
+    .dropdown_sites img {
+      margin-right: 5px;
+    }
+  }
+  @media (min-width:768px)  {.dsktop-hide{display:none !important; display: inline-flex;}  }
+  @media (max-width:767px)  {.mobile-hide{display:none !important;} }
+  .anouncement {
+    padding-top: 10px;
+    text-align: center;
+    padding-bottom: 10px;
+    background: #e6eff8;
+    color: #015db9;
+    font-weight: bold;
+  }
+</style>

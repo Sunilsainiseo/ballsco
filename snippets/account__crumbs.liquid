@@ -1,0 +1,15 @@
+<div class="block-12/12 flex row-wrap align-center justify-space row--m ct--m">
+  <div class="m-breadcrumbs cell-l cell-r">   
+    {% if page != false %}
+    <a href="/account" class="t-grey"><u>{{'customer.account_main.my_account' | t}}</u></a>
+    {% else %}
+    <span class="t-accent">{{'customer.account_main.my_account' | t}}</span>
+    {% endif %}
+    {%if page != false%}
+    <span> / <span class="t-accent">{{page}}</span></span>
+    {%endif%}
+  </div>   
+  <div class="cell-r">
+    <a href="/account/logout" class="btn btn--small btn--accent d-block">{{'customer.account_main.sign_out' | t}}</a>
+  </div>
+</div>

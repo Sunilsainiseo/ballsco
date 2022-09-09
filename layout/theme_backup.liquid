@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Basic page needs ================================================== -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
+    <!-- Title and description ================================================== -->
+    <title>
+      {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %}{% endif %}{% if current_page != 1 %} &ndash;{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+    </title>
+    {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+    <!-- Mobile Specific Metas -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- Helpers ================================================== -->
+    {% include 'social-meta' %}
+    <link rel="canonical" href="{{ canonical_url }}">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_primary }}">
+    {{ 'wbsk-style.scss.css' | asset_url | stylesheet_tag}}
+    <!-- font ================================================== -->
+    {{ content_for_header }}
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    {{ 'wbsk-compiled.js' | asset_url | script_tag }}
+    {{ 'wbsk-ui.js' | asset_url | script_tag }}
+  
+<!-- Start of Littledata - Fix Google Analytics Script-->
+{% include 'LittledataLayer' %}
+<!-- End of Littledata - Fix Google Analytics Script -->
+</head>
+  <body>
+    {% if template contains 'product' or template contains 'split'%}
+      {% assign mh-class = 'mh--abtop' %}
+    {% endif %}
+ 
+    {% include 'header' mh-class:mh-class %}
+    {% render 'sidebar-menu' %}
+    {% unless template == 'cart' %}
+    {% render 'sidebar-cart' %}
+    {% endunless %}
+    <main>
+      {{ content_for_layout }}
+    </main>
+    {%include 'footer'%}
+    {{ 'wbsk-cart.js' | asset_url | script_tag }}
+    {{ 'wbsk-app.js' | asset_url | script_tag }}
+  </body>
+</html>

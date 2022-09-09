@@ -1,0 +1,82 @@
+{% assign block = section.settings %}
+{% assign featuredProduct = false %}
+{% for product in collections.all.products %}
+  {% if product.handle == block.product %}
+    {% assign featuredProduct = product %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+<div class="block-rel block-oh">
+  {% if section.settings.useThreeDee %}
+  <div class="index-3d-prod__wsb">
+    <div class="@mobile-mobile__hide">
+      {% render 'svg' with 'wsb-text' %}
+    </div>
+    <div class="@mobile-mobile__show">
+      {% render 'svg' with 'wsb-text-mob' %}
+    </div>
+  </div>
+  {% endif %}
+  <div class="grid grid--f flex row-wrap align-center justify-center block-rel">
+    {% unless section.settings.useThreeDee  %}
+    <div class="block-6/12 cell-l cell-r row--l  @mobile-mobile__block-12/12">
+      {% render 'lazy_img', _image:block.image , size:'1024' %}
+    </div>
+    {% else %}
+    <div class="block-6/12 cell-l cell-r row--l  @mobile-mobile__block-12/12">
+      <div class="block-12/12">
+        {% render '3d_viewer' %}
+      </div>
+    </div>
+    {% endunless %}
+    <div class="block-6/12 cell-l cell-r row--l  @mobile-mobile__block-12/12">
+      <div class="block-9/12 block-c @mobile-tablet__block-11/12 @mobile-mobile__block-12/12">
+        <h2 class="h-style h1-style row--s">{{featuredProduct.title}}</h2>
+        <div class="flex row-wrap align-center justify-space row--m">
+         <a href="/products/tondeuse-balls#reviews"> <span class="stamped-product-reviews-badge stamped-main-badge" 
+          data-id="{{ featuredProduct.id }}" 
+          data-product-sku="{{ featuredProduct.handle }}">{{ featuredProduct.metafields.stamped.badge }}</span>
+          </a>
+        </div>
+        <div class="rte-content row--m">
+          <p>{{block.paragraph}}</p>
+        </div>
+        <div class="block-12/12">
+          <a href="{{featuredProduct.url}}" class="btn btn--accent block-12/12 d-iblock">{{ 'general.view_product' | t }}</a>
+        </div> 
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{ 
+  
+  "name":"index/featured-product-3d",
+ 
+  "settings":[ 
+
+    { 
+      "type":"image_picker",
+      "id":"image",
+      "label":"image"
+    },
+
+   { 
+      "type":"checkbox",
+      "id":"useThreeDee",
+      "label":"3d?"
+    },
+    { 
+      "type":"textarea",
+      "id":"paragraph",
+      "label":"paragraph"
+    },
+    { 
+      "type":"product",
+      "id":"product",
+      "label":"product"
+    }
+  
+  ]
+}
+{% endschema %}

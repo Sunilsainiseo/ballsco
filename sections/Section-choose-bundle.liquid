@@ -1,0 +1,92 @@
+
+
+<div class="header-text">
+  <h2 class="t-white head-h2">{{ section.settings.title}}</h2>
+  <h4 class="t-white">{{ section.settings.text}}</h4>
+</div>
+<div class="Section-Review-Product">
+  {% include 'include-Cross-Sell' %}
+  <style>
+    .Section-Review-Product {
+      padding: 0 0 20px;
+      background-image: url({{ 'line-bg.png' | file_url }});
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+    }
+    .Section-Review-Product .section-reviews {
+      background-color: rgba(58,93,167,0.17);
+      padding-top: 30px;
+    }
+  </style>
+</div>
+<style>
+  .section-choose-bundle {
+    background: -webkit-gradient(linear, left top, right top, from(#005cba), to(#ffffff));
+    background: -webkit-linear-gradient(top, #005cba, #ffffff);
+    background: -moz-linear-gradient(top, #005cba, #ffffff);
+    background: -o-linear-gradient(top, #005cba, #ffffff);
+    background: -ms-linear-gradient(top, #005cba, #ffffff);
+    background: linear-gradient(top, #005cba, #ffffff);
+    background-color: #005cba;
+    display: block;
+    position: relative;
+    padding-top: 60px;
+  }
+  .section-choose-bundle .header-text .head-h2{
+        font-size: 52px;
+    max-width: 700px;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 30px;
+  }
+   .section-choose-bundle .header-text h4{
+     max-width: 700px;
+    margin: 0 auto;
+    display: block;
+    font-size: 18px;
+     font-weight:500;
+  }
+  .section-choose-bundle .header-text{
+        display: block;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .section-choose-bundle {
+  }
+
+
+  @media only screen and (max-width: 767px) {
+.section-choose-bundle .header-text .head-h2 {
+    font-size: 42px;
+    padding: 0 12px;
+}
+  }
+
+  @media only screen and (max-width: 639px) {
+
+  }
+
+
+
+</style>
+
+{% schema %}
+{
+"name": "Section Choose bundle",
+"class": "section-choose-bundle",
+"settings": [
+{
+"type": "text",
+"id": "title",
+"label": "Header"
+},
+{
+"type": "textarea",
+"id": "text",
+"label": "SubText"
+}
+]
+}
+{% endschema %}
+

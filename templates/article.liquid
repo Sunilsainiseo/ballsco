@@ -1,0 +1,76 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": "{{ article.title }}",
+  "image": [
+    "{{ article.image | img_url: '' }}"
+   ],
+  "datePublished": "{{ article.published_at | date: "%b %d, %Y" }}",
+  "author": [{
+      "@type": "Person",
+      "name": "{{ article.author }}",
+      "url": "{{ shop.url }}{{ article.url }}"
+    }]
+}
+</script>
+<div style="display:none;" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+  <h2 itemprop="name">Blog ID</h2>
+  <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+    <div itemprop="text">
+     {{ article.id }}
+    </div>
+  </div>
+</div>
+<article class="page-width">
+  <div class="grid">
+    <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
+      {% section 'article-template' %}
+    </div>
+  </div>
+  <div class="blog-related">
+    <div class="blog-related-articles">
+      {% for article in blog.articles limit:4 %}
+      {% unless page_title contains article.title %}
+      <div class="item-related">
+        <p class="tags">{% for tag in article.tags %}{{ tag | link_to_tag: tag }} {% endfor %}</p>
+        <a href="{{ article.url }}">
+          {%- if article.image -%}
+          <span class="wwrapper-img">
+            <span class="wrapper-img-chill">
+              <img src="{{ article.image | img_url: '' }}" alt="{{article.name}}">
+            </span>
+          </span>
+          <noscript>
+            {{ article | img_url: '455x300', scale: 2 | img_tag: article.title }}
+          </noscript>
+          {%- endif -%}
+          <h2 class="blog-title">{{ article.title }}</h2>
+          <p>{{ article.content | strip_html | truncate: 200 }}</p>
+        </a>
+      </div> 
+      {% endunless %}    
+      {%endfor%}
+    </div>
+  </div>
+</article>
+
+
+<style>
+  .share-btns .share-btn .facebook {
+    display: block;
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    background-image: url('//cdn.shopify.com/s/files/1/0243/7772/0909/files/facebook.png?v=1625738543');
+  }
+  .share-btns .share-btn .twitter {
+    display: block;
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    background-image: url('//cdn.shopify.com/s/files/1/0243/7772/0909/files/twitter.png?v=1625738543');
+  }
+
+
+</style>

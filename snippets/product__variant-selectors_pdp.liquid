@@ -1,0 +1,586 @@
+<ul class=" 
+           {% if product.handle contains 'sacksafe-blade' or product.handle == 'tondeuse-balls' or product.handle == 'balls-electric-trimmer' or product.handle contains 'forfait-ultime-balls' or product.handle contains 'sacksafe-lame-v2' or product.handle contains 'kit-de-demarrage-balls' %}balls--trimmer-listVar {% endif %}flex row-wrap align-stretch justify-left prod-bar-selector bdr-t bdr-l bdr-accent row">
+  {% for variant in variants %}
+  <li {% if variant.image %}
+      data-variant-imageId="{{variant.image.id}}"
+      {% endif %}
+      class="variantIndex_{{forloop.index}} block-4/12 bdr-b bdr-r prod-bar-selector__item 
+             {% if forloop.index == 2 %}prod-bar-selector__item--active{% endif %}
+             {% unless product.handle == 'balls-gift-card' %}
+             {% if forloop.index == 3 %}
+
+             {% endif %}
+             {% endunless %}
+             @mobile-mobile__block-4/12             ">
+    <form class="block-12/12 wbsk-cart__atc-form form-product" action="/cart/add" method="post" enctype="multipart/form-data" data-productid="{{product.id}}" data-productname="{{product.title}}" data-productprice="{{product.price}}" data-variantid="{{product.variants.first.id}}">
+
+      <div class="wr-option-custom">
+        <div class="wr-title-top ct cb cell-l cell-r d-flex align-items-center flex-no-wrap">
+          <div class="Check-Box"></div>
+          {% if variant.price < variant.compare_at_price %} 
+          <span class="compare_at_price" style="display: block;text-decoration: line-through;font-size: 20px;"> {{ variant.compare_at_price | money }}</span>
+          {% endif %}
+          <span itemprop="price" content="{{ variant.price | money_without_currency }}" class="h-style h4-style">
+            {{ variant.price | money | split:',' | first |  split:'.' | first}} 
+          </span>
+          <span class="P-Title-Bold">
+            {{product.title}}
+            {% if forloop.index == 2 %}<span class="small-text">+ Abonnement Lames </span>{% endif%}
+          </span>
+
+          {% if forloop.index == 2 %}
+
+          {% unless product.handle == 'balls-gift-card' %}
+          <div class="save-percent">
+            {% assign minPrice = variants[0].price %}
+            {% assign RRP = variants[1].price %}    
+            {% assign youSave = minPrice | minus:RRP %}
+            {%comment%}
+            <span class="yousave">Gagne {{youSave | times:100 | divided_by: minPrice | round:2}}%</span>
+            {%endcomment%}
+            <span class="yousave">Gagne €{{ RRP | minus: minPrice | remove: '00' | remove: '-' }}</span>
+          </div>
+          {% endunless %}
+
+          <input type="hidden" name="properties[subscription_id]" value="245201" class="subscription_id">
+          <input type="hidden" name="properties[shipping_interval_frequency]" value="3" class="shipping_interval_frequency">
+          <input type="hidden" name="properties[shipping_interval_unit_type]" value="Months" class="shipping_interval_unit_type">
+
+          {% endif %}
+        </div>
+        <div class="cell-l cell-r extra-info wr-des">
+          {% if product.handle contains 'forfait-ultime-balls ' or product.handle contains 'kit-de-demarrage-balls' %}
+          {% if forloop.index == 1 %}
+          <p>{{ product.metafields.my_fields.non_subscription_descriptions | newline_to_br }}</p>
+          {% endif %}
+          {% if forloop.index == 2 %}
+          <p>{{ product.metafields.my_fields.subscription_descriptions | newline_to_br }}</p>
+          {% endif %}
+          {% endif %}
+
+          {% unless product.handle contains 'forfait-ultime-balls ' or product.handle contains 'kit-de-demarrage-balls' %}
+          {% if forloop.index == 1 %}
+          {% if product.metafields.content1.option1 != blank %}
+          <p>{{ product.metafields.content1.option1 }}</p>
+          {% endif %}
+          {% if product.metafields.content2.option1 != blank %}
+          <p>{{ product.metafields.content2.option1 }}</p>
+          {% endif %}
+          {% if product.metafields.content3.option1 != blank %}
+          <p>{{ product.metafields.content3.option1 }}</p>
+          {% endif %}
+
+          {% if product.metafields.content4.option1 != blank %}
+          <p>{{ product.metafields.content4.option1 }}</p>
+          {% endif %}
+          {% if product.metafields.content5.option1 != blank %}
+          <p>{{ product.metafields.content5.option1 }}</p>
+          {% endif %}
+
+          {% endif %}
+
+
+          {% if forloop.index == 2 %}
+          <p>•  Des lames tous les 3 mois pour seulement €14 : Reste affûté !</p>
+          <p>•  Extension de garantie Argent BALLS</p>
+          <p>•  Économise 20% sur les lames !</p>
+          <p>•  Annule facilement à tout moment</p>
+          {% endif %}
+
+
+          {%comment%}
+          {% if forloop.index == 2 %}
+          {% if product.metafields.content1.option2 != blank %}
+          <p>{{ product.metafields.content1.option2 }}</p>
+          {% endif %}
+
+          {% if product.metafields.content2.option2 != blank %}
+          <p>{{ product.metafields.content2.option2 }}</p>
+          {% endif %}
+
+          {% if product.metafields.content3.option2 != blank %}
+          <p>{{ product.metafields.content3.option2 }}</p>
+          {% endif %}
+
+          {% if product.metafields.content4.option2 != blank %}
+          <p>{{ product.metafields.content4.option2 }}</p>
+          {% endif %}
+          {% if product.metafields.content5.option2 != blank %}
+          <p>{{ product.metafields.content5.option2 }}</p>
+          {% endif %}
+
+          {% endif %}
+          {%endcomment%}
+
+
+
+          {% if forloop.index == 3 %}
+          {% if product.metafields.content1.option3 != blank %}
+          <p>{{ product.metafields.content1.option3 }}</p>
+          {% endif %}
+
+          {% if product.metafields.content2.option3 != blank %}
+          <p>{{ product.metafields.content2.option3 }}</p>
+          {% endif %}
+
+          {% if product.metafields.content3.option3 != blank %}
+          <p>{{ product.metafields.content3.option3 }}</p>
+          {% endif %}
+          {% endif %}
+
+          {% if forloop.index == 4 %}
+          {% if product.metafields.content1.option4 != blank %}
+          <p>{{ product.metafields.content1.option4 }}</p>
+          {% endif %}
+          {% if product.metafields.content2.option4 != blank %}
+          <p>{{ product.metafields.content2.option4 }}</p>
+          {% endif %}
+          {% if product.metafields.content3.option4 != blank %}
+          <p>{{ product.metafields.content3.option4 }}</p>
+          {% endif %}
+          {% endif %}
+
+          {% endunless %}
+
+        </div>
+
+        <div class="ct cb cell-l cell-r extra-info t-white block-12/12 flex flex-nowrap align-items-center align-stretch justify-left js-prod-sticky-atc__top-anchor defaultbtn">
+          <div class="mobileqty ddd "> 
+            <div class="cus-qty d-flex flex-nowrap">
+              <input type='button' value='-' class='qtyminus' field='quantity' onclick="TextBox_AddToIntValue('product-quantity-{{product.id}}',-1)" />
+              <input type='number' name='quantity' value='1' class='qty' id="product-quantity-{{product.id}}"/>
+              <input type='button' value='+' class='qtyplus' field='quantity' onclick="TextBox_AddToIntValue('product-quantity-{{product.id}}',+1)" />
+            </div>
+          </div>
+          <!--   //Quantity Selector   -->   
+          <button class="btn btn--accent block-10/12">
+            <span>{{'general.add_to_cart' | t}}</span>
+          </button>
+        </div>
+
+      </div>
+
+      <input type="hidden" name="id" value="{{variant.id}}">
+
+
+    </form>
+  </li>
+  {% endfor %}
+</ul>
+
+
+<script>
+  $(function(){
+
+    $("input[name='qtt_frequency']").click(function() {
+      var frequency = this.value;
+      $('.shipping_interval_frequency').val(frequency);
+    });
+
+    //change event for hidden radio selector
+    $('.prod-bar-selector__item').click(function(e){
+
+      $('.extra-info').hide();
+
+      var $parent = $(this);
+      $parent.find('.extra-info').show();
+
+      if( $parent.index() == 1 ){
+        $('.info-starter-kit').hide();
+        $('.prod-bar-info').show();
+
+      }else{
+        if( $parent.index() == 2 ){
+          $('.info-starter-kit').show();
+        }else{
+          $('.info-starter-kit').hide();
+        }
+        $('.prod-bar-info').hide();
+
+      }
+
+
+      // show / hide the tweezers slide
+      $parent.index() == 2 ? $('.js-tweezer-img').show() : $('.js-tweezer-img').hide();
+      // update the class
+      $parent.addClass('prod-bar-selector__item--active').siblings().removeClass('prod-bar-selector__item--active');
+
+      //update the secondat selector
+      $('.js-sticky-atc-selector').val($(this).val());
+      $('form.form-product').attr('data-variantid',$(this).val());
+    });
+
+    //call it on DOM so it updates 
+    $('.prod-bar-selector__item').eq(1).trigger('click');
+
+    //resize event for hidden selector
+    $(window).on('resize',function(){
+      if($('.js-prod-bar-selector-tweezer').is(':hidden:checked')){
+        $('.js-prod-bar-selector__radio').eq(1).trigger('change');
+      }    
+    }.debounce(100));
+
+
+  })
+</script>
+
+<style>
+  {% if product.handle == 'tondeuse-balls' %}
+  .balls--trimmer-listVar .variantIndex_3{
+  }
+  {% endif %}
+  .form-product .mobileqty .cus-qty {
+    width: 125px;
+    height: 100%;
+    position: relative;
+  }
+  .form-product .mobileqty .cus-qty:before {
+    content: "QUANTITY";
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: -13px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #000;
+    font-size: 10px;
+    line-height: 12px;
+  }
+  .form-product .mobileqty .cus-qty input {
+    position: initial;
+    width: 100%;
+    max-width: 33.3333%;
+    opacity: 1;
+    height: 34px;
+    font-size: 22px;
+    text-align: center;
+  }
+  .form-product .mobileqty .cus-qty input.qtyminus,
+  .form-product .mobileqty .cus-qty input.qtyplus {
+    background-color: #c4c4c4;
+    color: #fff;
+  }
+  .form-product .mobileqty .cus-qty input.qty {
+    border: 1px solid #c4c4c4;
+    color: #000;
+    margin: 0 2px;
+    text-align: center;
+    font-size: 20px;
+    width: 52px;
+    min-width: 52px;
+  }
+  .section-product-featured .balls--trimmer-listVar .prod-bar-selector__item{
+    width:100% !important; 
+  }
+  .section-product-featured .balls--trimmer-listVar .prod-bar-selector__item.variantIndex_1 {
+    -ms-flex-order: 1;
+    order: 1;
+  }
+  .section-product-featured .balls--trimmer-listVar .prod-bar-selector__item.variantIndex_2 {
+    -ms-flex-order: -1;
+    order: -1;
+  }
+
+  .form-product .btn.btn--accent{
+    z-index: 9999999;
+  }
+
+  .wr-option-custom {
+    display: block;
+    height: 100%;
+  }
+  .prod-bar_item--active{
+    color: #fff;
+    background: #015db9;
+  }
+  .prod-bar-selector__item--active .wr-option-custom{
+    background: none;
+  }
+  .prod-bar-selector .prod-bar_item--active .wr-option-custom:hover{
+    background: none;
+  }
+
+  .save-percent{
+    display: inline-block;
+    text-align: center;
+    border: 2px solid #015db9;
+    padding: 7px 7px;
+    position: absolute;
+    top: -18px;
+    background: #fff;
+    right: 10px;
+    width: auto;
+    max-width: 115px;
+    font-size: .925rem;
+  }
+  .save-percent span{
+    font-size: 13px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .prod-bar-selector__item--active .save-percent {
+    top: -28px;
+  }
+  .section-product-featured .balls--trimmer-listVar .save-percent {
+    position: absolute;
+    margin-left: 5px;
+    background: #015db9;
+    border: none;
+    padding: 10px 10px;
+    color: #fff;
+    top: -22px;
+    right: 10px;
+  }
+  .prod-bar-selector .wr-option-custom{
+    border-top: 2px solid;
+    border-left: 1.5px solid;
+    border-right: 1.5px solid;
+    border-bottom: 1.5px solid;
+
+  }
+  .prod-bar-selector__item--active .wr-option-custom{
+    border-bottom: 0 solid;
+    border: unset;
+  }
+  .custom-border{
+    border-bottom: 2px solid;
+  }
+  .prod-bar-selector__item .h4-style{
+    font-weight: 700;
+    text-align: left;
+    font-size: 24px;
+    margin-right: 10px;
+    border-right: 1.5px solid #3e60a9;
+    padding-right: 10px;
+  }
+  .prod-bar-selector__item .P-Title-Bold {
+    font-weight: 700;
+    font-size: 24px;
+    white-space: nowrap;
+  }
+  .prod-bar-selector__item p{
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .prod-bar-selector .wr-option-custom:hover{
+    background: #f8f8f8;
+    /*
+    -webkit-transform: translateY(2px);
+    transform: translateY(2px);
+    */
+  }
+
+
+  .save-percent {
+    -webkit-animation: jiggle 0.6s infinite;
+    -moz-animation-duration: 0.6s;
+    -moz-animation-name: jiggle;
+    -moz-animation-iteration-count: infinite;
+    -webkit-transform: rotate(-3deg);
+    -moz-transform: rotate(-3deg);
+  }
+
+  .prod-bar-selector__item.hide-subscription{
+    display:none;
+  }
+
+
+  /* New Style */
+
+  .section-product-featured .balls--trimmer-listVar {
+    border: none;
+  }
+  .section-product-featured .balls--trimmer-listVar .prod-bar-selector__item {
+    background: none;
+    border: none;
+    color: #3e60a9;
+  }
+  .section-product-featured .balls--trimmer-listVar .prod-bar-selector__item .wr-option-custom {
+    border: none;
+    background: transparent;
+  }
+  .section-product-featured .balls--trimmer-listVar .prod-bar-selector__item.prod-bar-selector__item--active .wr-option-custom {
+    border: 1px solid #3e60a9;
+    position: relative;
+  }
+  .wr-title-top .Check-Box {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    border: 1px solid #3e60a9;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    margin-right: 15px;
+    position: relative;
+  }
+  .prod-bar-selector__item--active .wr-title-top .Check-Box:before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background-color: #3e60a9;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+  }
+  .small-text {
+    font-size: 12px;
+    margin-left: 5px;
+    margin-top: 3px;
+    margin-right: 7px;
+    font-weight: 400;
+  }
+  .wr-title-top {
+    padding-top: 15px;
+    padding-left: 10px;
+    position: relative;
+  }
+  .extra-info.wr-des {
+    display: block;
+    padding-left: 123px;
+  }
+  .extra-info.wr-des p {
+
+  }
+  .balls--trimmer-listVar .form-product .btn.btn--accent {
+    width: 85%;
+    max-width: 100%;
+    margin: 0;
+    max-width: 200px;
+    padding: 0 12px;
+    height: 40px;
+    margin-left: 20px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+    z-index: 1;
+       font-size: 14px;
+  }
+
+
+  @-moz-keyframes jiggle {
+    0% {
+      -moz-transform: rotate(-1deg);
+    }
+    50% {
+      -moz-transform: rotate(1deg);
+    }
+  }
+
+  @-webkit-keyframes jiggle {
+    0% {
+      -webkit-transform: rotate(-1deg);
+    }
+    50% {
+      -webkit-transform: rotate(1deg);
+    }
+  }
+
+  @media only screen and (max-width: 1199px){
+
+    .section-product-featured .balls--trimmer-listVar .save-percent {
+      position: absolute;
+    }
+    .prod-bar-selector__item .h4-style,
+    .prod-bar-selector__item .P-Title-Bold {
+      font-size: 22px;
+    }
+    .extra-info.wr-des {
+      padding-left: 100px;
+    }
+
+  }
+
+  @media only screen and (max-width: 991px) and (min-width: 768px){
+    .extra-info.wr-des {
+      padding-left: 20px;
+    }
+    .prod-bar-selector__item .h4-style, .prod-bar-selector__item .P-Title-Bold {
+      font-size: 18px;
+    }
+
+  }
+
+  @media only screen and (max-width: 767px){
+    .section-product-featured .balls--trimmer-listVar .save-percent {
+      position: absolute;
+    }
+    .prod-bar-selector__item .h4-style, .prod-bar-selector__item .P-Title-Bold {
+      font-size: 20px;
+    }
+    .small-text {
+      display: block;
+      margin-left: 0;
+      margin-top: 7px;
+    }
+    .prod-bar-selector__item .h4-style {
+      margin-right: 10px;
+      border-right: none;
+      padding-right: 0;
+    }
+    .prod-bar-selector__item .P-Title-Bold {
+      padding-left: 10px;
+      border-left: 1px solid #2360ad;
+    }
+    .prod-bar-selector__item p {
+      font-size: 12px;
+    }
+    .extra-info.wr-des {
+      padding-left: 100px;
+      margin-top: 5px;
+      margin-bottom: 10px;
+    }
+    .wr-title-top .Check-Box {
+      margin-right: 10px;
+    }
+
+  }
+
+  @media only screen and (max-width: 639px){
+.prod-bar-selector__item .h4-style, .prod-bar-selector__item .P-Title-Bold {
+    font-size: 18px;
+}
+        .balls--trimmer-listVar .form-product .btn.btn--accent {
+        font-size: 16px;
+        padding: 0 6px;
+    margin-left: 10px;
+  }
+  }
+
+  @media only screen and (max-width: 420px){
+    .info-starter-kit .custom-text.rte-content {
+      font-size: 15px;
+    }
+.prod-bar-selector__item .h4-style, .prod-bar-selector__item .P-Title-Bold {
+    font-size: 17px;
+}
+
+  }
+  @media only screen and (max-width: 359px){
+    .info-starter-kit .custom-text.rte-content {
+      font-size: 13px;
+    }
+.prod-bar-selector__item .h4-style, .prod-bar-selector__item .P-Title-Bold {
+    font-size: 16px;
+}
+
+  }
+ @media only screen and (max-width: 339px){
+.prod-bar-selector__item .h4-style, .prod-bar-selector__item .P-Title-Bold {
+    font-size: 14px;
+}
+  }
+</style>

@@ -1,0 +1,65 @@
+<div class="blog-news">
+  <div class="blog-banner">
+    {% for article in blog.articles limit:1 %}
+    <div class="banner-image">
+      {%- if article.image -%}
+      <img src="{{ article.image | img_url: '' }}" alt="{{article.name}}">
+      <noscript>
+        {{ article | img_url: '455x300', scale: 2 | img_tag: article.title }}
+      </noscript>
+      {%- endif -%}
+    </div>
+    <div class="right-banner">
+      <a href="{{ article.url }}">
+        <h2 class="blog-title">{{ article.title }}</h2>
+        <p>{{ article.content | strip_html | truncate: 150 }}</p>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="blog-column">
+    {% for article in blog.articles %}
+    {% if forloop.first == true %}
+    {% else %}
+    <div class="articles-item">
+          <p class="tags">{% for tag in article.tags %}{{ tag | link_to_tag: tag }} {% endfor %}</p>
+      <a href="{{ article.url }}">
+        {%- if article.image -%}
+        <span class="wwrapper-img">
+          <span class="wrapper-img-chill">
+            <img src="{{ article.image | img_url: '' }}" alt="{{article.name}}">
+          </span>
+        </span>
+        <noscript>
+          {{ article | img_url: '455x300', scale: 2 | img_tag: article.title }}
+        </noscript>
+        {%- endif -%}
+        <h2 class="blog-title">{{ article.title }}</h2>
+        <p>{{ article.content | strip_html | truncate: 200 }}</p>
+      </a>
+       </div>
+    {%endif%}
+    {%endfor%}
+
+  </div>
+
+</div>
+{% schema %}
+{
+  "name": "Blog pages",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "blog_show_author",
+      "label": "Show author",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_show_date",
+      "label": "Show date",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

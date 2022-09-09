@@ -1,0 +1,278 @@
+<div class="grid grid--f flex row-wrap align-center justify-center block-rel section-press-reviews">
+  <div class="block-5/12 cell-l cell-r row--l block-rel @mobile-mobile__block-12/12 press-left">
+    <div class="block-12/12 block-c @mobile-tablet__block-112/12 @mobile-mobile__block-12/12">
+      <h2 class="h-style h1-style t-accent row">{{ section.settings.title}}</h2>
+      <span class="stamped-product-reviews-badge stamped-main-badge">
+        <span class="stamped-badge">
+          <span class="stamped-starrating stamped-badge-starrating" aria-hidden="true">
+            <i class="stamped-fa stamped-fa-star" style="color:#015eb9 !important;" aria-hidden="true"></i>
+            <i class="stamped-fa stamped-fa-star" style="color:#015eb9 !important;" aria-hidden="true"></i>
+            <i class="stamped-fa stamped-fa-star" style="color:#015eb9 !important;" aria-hidden="true"></i>
+            <i class="stamped-fa stamped-fa-star" style="color:#015eb9 !important;" aria-hidden="true"></i>
+            <i class="stamped-fa stamped-fa-star" style="color:#015eb9 !important;" aria-hidden="true"></i>
+          </span>
+          {%comment%}
+          <span class="stamped-badge-caption">
+            5.0/5.0 (230,000 reviews)
+          </span>
+          {%endcomment%}
+        </span>
+      </span>
+    </div>
+  </div>
+  <div class="block-7/12 cell-l cell-r row--l block-rel @mobile-mobile__block-12/12 press-right">
+
+    <div class="block-12/12 block-rel">
+      <div class="swiper-container" id="press-reviews-swiper">
+        <ul class="swiper-wrapper">
+          {% for block in section.blocks %}
+          <li class="swiper-slide">
+            <p>{{ block.settings.text }}</p>
+          </li>
+          {% endfor %}
+        </ul>
+        <div class="swiper-pagination-1"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  $(function(){
+    $('#press-reviews-swiper').wbskSwiper({
+      slidesPerView:1,
+      simulateTouch: false,
+      touchEventsTarget: 'wrapper',
+      pagination: {
+        el: '.swiper-pagination-1',
+        clickable: true,
+      },
+      autoplay: {
+        delay: 10000,
+      },
+    })
+  })
+</script>
+
+<style>
+
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+  #shopify-section-section-press-reviews {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  .Section-Press-Reviews .press-left {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border-right: 2px solid #ddd;
+  }
+  .Section-Press-Reviews .press-left h2 {
+    font-size: 42px;
+    line-height: 48px;
+    font-weight: 700;
+    max-width: 455px;
+    margin-bottom: 10px;
+  }
+  .Section-Press-Reviews .press-left .stamped-main-badge .stamped-fa-star:before {
+    font-size: 34px;
+  }
+  .Section-Press-Reviews .press-left .stamped-main-badge .stamped-starrating {
+    line-height: 3rem;
+  }
+  .Section-Press-Reviews .press-left .stamped-main-badge .stamped-badge-caption {
+    color: #999;
+    font-weight: 600;
+  }
+  #press-reviews-swiper .swiper-slide p {
+    font-size: 28px;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    color: #000;
+    line-height: 28px;
+    font-style: italic;
+    padding: 0 10px;
+    text-align: center;
+    font-family: 'Bebas Neue', cursive;
+  }
+  #press-reviews-swiper .swiper-pagination-1 {
+    bottom: 0;
+    padding: 0;
+    position: relative;
+    margin-top: 20px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+  #press-reviews-swiper .swiper-pagination-1 span {
+    background-color: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 100%;
+    margin: 0 10px;
+    height: 25px;
+    border-radius: 0;
+    opacity: 0.4;
+  }
+  #press-reviews-swiper .swiper-pagination-1 span.swiper-pagination-bullet-active {
+    opacity: 1;
+  }
+  /*#press-reviews-swiper .swiper-pagination-1 span:nth-child(1) {
+  background-image: url(https://cdn.shopify.com/s/files/1/0243/7772/0909/files/GQ_logo.png?v=1644484458);
+  max-width: 55px;
+  }*/
+
+  #press-reviews-swiper .swiper-pagination-1 span:nth-child(1) {
+    background-image: url(https://cdn.shopify.com/s/files/1/0270/1190/7619/files/studio-rolling-stones-png-logo-25.png?v=1652235676);
+    max-width: 120px;
+    margin-top: 3px;
+  }
+  #press-reviews-swiper .swiper-pagination-1 span:nth-child(2) {
+    background-image: url(https://cdn.shopify.com/s/files/1/0243/7772/0909/files/Forbes_logo.png?v=1644484506);
+  }
+  #press-reviews-swiper .swiper-pagination-1 span:nth-child(3) {
+    background-image: url(https://cdn.shopify.com/s/files/1/0243/7772/0909/files/Men_s_Health_logo_black.png?v=1644484598);
+  }
+  #press-reviews-swiper .swiper-pagination-1 span:nth-child(4) {
+    background-image: url(https://cdn.shopify.com/s/files/1/0243/7772/0909/files/The_Daily_Mail_logo_wordmark.png?v=1644484497);
+  }
+  #press-reviews-swiper .swiper-pagination-1 span:nth-child(5) {
+    background-image: url(https://cdn.shopify.com/s/files/1/0243/7772/0909/files/good_housekeeping_logo-freelogovectors.net.png?v=1644484643);
+  }
+
+  @media only screen and (max-width: 1199px) {
+
+    .Section-Press-Reviews .press-left h2 {
+      font-size: 34px;
+      line-height: 40px;
+    }
+    .Section-Press-Reviews .press-left .stamped-main-badge .stamped-fa-star:before {
+      font-size: 26px;
+    }
+    #press-reviews-swiper .swiper-slide p {
+      font-size: 22px;
+      line-height: 24px;
+    }
+
+  }
+
+  @media only screen and (max-width: 1024px) {
+
+    #press-reviews-swiper .swiper-pagination-1 span {
+      margin: 0 5px;
+      height: 14px;
+    }
+
+    .Section-Press-Reviews .press-left h2 {
+      font-size: 30px;
+      line-height: 34px;
+    }
+    .Section-Press-Reviews .press-left .stamped-main-badge .stamped-fa-star:before {
+      font-size: 20px;
+    }
+    .Section-Press-Reviews .press-left .stamped-main-badge .stamped-badge-caption {
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+  }
+
+
+  @media only screen and (max-width: 767px) {
+
+    .Section-Press-Reviews .press-left {
+      margin-bottom: 0;
+    }
+    .Section-Press-Reviews .press-left h2 {
+      max-width: 335px;
+      margin: 0 auto;
+    }
+    .Section-Press-Reviews .press-left .block-c {
+      text-align: center;
+    }
+    #press-reviews-swiper .swiper-slide p {
+      padding: 0;
+    }
+    .Section-Press-Reviews .press-right {
+      margin-top: 50px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .Section-Press-Reviews .press-right:before {
+      content: "";
+      width: 280px;
+      height: 1px;
+      background-color: #ccc;
+      display: block;
+      position: absolute;
+      top: -28px;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+    }
+    .Section-Press-Reviews .press-left .stamped-badge > span {
+      display: block;
+    }
+    #shopify-section-section-press-reviews {
+      padding-top: 0;
+    }
+
+  }
+
+  @media only screen and (max-width: 639px) {
+    #press-reviews-swiper .swiper-slide p {
+      font-size: 16px;
+      line-height: 16px;
+    }
+
+  }
+
+</style>
+
+{% schema %}
+{
+"name": "Section Press Reviews",
+"class": "Section-Press-Reviews",
+"max_blocks": 5,
+"settings": [
+{
+"type": "text",
+"id": "title",
+"label": "Header"
+}
+
+],
+"blocks": [
+{
+"name": "Block",
+"type": "Block",
+"settings": [
+{
+"type": "text",
+"id": "title",
+"label": "Logo Title"
+},
+
+{
+"type": "richtext",
+"id": "text",
+"label": "Text"
+}
+]
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+
+
+{% endjavascript %}

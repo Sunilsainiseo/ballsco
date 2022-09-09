@@ -1,0 +1,38 @@
+
+<div class="ct--m cb bg-accent t-white @mobile-tablet__hide">
+  <div class="grid grid--f cell-l--s cell-r--s flex row-wrap align-center justify-center">
+    {% for block in section.blocks %}
+    <div class="block-3/12 cell-l--s cell-r--s row  flex row-wrap align-center justify-left">
+      <img  src="{{block.settings.image.src | img_url:'52x' }}">
+      <span class="d-block cell-l--s">{{block.settings.text}}</span>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% schema %}
+{ 
+
+  "name":"procuct/icons",
+  "max_blocks":4,
+  
+  "blocks":[ 
+    { 
+      "type":"block",
+      "name":"block",
+      "settings":[ 
+        { 
+          "type":"image_picker",
+          "id":"image",
+          "label":"Image"
+        },
+        
+        { 
+          "type":"text",
+          "id":"text",
+          "label":"text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

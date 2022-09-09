@@ -1,0 +1,23 @@
+
+
+<div class="grid grid--f ct--l row--l">
+  <div class="block-8/12 block-c cell-l cell-r @mobile-large__block-10/12 @mobile-tablet__block-12/12">
+    <h1 class="h-style h2-style t-accent row">{{ 'general.your_cart' | t }}</h1>
+    <div class="wbsk-cart__cart-template  {% if cart.items_count > 0 %}bdr-bx-shadow {% endif %}">
+      {% render 'cart__template' %}
+    </div>
+  </div>
+</div>
+
+
+
+ <!-- ATC Pinterest Tag -->
+
+<script>
+  pintrk('track', 'addtocart', {value: {{product.selected_variant.price | money_without_currency}},order_quantity: 1});
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none;" alt="" src="https://ct.pinterest.com/v3/?tid=2612545937533&event=checkout&noscript=1" />
+</noscript>
+
+<!-- end ATC Pinterest Tag -->

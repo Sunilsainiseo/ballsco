@@ -1,0 +1,112 @@
+<div class="grid grid--f flex row-wrap align-center justify-center wbsk-ui-form-grey-input wbsk-ui-form-hidden-label">
+  <div class="block-6/12 ct--l cb--l cell-l cell-r @mobile-large__block-10/12 @mobile-tablet__block-12/12">
+    <div  id="customer_login" >
+      {% form 'customer_login' %}
+      <div class="block-c tac">
+        <h1 class="h-style h1-style row--s t-accent">{{'customer.login.heading' | t}}</h1>
+        <div class="rte-content row">
+          <p>{{'customer.login.paragraph' | t}}</p>
+        </div>
+      </div>
+      
+      <div class="block-12/12 row form-error">
+        {%if form.errors%}
+        {{ form.errors | default_errors }}
+        {%endif%}
+      </div>
+      
+      <div class="block-12/12 row">
+        <label class="row--xs d-block">{{'customer.login.email' | t}}:</label>
+        <input type="email" 
+               name="customer[email]" 
+               id="CustomerEmail" 
+               class="wbsk-ui-input bg-grey block-12/12"
+               placeholder="{{'customer.login.email' | t}}" 
+               autocorrect="off" 
+               autocapitalize="off" 
+               value=""
+               required>
+      </div>
+      <div class="block-12/12 row">
+        <label  class="row--xs d-block">{{'customer.login.password' | t}}:</label>
+        <input type="password" 
+               value="" 
+               name="customer[password]" 
+               id="CustomerPassword" 
+               class="wbsk-ui-input row--xs block-12/12" 
+               placeholder="{{'customer.login.password' | t}}" 
+               autocomplete="off" 
+               required>
+      </div>
+      <div class="block-12/12 block-r row">
+        <button class="btn btn--accent block-12/12 btn-login">{{'customer.login.button' | t}}</button>
+      </div>
+      <div class="block-c tac flex row-wrap align-center justify-space">
+        <a data-action="togglePassword"  href="#"><u>{{'customer.login.forgot_password_link' | t}}</u></a>
+        <a  href="{{ routes.account_register_url }}"><u>{{'customer.login.register_link' | t}}</u></a>
+      </div>
+      {%endform%}
+    </div>
+    <div  style="display:none" id="customer_reset">
+      {% form 'recover_customer_password' %}
+      <div class="block-c tac">
+      <h2 class="h-style h1-style row t-accent">{{'customer.forgot_password.heading' | t}}</h2>
+        <div class="rte-content row">
+          <p>{{'customer.forgot_password.paragraph' | t}}</p>
+        </div>
+      </div>
+      {%if form.errors%}
+      <div class="block-12/12">
+        {{ form.errors | default_errors }}
+      </div>
+      {%endif%}
+      {% if form.posted_successfully? %}
+      <div class="block-12/12 row">
+        <p>{{'customer.forgot_password.success' | t}}</p>
+      </div>
+      {%endif%}
+      {% if form.posted_successfully? or form.errors%}
+      <script>
+        $(function(){
+          $('#customer_login').toggle();
+          $('#customer_reset').toggle();
+        });
+      </script>
+      {%endif%}
+      <div class="block-12/12 row">
+        <label class="row--xs d-block">{{'customer.login.email' | t}}:</label>
+        <input type="email" 
+               value="" 
+               name="email" 
+               id="RecoverEmail" 
+               class="wbsk-ui-input row--xs block-12/12"  
+               placeholder="{{'customer.login.email' | t}}" 
+               autocorrect="off" 
+               autocapitalize="off" 
+               required>
+      </div>
+      <div class="block-12/12 block-r row">
+        <button class="btn btn--accent block-12/12">{{'customer.forgot_password.button' | t}}</button>
+      </div>
+      <div class="block-c tac">
+        <a data-action="togglePassword"  href="#"><u>{{'customer.forgot_password.cancel' | t}}</u></a>
+      </div>
+      {%endform%}
+    </div>
+  </div>
+
+  
+</div>
+
+<script>
+  window.localStorage.removeItem('user');
+  if(window.location.href.indexOf('return_url') < 0) {
+  	window.location.href += '?return_url=%2Faccount';
+  }
+  $(document).on('click','[data-action="togglePassword"]',function(e){
+    e.preventDefault();
+    $('#customer_login').toggle();
+    $('#customer_reset').toggle();
+  });
+
+</script>

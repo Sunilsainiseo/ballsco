@@ -1,0 +1,58 @@
+{% form 'customer_address', type %}
+
+<div class="flex row-wrap align-top justify-center wbsk-ui-form-grey-input">
+  <div class="block-12/12 row--s">
+    <label class="row--s d-block">{{ 'customer.addresses.first_name' | t }}</label>
+    <input class="wbsk-ui-input block-12/12" type="text" id="AddressFirstName_{{ form.id }}" name="address[first_name]" value="{{ form.first_name }}" autocapitalize="words"  required>
+  </div>
+  <div class="block-12/12 row--s  ">
+    <label class="row--s d-block">{{ 'customer.addresses.last_name' | t }}</label>
+    <input class=" wbsk-ui-input block-12/12" type="text" id="AddressLastName_{{ form.id }}" name="address[last_name]" value="{{ form.last_name }}" autocapitalize="words" required>
+  </div>
+  <div class="block-12/12 row--s  ">
+    <label class="row--s d-block">{{ 'customer.addresses.company' | t }}</label>
+    <input class="wbsk-ui-input block-12/12 " type="text" id="AddressCompany_{{ form.id }}" name="address[company]" value="{{ form.company }}" autocapitalize="words">
+  </div>
+  <div class="block-12/12 row--s  ">
+    <label class="row--s d-block">{{ 'customer.addresses.address1' | t }}</label>
+    <input class="wbsk-ui-input block-12/12 " type="text" id="AddressAddress1_{{ form.id }}" name="address[address1]" value="{{ form.address1 }}" autocapitalize="words" required>
+  </div>
+  <div class="block-12/12 row--s  ">
+    <label class="row--s d-block">{{ 'customer.addresses.address2' | t }}</label>
+    <input class="wbsk-ui-input block-12/12 " type="text" id="AddressAddress2_{{ form.id }}" name="address[address2]" value="{{ form.address2 }}" autocapitalize="words" >
+  </div>
+  <div class="block-12/12 row--s  ">
+    <label class="row--s d-block">{{ 'customer.addresses.city' | t }}</label>
+    <input class=" wbsk-ui-input block-12/12" type="text" id="AddressCity_{{ form.id }}" name="address[city]" value="{{ form.city }}" autocapitalize="words" required>
+  </div>
+  <div class="block-12/12 row--s  " id="AddressProvinceContainer_{{ form.id }}">
+    <label class="row--s d-block">{{ 'customer.addresses.province' | t }}</label>
+    <input  class="wbsk-ui-input block-12/12"  id="AddressProvince_{{ form.id }}" name="address[province]" data-default="{{ form.province }}" value="{{ form.province }}">
+  </div>
+  <div class="block-12/12 row--s  ">
+    <label class="d-block row--s">{{ 'customer.addresses.country' | t }}</label>
+    <select 
+      class="wbsk-ui-select block-12/12" 
+      id="AddressCountry_{{ form.id }}" name="address[country]" 
+      data-default="{{ form.country }}">{{ country_option_tags }}</select>
+  </div>
+  <div class="block-12/12 row--s  ">
+    <label class="row--s d-block">{{ 'customer.addresses.zip' | t }}</label>
+    <input  class="wbsk-ui-input block-12/12"  type="text" id="AddressZip_{{ form.id }}" name="address[zip]" value="{{ form.zip }}" autocapitalize="characters"  required>
+  </div>
+  <div class="block-12/12 row--s  ">
+    <label class="row--s d-block">{{ 'customer.addresses.phone' | t }}</label>
+    <input  class="wbsk-ui-input block-12/12"  type="tel" id="AddressPhone_{{ form.id }}" name="address[phone]" value="{{ form.phone }}" >
+  </div>
+  <div class="block-12/12 row--s  ">
+    <label class="row--s d-block hidden-label__or d-block">{{ 'customer.addresses.make_default__label' | t }}</label>
+    <select   class="wbsk-ui-select block-12/12" id="address_default_address_{{ form.id }}" name="address[default]">
+      <option val="0">{{ 'customer.addresses.make_default__no' | t }}</option>
+      <option val="1" {%if address == customer.default_address%}selected{%endif%}>{{ 'customer.addresses.make_default__yes' | t }}</option>
+    </select>
+  </div>
+  <div class="block-12/12">
+    <button class="btn btn--accent block-12/12">{{button}}</button>
+  </div>
+</div>
+{% endform %}

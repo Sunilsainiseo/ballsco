@@ -1,0 +1,96 @@
+<div class="{%if section.settings.margin%}row--l{%endif%}">
+  <div class="block-rel row--l tac cstminsta">
+    <h2 class="h-style h2-style t-accent instaheader">
+      {{ section.settings.heading}}
+    </h2>
+  </div>
+  <div class="insta-items-wrap ct--l cb--l">
+    <div class="swiper-container" id="{{section.id}}">
+      <ul class="swiper-wrapper">
+        {% for block in section.blocks %}
+        <li class="swiper-slide">
+          <div class="bg-white bdr bdr-thick bdr-accent bdr-bx-shadow btn--fancy">
+            <!--<a href="{{block.settings.link}}" class="d-block far-image far-image--square block-rel">-->
+            {% render 'lazy_img', ,_image:block.settings.bgImage , size:'512' , class:'swiper-lazy' %}
+            <!--</a>-->
+            <div class="rte-content rte-content--small cell-l cell-r ct cb cstmslidermbl">
+              {{block.settings.text}}
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function(){
+    $('#{{section.id}}').wbskSwiper({
+      slidesPerView:4,
+      centeredSlides:true,
+      loop:true,
+      spaceBetween:80,
+      autoplay: {
+    delay: 2000,
+  },
+      breakpoints: {
+       1024: {
+          spaceBetween:40,
+        },
+        767: {
+          spaceBetween:20,
+          slidesPerView: 2,
+        },
+      }
+    })
+  })
+</script>
+
+{% schema %}
+{ 
+  "presets":[ 
+    { 
+      "name":"index/instagram"
+    }
+  ],
+  "name":"index/instagram",
+  "max_blocks":15,
+  "settings":[ 
+    { 
+      "type":"checkbox",
+      "id":"margin",
+      "label":"margin @ bottom?"
+    },
+    { 
+      "type":"richtext",
+      "id":"heading",
+      "label":"heading"
+    }
+  ],
+  "blocks":[ 
+    { 
+      "type":"block",
+      "name":"block",
+      "settings":[ 
+        { 
+          "type":"image_picker",
+          "id":"bgImage",
+          "label":"Image"
+        },
+     
+        { 
+          "type":"textarea",
+          "id":"text",
+          "label":"text"
+        },
+        { 
+          "type":"text",
+          "id":"link",
+          "label":"link"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

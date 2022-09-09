@@ -1,0 +1,213 @@
+<div id="start_section"></div>
+
+<div class="love_this">
+  <div class="love_this_line"></div>
+  <div class="bg_section">
+    <div class="grid grid--f flex row-wrap justify-center block-rel">
+      <div class="love_this_text">
+        <h4>Their BALLS love this!</h4>
+        {% render 'icon_trustpilot' %}
+        {% if product.metafields.custom.love_this != blank %}
+        <div class="descr">{{product.metafields.custom.love_this}}</div>
+        {% endif %}
+      </div>
+    </div>
+    
+   <div class="block-reviews d-flex flex-nowrap grid grid--f flex row-wrap block-rel section-trustpilot-new">
+
+         <div id="Trust-reviews-swiper2" class="new-pilot swiper-container">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide reviews-item block-4/12 @mobile-mobile__block-12/12">
+      <div class="grid grid--f flex row-wrap block-rel">
+        <div class="reviews-box">
+            <div class="customer-img">
+              {% if section.settings.image %}
+              <img src="{{ section.settings.image | img_url: '' }}" alt="" />
+                {% else %}
+              <img src="{{ '1.png' | asset_url }}" alt="" />
+                {% endif %}
+            </div>
+        </div>
+      </div>
+    </div>
+       <div class="swiper-slide reviews-item block-4/12 @mobile-mobile__block-12/12">
+      <div class="grid grid--f flex row-wrap block-rel">
+        <div class="reviews-box">
+            <div class="customer-img">
+              {% if section.settings.image1 %}
+              <img src="{{ section.settings.image1 | img_url: '' }}" alt="" />
+                {% else %}
+              <img src="{{ '2.png' | asset_url }}" alt="" />
+                {% endif %}
+            </div>
+        </div>
+      </div>
+    </div>
+       <div class="swiper-slide reviews-item block-4/12 @mobile-mobile__block-12/12">
+      <div class="grid grid--f flex row-wrap block-rel">
+        <div class="reviews-box">
+            <div class="customer-img">
+              {% if section.settings.image2 %}
+              <img src="{{ section.settings.image2 | img_url: '' }}" alt="" />
+                {% else %}
+              <img src="{{ '3.png' | asset_url }}" alt="" />
+                {% endif %}
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="swiper-pagination"></div>
+</div>
+</div>
+  </div>
+</div>
+
+<div class="routine">
+  <div class="routine_line_top"></div>
+  <div class="bg_section">
+    <div class="grid grid--f flex row-wrap justify-center block-rel">
+      <div class="love_this_text">
+        <h4>Your BALLS Routine</h4>
+        <div class="wr_routine">
+          <div class="rt_item item1">
+            <span {% if product.handle == 'gel-douche-balls' %} class="active"{% endif %}> <img class="lazyload" src="{{ 'routine1.jpg' | asset_url }}" alt="" /></span>
+            <p>Pre-Shave</p>
+          </div>
+          <div class="rt_item item2">
+            <span {% if product.handle contains 'lame' %} class="active"{% endif %}> <img class="lazyload" src="{{ 'V1-2_1024x.png' | asset_url }}" alt="" /></span>
+            <p>The Shave</p>
+          </div>
+          <div class="rt_item item3">
+            <span {% if product.handle == 'lotion-balls' %} class="active"{% endif %}> <img class="lazyload" src="{{ 'routine3.jpg' | asset_url }}" alt="" /></span>
+            <p>Post Shave</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="routine_line_bottom"></div>
+</div>
+<div class="faq_pro">
+  <div class="faq_line"></div>
+  <div class="grid grid--f flex row-wrap justify-center block-rel">
+    <div class="wr_faq">
+      <div class="faq_img mobile_hide_img">
+        {%  if section.settings.image0 %} 
+        <span> <img class="lazyload" src="{{ section.settings.image0 | img_url: '' }}" alt="" /></span>
+        {% endif %}
+      </div>
+      <div class="faq_text">
+        <h4>Frequently Asked Questions</h4>
+        <ul class="block-12/12">
+          {% for block in section.blocks %}
+          <li class="faq-item cell-l cell-r bdr-b">
+            <p class="h-style h3-style t-accent ct--m cb--m faq-heading js-faq-question cstomfaq">
+              {{block.settings.title}}
+            </p>
+            <div class="rte-content rte-content--l js-faq-question cb--m t-accent" style="display:none">
+              <p class="faqcontent">{{block.settings.paragraph}}</p>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(function(){
+    $('.js-faq-question').click(function(e){
+      $(this).toggleClass('faq-heading--active').next().slideToggle(200)
+      $("li").removeClass("highlight");
+      $(this).parent('li').addClass("highlight");
+    })
+  })
+</script>
+<script>
+
+  $(document).ready(function() {
+    // Swiper: Slider
+    new Swiper('#Trust-reviews-swiper2', {
+      loop: false,
+      slidesPerView: 3,
+      spaceBetween: 20,
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+        clickable: true,
+      },
+      breakpoints: {
+        1920: {
+          slidesPerView: 3,
+        },
+        1028: {
+          slidesPerView: 2,
+
+        },
+        640: {
+          slidesPerView: 1,
+          spaceBetween: 20,
+
+        }
+      }
+    });
+  });
+
+</script>
+
+{% schema %}
+{ 
+
+"name":"Sacksafe Blade - More",
+"max_blocks":50,
+"settings": [
+{
+          "type": "header",
+          "content": "FAQ - Image"
+        },
+        {
+        "type": "image_picker",
+        "id": "image0",
+        "label": "Image left"
+      },
+  {
+          "type": "header",
+          "content": "Trustpilot Reviews"
+        },
+        {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image 1"
+      },
+      {
+        "type": "image_picker",
+        "id": "image1",
+        "label": "Image 2"
+      },
+      {
+        "type": "image_picker",
+        "id": "image2",
+        "label": "Image 3"
+      }
+  ],
+"blocks":[ 
+  { 
+  "type":"block",
+  "name":"block",
+  "settings":[ 
+    { 
+      "type":"text",
+      "id":"title",
+      "label":"question"
+    },
+    { 
+      "type":"textarea",
+      "id":"paragraph",
+      "label":"answer"
+    }
+  ]
+  }
+]
+}
+{% endschema %}

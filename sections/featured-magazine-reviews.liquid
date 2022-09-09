@@ -1,0 +1,83 @@
+
+<div class="bg-accent t-white row--l block-rel">
+  <div class="block-12/12 @mobile-mobile__hide">
+    {% render 'lazy_img', _image:section.settings.bgimage ,  size:'2048' %}
+  </div>
+  <div class="block-12/12 @mobile-mobile__show">
+    {% render 'lazy_img', _image:section.settings.bgimage__mobile ,  size:'1024' %}
+  </div>
+  <div class="block-abc block-12/12 block-fh flex">
+  <div class="grid grid--f flex row-wrap align-center justify-left">
+    <div class="block-6/12 cell-l cell-r @mobile-mobile__block-12/12">
+      <div class="block-9/12 block-c swiper-container @mobile-tablet__block-11/12 @mobile-mobile__block-10/12" id="{{section.id}}">
+        <ul class="swiper-wrapper">
+          {% for block in section.blocks%}
+          {% assign review = block.settings %}
+          <li class="swiper-slide tac">
+            <div class="rte-content rte-content--l row--m">
+              <p>{{review.text}}</p>
+            </div>
+            {% if review.icon %}
+            <img src="{{review.icon.src | img_url:'256x'}}" alt="{{review.text}}">
+            {% endif %}
+          </li>
+          {%endfor%}
+        </ul>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<script>
+  $(function(){
+   $('#{{section.id}}').wbskSwiper({
+      slidesPerView:1,
+      spaceBetween:0
+    })
+  })
+</script>
+
+
+{% schema %}
+{ 
+  "presets":[ 
+    { 
+      "name":"index/mag-reviews"
+    }
+  ],
+  "name":"index/mag-reviews",
+  "max_blocks":15,
+  "settings":[ 
+    { 
+      "type":"image_picker",
+      "id":"bgimage",
+      "label":"background image"
+    },
+
+   { 
+      "type":"image_picker",
+      "id":"bgimage__mobile",
+      "label":"background image"
+    }
+  ],
+  "blocks":[ 
+    { 
+      "type":"block",
+      "name":"block",
+      "settings":[ 
+        { 
+          "type":"image_picker",
+          "id":"icon",
+          "label":"Image"
+        },
+        { 
+          "id":"text",
+          "type":"textarea",
+          "label":"Text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

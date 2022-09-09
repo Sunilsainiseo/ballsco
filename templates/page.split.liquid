@@ -1,0 +1,21 @@
+<div class="flex row-wrap align-top justify-center row--l">
+  <div class="ancillary-hero block-6/12 @mobile-tablet__block-12/12 flex row-wrap align-center justify-center block-fvh block-rel order-two @mobile-tablet__no-order @mobile-tablet__block-fhh">
+    <div class="block-fh block-12/12 block-abc far-image ">
+      {% section 'global__page-heroes' %}
+    </div>   
+    <div class="cell-l cell-r ct cb tac block-rel ">
+      <h1 class="h-style hxxxl-style t-accent">{{page.title}}</h1>
+    </div>
+  </div>
+  <div class="block-6/12 @mobile-tablet__block-12/12 ct--header cb--l order-one @mobile-tablet__no-order @mobile-tablet__ct--none">
+   
+    <div class="block-9/12 block-c ct--l @mobile-tablet__block-11/12 @mobile-mobile__block-12/12 cell-l cell-r">
+      {% if page.content != '' %}
+      <div class="rte-content row--l">
+        {{page.content}}
+      </div>
+      {% endif %}
+    </div>
+    
+  </div>
+</div>

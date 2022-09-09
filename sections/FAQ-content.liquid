@@ -1,0 +1,94 @@
+<div class="header-text">
+  <div class="grid grid--f row--l text-center">
+    <h2 class="t-blue head-h2">{{ 'general.faq_title' | t }}</h2>
+  </div>
+</div>
+<ul class="block-12/12 bdr bdr-accent">
+  {% for block in section.blocks %}
+  <li class="faq-item cell-l cell-r {% unless forloop.last %}bdr-b bdr-accent{% endunless %}">
+    <p class="h-style h3-style t-accent ct--m cb--m faq-heading js-faq-question cstomfaq">
+      {{block.settings.title}}
+    </p>
+    <div class="rte-content rte-content--l js-faq-question cb--m t-accent" style="display:none">
+      <p class="faqcontent">{{block.settings.paragraph}}</p>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+
+<script>
+  $(function(){
+    $('.js-faq-question').click(function(e){
+      $(this).toggleClass('faq-heading--active').next().slideToggle(200)
+      $("li").removeClass("highlight");
+      $(this).parent('li').addClass("highlight");
+    })
+  })
+</script>
+
+
+{% schema %}
+{ 
+
+"name":"faq-content",
+"max_blocks":50,
+
+"blocks":[ 
+{ 
+"type":"block",
+"name":"block",
+"settings":[ 
+
+{ 
+"type":"text",
+"id":"title",
+"label":"question"
+},
+{ 
+"type":"textarea",
+"id":"paragraph",
+"label":"answer"
+}
+]
+}
+]
+}
+{% endschema %}
+
+<style>
+  .Section-Asked-Questions {
+    padding: 55px 0;
+    background-image: url({{ 'line-bg.png' | file_url }});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+  }
+  .Section-Asked-Questions .bdr-accent {
+    background-color: #fff;
+  }
+  .Section-Asked-Questions .header-text .head-h2 {
+    font-size: 48px;
+    line-height: 52px;
+    font-weight: 700;
+    text-transform: none;
+    margin: 10px 0;
+  }
+  .Section-Asked-Questions .faq-heading {
+    font-weight: 600;
+    font-size: 26px;
+  }
+
+  @media only screen and (max-width: 767px) {
+
+    .Section-Asked-Questions .header-text .head-h2 {
+      font-size: 42px;
+      line-height: 44px;
+      padding: 0 15px;
+      margin: 0;
+    }
+    .Section-Asked-Questions .faq-heading {
+      font-size: 20px;
+    }
+
+  }
+</style>

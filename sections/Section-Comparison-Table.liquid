@@ -1,0 +1,78 @@
+<div class="header-text">
+  <div class="grid grid--f row--l text-center">
+    <h2 class="t-blue head-h2">{{ section.settings.title}}</h2>
+    <p>{{ section.settings.text}}</p>
+  </div>
+</div>
+<div class="block-reviews d-flex flex-nowrap grid grid--f flex row-wrap block-rel">
+  <div class="block-12/12 @mobile-mobile__block-12/12">
+    <div class="grid grid--f flex row-wrap flex-column block-rel">
+      <img src="{{ section.settings.image | img_url: '' }}" alt="" />
+    </div>
+  </div>
+</div>
+
+
+<style>
+  .section-comparison-table {
+    padding: 55px 0;
+    /*background-image: url({{ 'line-bg.png' | file_url }});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;*/
+  }
+  .section-comparison-table .header-text .head-h2 {
+    font-size: 52px;
+    line-height: 56px;
+    font-weight: 700;
+    text-transform: none;
+    margin: 10px 0;
+  }
+  .section-comparison-table .block-rel img {
+    width: 100%;
+    height: auto;
+    max-width: 920px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  @media only screen and (max-width: 767px) {
+
+    .section-comparison-table .header-text .head-h2 {
+      font-size: 42px;
+      line-height: 44px;
+      padding: 0 15px;
+    }
+    .section-comparison-table .block-rel img {
+      padding: 0 20px;
+    }
+
+  }
+
+</style>
+
+{% schema %}
+{
+"name": "Section Comparison Table",
+"class": "section-comparison-table",
+"settings": [
+{
+"type": "text",
+"id": "title",
+"label": "Header"
+},
+{
+"type": "textarea",
+"id": "text",
+"label": "SubText"
+},
+{
+"type": "image_picker",
+"id": "image",
+"label": "Image"
+}
+]
+
+}
+{% endschema %}
+

@@ -1,0 +1,56 @@
+
+<div class="product-images">
+
+  <div class="product-main-images">
+    {% for image in product.images %}
+    {% assign variantTitles = image.variants | map:'title' | join:' ' %}
+    {% unless variantTitles contains '24k' %}
+    <div class="slide">  
+      <span class="wrapper-img">
+        <span class="wrapper-img-chill">
+          <img imgID="{{image.id}}" class="lazyload" data-src="{{ image | product_img_url: '1024x' }}" src="{{ image | product_img_url: '1024x' }}"/>
+        </span>
+      </span>
+    </div>
+    {% endunless %}
+    {% endfor %}
+
+  </div>
+
+  {% for image in product.images %}
+  {% comment %} get the imagek gold tweezers image {% endcomment %}
+  {% assign variantTitles = image.variants | map:'title' | join:' ' %}
+  {% if variantTitles contains '24k' %}
+  <div class="js-tweezer-img prod-tweezer-img  far-image block-12/12 block-fh">
+    {% render 'lazy_img', size: '1024' ,  _image:image  %}    
+  </div>
+  {% break %}
+  {% endif %}
+  {% endfor %}
+
+  {% comment %}
+  ------------------------------------------------------------------------------
+  Product Image Gallery
+  ------------------------------------------------------------------------------
+  {% endcomment %}
+
+
+  {% if product.images.size > 1 %}
+
+  <div class="product-thumb">
+    {% for image in product.images %}
+    {% assign variantTitles = image.variants | map:'title' | join:' ' %}
+    {% unless variantTitles contains '24k' %}
+    <div class="thumb-item" data-image="{{ image.src | img_url: 'master' }}">
+      <span class="wrapper-img">
+        <span class="wrapper-img-chill">
+          <img  class="lazyload" data-src="{{ image | product_img_url: '320x' }}" src="{{ image | product_img_url: '320x' }}"/>
+        </span>
+      </span>
+    </div>
+    {% endunless %}
+    {% endfor %}
+
+  </div>
+  {% endif %}
+</div>

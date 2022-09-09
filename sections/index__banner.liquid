@@ -1,0 +1,115 @@
+{% assign banner = section.settings %}
+<div class="{%if banner.margin%}row--l{%endif%} {% if banner.full-bleed == false%}grid grid--f cell-l cell-r{% endif %}">
+  <div class="block-rel">
+    <div class="far-image far-image--landscape-xxs">
+      {% if banner.bgimage %}
+      {% assign _image = banner.bgimage %}
+      {% include 'lazy_img', size:'2048' %}
+      {% else %}
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN89x8AAuEB74Y0o2cAAAAASUVORK5CYII=">
+      {% endif %}
+    </div>
+    <div class="flex ct--xl cb--xl block-abc block-12/12 block-fh">
+      <div class="flex col-wrap align-center justify-center grid grid--f">
+        <div class="grid grid--f flex row-wrap align-center {{banner.layout}}  block-10/12 block-c @mobile-tablet__block-12/12 @mobile-large__justify-center" style="color:{{banner.text_color}};">
+          <div class="cell-l cell-r block-5/12 @mobile-grid__block-7/12 @mobile-large__block-8/12 @mobile-tablet__block-12/12">
+            <h1 class="h-style hxl-style row">{{banner.heading}}</h1>
+            <div class="rte-content {% if banner.newsletter or banner.button_url%}row--m {% endif %}">
+              <p>{{banner.paragraph}}</p>
+            </div>   
+            {% if banner.newsletter %}
+            {% include 'global__newsform' %}
+            {% else %}
+            {% if banner.button_url %}
+            <a href="{{banner.button_url}}"  class="btn btn--accent">{{banner.button_text}}</a>
+            {% endif %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{ 
+  "presets":[  
+      {  
+         "name":"index/banner"
+      }
+  ],
+  "name":"index/banner",
+ 
+  "settings":[ 
+    { 
+      "type":"checkbox",
+      "id":"full-bleed",
+      "label":"full bleed?"
+    },
+    { 
+      "type":"checkbox",
+      "id":"margin",
+      "label":"margin @ bottom?"
+    },
+    { 
+      "type":"image_picker",
+      "id":"bgimage",
+      "label":"image"
+    },
+    { 
+      "type":"select",
+      "id":"layout",
+      "label":"layout",
+      "default":"justify-right",
+      "options":[ 
+        { 
+          "value":"justify-left",
+          "label":"left"
+        },
+        { 
+          "value":"justify-right",
+          "label":"right"
+        },    
+        { 
+          "value":"justify-center tac",
+          "label":"center"
+        }
+      ]
+    },
+    { 
+      "type":"color",
+      "id":"text_color",
+      "label":"text color"
+    },
+    { 
+      "type":"text",
+      "id":"heading",
+      "label":"heading"
+    },
+    { 
+      "type":"textarea",
+      "id":"paragraph",
+      "label":"paragraph"
+    },
+    { 
+      "type":"text",
+      "id":"button_text",
+      "label":"button text"
+    },
+    { 
+      "type":"url",
+      "id":"button_url",
+      "label":"button url"
+    },
+    { 
+      "type":"checkbox",
+      "id":"newsletter",
+      "label":"include newsletter?"
+    },
+    { 
+      "type":"text",
+      "id":"newsletter_action",
+      "label":"newsletter id / action"
+    }
+  ]
+}
+{% endschema %}

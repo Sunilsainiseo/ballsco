@@ -1,0 +1,43 @@
+<div class="swiper-container block-fh" id="prodMainGal">
+  <ul class="swiper-wrapper block-fh">
+    {% for image in product.images %}
+    {% comment %} remove the imagek gold tweezers image {% endcomment %}
+    {% assign variantTitles = image.variants | map:'title' | join:' ' %}
+    {% unless variantTitles contains '24k' %}
+    <li class="block-12/12 swiper-slide block-fh" data-imageId="{{image.id}}">
+      {% assign size = 2048 | divided_by:image.aspect_ratio %}
+      <figure class="d-block block-12/12 block-fh" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+        <a class="d-block block-12/12 block-fh" href="{{image.src | img_url:"2048x" , format:'pjpg'}}" itemprop="contentUrl" data-size="2048x{{size}}" data-index="{{forloop.index}}">
+          <div class="far-image far-image--square d-block block-rel block-mfrh" >
+          {% render 'lazy_img', size: '1024' ,  _image:image , class:'swiper-lazy block-12/12' %}    
+          </div>
+        </a>
+      </figure>
+    </li>
+    {% endunless %}
+    {%endfor%}
+  </ul>
+  <div class=" flex row-wrap align-center justify-center">
+    <div class="swiper-button-prev swiper__control swiper__control--product @mobile-mobile__hide">
+      {% render 'svg' with 'prod_swiper_left' %}
+    </div>
+    <div class="swiper-button-next swiper__control swiper__control--product @mobile-mobile__hide">
+      {% render 'svg' with 'prod_swiper_right' %}
+    </div>
+  </div>
+</div>
+{% for image in product.images %}
+{% comment %} get the imagek gold tweezers image {% endcomment %}
+{% assign variantTitles = image.variants | map:'title' | join:' ' %}
+{% if variantTitles contains '24k' %}
+<div class="js-tweezer-img prod-tweezer-img  far-image block-12/12 block-fh">
+    {% render 'lazy_img', size: '1024' ,  _image:image  %}    
+</div>
+{% break %}
+{% endif %}
+{% endfor %}
+<script>
+  $(function(){
+    $('#prodMainGal').GalSlider()
+  })
+</script>

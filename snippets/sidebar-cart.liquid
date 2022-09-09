@@ -1,0 +1,22 @@
+<div class="wbsk-ui-sidebar js-wbsk-sidebar-cart">
+  <span class="wbsk-ui-mask wbsk-ui-sidebar__close"></span>
+  <div class="wbsk-ui-sidebar__container bg-white">
+    <span class="wbsk-ui-sidebar__close-icon wbsk-ui-sidebar__close-icon--accent wbsk-ui-sidebar__close"></span>
+    <div class="wbsk-cart__cart-template block-fh ct--l">
+    {% render 'cart__template' , sidebar:true%}
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function(){
+     
+    $('.js-wbsk-sidebar-cart').wbskSideBar({
+      openCtrlr:$('.js-wbsk-sidebar-cart__open')
+    })
+    
+    $.fn.wbskCart({
+      cartFetchUrl:'/cart?view=ajax-sidebar-cart'
+    })
+  })
+</script>

@@ -1,0 +1,599 @@
+<div class="bg-line-blue">
+
+  {% assign product1 = all_products['kit-de-demarrage-balls'] %}
+  {% assign product2 = all_products['tondeuse-balls'] %}
+
+  <div class="featured_pro pro_{{product2}}">
+    <div class="wr_pro d-flex flex-nowrap grid grid--f flex row-wrap block-rel">
+      <div class="pro_info_new block-6/12 cell-l cell-r row--l  @mobile-mobile__block-12/12">
+        <div class="pro_info mobile">
+          <h3 class="pro_title"><span>{{product2.title}}</span><img class="nickyour-img" src="{{ section.settings.image | img_url: '' }}" alt="" /></h3>
+          <div class="price_pro">
+            <span class="first_price">{{product2.variants[0].price | money }}</span>
+            <div class="save-percent-price">
+              <span class="var_price">{{product2.variants[1].price | money }}</span>
+              {% assign minPrice2 = product2.variants[0].price %}
+              {% assign RRP2 = product2.variants[1].price %}    
+              {% assign youSave2 = minPrice2 | minus:RRP %}
+              <span class="yousave">GAGNE €{{ RRP2 | minus: minPrice2 | remove: '00' | remove: '-' }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="pro_gallery">
+          <div class="main_img swiper home-mySwiper2-{{product2.id}}">
+            <div class="swiper-wrapper">
+              {% for image in product2.images %}
+              {% assign variantTitles = image.variants | map:'title' | join:' ' %}
+              <div class="swiper-slide" data-imageId="{{image.id}}">  
+                <img imgID="{{image.id}}" class="lazyload" data-src="{{ image | product_img_url: '640x' }}" src="{{ image | product_img_url: '640x' }}"/>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="wr_thumb">
+            <div thumbsSlider="" class="swiper home-mySwiper-thumb-{{product2.id}}">
+              <div class="swiper-wrapper">
+                {% for image in product2.images %}
+                {% assign variantTitles = image.variants | map:'title' | join:' ' %}
+                <div class="swiper-slide" data-imageId="{{image.id}}">  
+                  <img imgID="{{image.id}}" class="lazyload" data-src="{{ image | product_img_url: '360x' }}" src="{{ image | product_img_url: '360x' }}"/>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pro_testimonial">
+          <div class="title_tes">"LA MEILLEURE TONDEUSE QUE J'AI UTILISÉE !"</div>
+          <div class="text_tes">"Bravo BALLS ! Un rasage nickel, pas de coupure, net sur la peau, la meilleure tondeuse que j'ai jamais utilisée !</div>
+          <p class="authr">- Anonyme</p>
+        </div>
+      </div>
+      <div class=" block-6/12 cell-l cell-r row--l  @mobile-mobile__block-12/12">
+        <div class="pro_info desk">
+          <h3 class="pro_title"><span>{{product2.title}}</span><img class="nickyour-img" src="{{ section.settings.image | img_url: '' }}" alt="" /></h3>
+          <div class="price_pro">
+            <span class="first_price">{{product2.variants[0].price | money }}</span>
+            <div class="save-percent-price">
+              <span class="var_price">{{product2.variants[1].price | money }}</span>
+              {% assign minPrice2 = product2.variants[0].price %}
+              {% assign RRP2 = product2.variants[1].price %}    
+              {% assign youSave2 = minPrice2 | minus:RRP %}
+              <span class="yousave">Gagne €{{ RRP2 | minus: minPrice2 | remove: '00' | remove: '-' }}</span>
+            </div>
+          </div>
+           <div class="original-descr">
+          <div class="include">
+            <h4>LE FORFAIT COMPREND</h4>
+            <div class="include_left">
+              {{ section.settings.text }}
+            </div>
+            <div class="include_right">
+               {{ section.settings.text2 }}
+            </div>
+          </div>
+          </div>
+          <div class="qty_add form-product">
+            <form action="/cart/add" method="post" enctype="multipart/form-data" data-productid="{{product2.id}}">
+
+              <div class="ct cb cell-l cell-r extra-info t-white block-12/12 flex flex-nowrap align-items-center align-stretch justify-left">
+
+                {% comment %}
+                <div class="mobileqty ddd "> 
+                  <div class="cus-qty d-flex flex-nowrap">
+                    <input type='button' value='-' class='qtyminus-{{product2.id}}' field='quantity'/>
+                    <input type='number' name='quantity' value='1' class='qty' id="product-quantity-{{product2.id}}"/>
+                    <input type='button' value='+' class='qtyplus-{{product2.id}} ' field='quantity' />
+                  </div>
+                </div>
+                {% endcomment %}
+
+                <input class="js-prod-bar-selector__radio cstmvid" type="hidden" name="id" value="{{product2.variants[1].id}}">
+
+                <input type="hidden" name="properties[subscription_id]" value="245201" class="subscription_id">
+                <input type="hidden" name="properties[shipping_interval_frequency]" value="3" class="shipping_interval_frequency">
+                <input type="hidden" name="properties[shipping_interval_unit_type]" value="Months" class="shipping_interval_unit_type">
+                <!--   //Quantity Selector   -->   
+                <button class="btn btn--accent block-10/12">
+                  <span>{{'general.add_to_cart' | t}}</span>
+                </button>
+              </div>
+            </form>
+
+          </div>
+          <div class="pay_icon"><img class="nickyour-img" src="{{ 'shipp.png' | asset_url }}" alt="" /></div>
+          <div class="shippiing_info">
+            <ul class="d-flex flex-wrap justify-content-center">
+              <li class="d-flex flex-nowrap align-items-center justify-content-center"><img class="" src="{{ section.settings.image1 | img_url: '' }}" alt="" />{{ section.settings.fr }}</li>
+              <li class="d-flex flex-nowrap align-items-center justify-content-center"><img class="" src="{{ section.settings.image2 | img_url: '' }}" alt="" />{{ section.settings.nk }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="featured_pro pro_{{product1}}">
+    <div class="wr_pro d-flex flex-nowrap grid grid--f flex row-wrap block-rel">
+      <div class="pro_info_new block-6/12 cell-l cell-r row--l  @mobile-mobile__block-12/12">
+        <div class="pro_info mobile">
+
+          <h3 class="pro_title"><span>{{product1.title}}</span><img class="nickyour-img" src="{{ section.settings.image | img_url: '' }}" alt="" /></h3>
+          <div class="price_pro">
+            <span class="first_price">{{product1.variants[0].price | money }}</span>
+            <div class="save-percent-price">
+              <span class="var_price">{{product1.variants[1].price | money }}</span>
+              {% assign minPrice = product1.variants[0].price %}
+              {% assign RRP = product1.variants[1].price %}    
+              {% assign youSave = minPrice | minus:RRP %}
+              <span class="yousave">GAGNE €{{ RRP | minus: minPrice | remove: '00' | remove: '-' }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="pro_gallery">
+          <div class="main_img swiper home-mySwiper2-{{product1.id}}">
+            <div class="swiper-wrapper">
+              {% for image in product1.images %}
+              <div class="swiper-slide" data-imageId="{{image.id}}">  
+                <img imgID="{{image.id}}" class="lazyload" data-src="{{ image | product_img_url: '640x' }}" src="{{ image | product_img_url: '640x' }}"/>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="wr_thumb">
+            <div thumbsSlider="" class="swiper home-mySwiper-thumb-{{product1.id}}">
+              <div class="swiper-wrapper">
+                {% for image in product1.images %}
+                <div class="swiper-slide" data-imageId="{{image.id}}">  
+                  <img imgID="{{image.id}}" class="lazyload" data-src="{{ image | product_img_url: '360x' }}" src="{{ image | product_img_url: '360x' }}"/>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pro_testimonial">
+          <div class="title_tes">"JE VAIS AVOIR LE MEILLEUR ÉTÉ DE MA VIE GRACE A CETTE TONDEUSE"</div>
+          <div class="text_tes">"Je peux dire sans aucun doute que la sensation que tu as avec la tondeuse et la crème est seulement comparable à comment tu te sens quand tu trouves un lingot d'or dans la rue"</div>
+          <p class="authr">- FD</p>
+        </div>
+      </div>
+      <div class=" block-6/12 cell-l cell-r row--l  @mobile-mobile__block-12/12">
+        <div class="pro_info desk">
+
+          <h3 class="pro_title"><span>{{product1.title}}</span><img class="nickyour-img" src="{{ section.settings.image | img_url: '' }}" alt="" /></h3>
+          <div class="price_pro">
+            <span class="first_price">{{product1.variants[0].price | money }}</span>
+            <div class="save-percent-price">
+              <span class="var_price">{{product1.variants[1].price | money }}</span>
+              {% assign minPrice = product1.variants[0].price %}
+              {% assign RRP = product1.variants[1].price %}    
+              {% assign youSave = minPrice | minus:RRP %}
+              <span class="yousave">Gagne €{{ RRP | minus: minPrice | remove: '00' | remove: '-' }}</span>
+            </div>
+          </div>
+           <div class="original-descr">
+          <div class="include">
+
+            <div class="include_left">
+              <h4>LE FORFAIT COMPREND</h4>
+               {{ section.settings.text3 }}
+            </div>
+            <div class="include_right">
+              <h4>CADEAU GRATUIT</h4>
+ {{ section.settings.text4 }}
+ </div>
+          </div>
+          </div>
+          <div class="qty_add form-product">
+            <form action="/cart/add" method="post" enctype="multipart/form-data" data-productid="{{product1.id}}">
+              <div class="ct cb cell-l cell-r extra-info t-white block-12/12 flex flex-nowrap align-items-center align-stretch justify-left">
+               {% comment %} <div class="mobileqty ddd "> 
+                  <div class="cus-qty d-flex flex-nowrap">
+                    <input type='button' value='-' class='qtyminus-{{product1.id}}' field='quantity'/>
+                    <input type='number' name='quantity' value='1' class='qty' id="product-quantity-{{product1.id}}"/>
+                    <input type='button' value='+' class='qtyplus-{{product1.id}} ' field='quantity' />
+                  </div>
+                </div>{% endcomment %}
+
+                <input class="js-prod-bar-selector__radio cstmvid" type="hidden" name="id" value="{{product1.variants[1].id}}">
+                <input type="hidden" name="properties[subscription_id]" value="245201" class="subscription_id">
+                <input type="hidden" name="properties[shipping_interval_frequency]" value="3" class="shipping_interval_frequency">
+                <input type="hidden" name="properties[shipping_interval_unit_type]" value="Months" class="shipping_interval_unit_type">
+                <!--   //Quantity Selector   -->   
+                <button class="btn btn--accent block-10/12">
+                  <span>{{'general.add_to_cart' | t}}</span>
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="pay_icon"><img class="nickyour-img" src="{{ 'shipp.png' | asset_url }}" alt="" /></div>
+          <div class="shippiing_info">
+            <ul class="d-flex flex-wrap justify-content-center">
+              <li class="d-flex flex-nowrap align-items-center justify-content-center"><img class="" src="{{ section.settings.image1 | img_url: '' }}" alt="" />{{ section.settings.fr }}</li>
+              <li class="d-flex flex-nowrap align-items-center justify-content-center"><img class="" src="{{ section.settings.image2 | img_url: '' }}" alt="" />{{ section.settings.nk }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  {% comment %}
+  <div class="our-balls">
+    <div class="block-reviews d-flex flex-nowrap grid grid--f flex row-wrap block-rel" style="width: 100%;max-width: 100%;">
+      {% comment %}
+      <h2 class="t-blue">Our BALLS are Popular</h2>
+      {% endcomment %}
+      <img style="display:block;width:100%;" class="our-img" src="{{ 'our.png' | asset_url }}" alt="" />
+    </div>
+
+  </div>
+
+  {% endcomment %}
+</div>
+
+<style>
+  .pro_gallery .swiper{
+    overflow: hidden;
+  }
+  .d-flex {
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .flex-nowrap {
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+  }
+  .form-product .mobileqty .cus-qty {
+    width: 125px;
+    height: 100%;
+    position: relative;
+  }
+  .form-product .mobileqty .cus-qty input {
+    position: initial;
+    width: 100%;
+    max-width: 33.3333%;
+    opacity: 1;
+    height: 34px;
+    font-size: 22px;
+    text-align: center;
+  }
+  .form-product .mobileqty .cus-qty input.qtyminus, .form-product .mobileqty .cus-qty input.qtyplus {
+    background-color: #c4c4c4;
+    color: #fff;
+  }
+  .form-product .mobileqty .cus-qty input.qty {
+    border: 1px solid #c4c4c4;
+    color: #000;
+    margin: 0 2px;
+    text-align: center;
+    font-size: 20px;
+    width: 52px;
+    min-width: 52px;
+  }
+  .form-product .mobileqty .cus-qty:before {
+    content: "QUANTITY";
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: -13px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #000;
+    font-size: 10px;
+    line-height: 12px;
+  }
+  .form-product .btn.btn--accent {
+    width: 85% !important;
+    margin: 0;
+    max-width: 250px !important;
+    padding: 0 12px;
+    height: 45px;
+       margin-left: auto !important;
+    margin-right: auto !important;
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+    z-index: 1;
+      font-size: 14px;
+  }
+
+  .section-benefits-bar-new {
+    background-color: #fff;
+    padding-top: 55px;
+  }
+  .section-benefits-bar-new .header-text {
+    text-align: center;
+  }
+  .section-benefits-bar-new .header-text h1 {
+    font-size: 38px;
+    line-height: 42px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #015db9;
+  }
+  .section-benefits-bar-new .header-text h1 strong {
+    font-size: 1.3em;
+    font-weight: 700;
+  }
+  .section-benefits-bar-new .reviews-box {
+    text-align: center;
+    width: 100%;
+  }
+  .section-benefits-bar-new .reviews-box .customer-img {
+    max-width: 160px;
+    margin: 0 auto;
+    display: block;
+    overflow: hidden;
+  }
+  .section-benefits-bar-new .reviews-box .customer-img img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .section-benefits-bar-new .reviews-box h3 {
+    font-size: 22px;
+    line-height: 26px;
+    margin: 20px 0 10px;
+    color: #015db9;
+    text-transform: uppercase;
+  }
+  .section-benefits-bar-new .reviews-box p {
+    margin: 12px 0;
+    font-size: 16px;
+    line-height: 22px;
+    color: #015db9;
+  }
+  .shippiing_info {
+    border-bottom: 2px solid #ccc;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .shippiing_info ul li {
+    width: 100%;
+    color: #9b9b9b;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .shippiing_info ul li img {
+    max-width: 50px;
+    margin-right: 25px;
+  }
+
+  @media only screen and (min-width: 992px) {
+    .section-benefits-bar-new .reviews-box p {
+      padding: 0 15px;
+    }
+  }
+
+  @media only screen and (max-width: 767px) {
+    .section-benefits-bar-new .block-reviews {
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+    }
+    .section-benefits-bar-new .reviews-box {
+      max-width: 320px;
+      margin: 0 auto;
+    }
+    .section-benefits-bar-new .header-text h1 {
+      font-size: 28px;
+      line-height: 34px;
+      padding: 0 15px;
+    }
+    .section-benefits-bar-new .header-text h1 strong {
+      display: block;
+    }
+    .section-benefits-bar-new {
+      padding-top: 30px;
+    }
+  }
+
+
+</style>
+
+<script>
+  $(function(){
+    var swiper = new Swiper(".home-mySwiper-thumb-{{product1.id}}", {
+                            spaceBetween: 10,
+                            slidesPerView: 5,
+                            });
+    var swiper2 = new Swiper(".home-mySwiper2-{{product1.id}}", {
+                             spaceBetween: 10,
+                             thumbs: {
+                             swiper: swiper,
+                             }
+                             });
+
+    setTimeout(function() {
+
+      $('.home-mySwiper-thumb-{{product1.id}} .swiper-slide').eq(0).removeClass('swiper-slide-thumb-active');
+        $('.home-mySwiper-thumb-{{product1.id}} .swiper-slide').eq(1).addClass('swiper-slide-thumb-active');
+
+        }, 1000);
+
+
+      setTimeout(function() { 
+
+        swiper2.slideTo(1, 200);
+
+      }, 2000);
+    })
+</script>
+<script>
+  jQuery(document).ready(function(){
+
+    $("input#product-quantity-{{product1.id}}[name='quantity']").keyup(function(){
+      console.log($(this).val());
+    $("input#product-quantity-{{product1.id}}[name='quantity']").val($(this).val());
+      });
+
+    // This button will increment the value
+    $('.qtyplus-{{product1.id}}').click(function(e){
+      // Stop acting like a button
+      e.preventDefault();
+    // Get the field name
+    fieldName = $(this).attr('field');
+    // Get its current value
+    var currentVal = parseInt($('input#product-quantity-{{product1.id}}[name='+fieldName+']').val());
+                                // If is not undefined
+                                if (!isNaN(currentVal)) {
+      // Increment
+      $('input#product-quantity-{{product1.id}}[name='+fieldName+']').val(currentVal + 1);
+        } else {
+        // Otherwise put a 0 there
+        $('input#product-quantity-{{product1.id}}[name='+fieldName+']').val(0);
+        }
+        });
+      // This button will decrement the value till 0
+      $(".qtyminus-{{product1.id}}").click(function(e) {
+        // Stop acting like a button
+        e.preventDefault();
+      // Get the field name
+      fieldName = $(this).attr('field');
+      // Get its current value
+      var currentVal = parseInt($('input#product-quantity-{{product1.id}}[name='+fieldName+']').val());
+                                  // If it isn't undefined or its greater than 0
+                                  if (!isNaN(currentVal) && currentVal > 0) {
+        // Decrement one
+        $('input#product-quantity-{{product1.id}}[name='+fieldName+']').val(currentVal - 1);
+          } else {
+          // Otherwise put a 0 there
+          $('input#product-quantity-{{product1.id}}[name='+fieldName+']').val(0);
+          }
+          });
+      });
+</script>
+
+
+<script>
+  $(function(){
+    var swiper = new Swiper(".home-mySwiper-thumb-{{product2.id}}", {
+                            spaceBetween: 10,
+                            slidesPerView: 5,
+                            });
+    var swiper2 = new Swiper(".home-mySwiper2-{{product2.id}}", {
+                             spaceBetween: 10,
+                             thumbs: {
+                             swiper: swiper,
+                             }
+                             });
+
+    setTimeout(function() {
+
+      $('.home-mySwiper-thumb-{{product2.id}} .swiper-slide').eq(0).removeClass('swiper-slide-thumb-active');
+        $('.home-mySwiper-thumb-{{product2.id}} .swiper-slide').eq(3).addClass('swiper-slide-thumb-active');
+
+        }, 1000);
+
+
+      setTimeout(function() { 
+
+        swiper2.slideTo(3, 200);
+
+      }, 2000);
+    })
+</script>
+<script>
+  jQuery(document).ready(function(){
+
+    $("input#product-quantity-{{product2.id}}[name='quantity']").keyup(function(){
+      console.log($(this).val());
+    $("input#product-quantity-{{product2.id}}[name='quantity']").val($(this).val());
+      });
+
+    // This button will increment the value
+    $('.qtyplus-{{product2.id}}').click(function(e){
+      // Stop acting like a button
+      e.preventDefault();
+    // Get the field name
+    fieldName = $(this).attr('field');
+    // Get its current value
+    var currentVal = parseInt($('input#product-quantity-{{product2.id}}[name='+fieldName+']').val());
+                                // If is not undefined
+                                if (!isNaN(currentVal)) {
+      // Increment
+      $('input#product-quantity-{{product2.id}}[name='+fieldName+']').val(currentVal + 1);
+        } else {
+        // Otherwise put a 0 there
+        $('input#product-quantity-{{product2.id}}[name='+fieldName+']').val(0);
+        }
+        });
+      // This button will decrement the value till 0
+      $(".qtyminus-{{product2.id}}").click(function(e) {
+        // Stop acting like a button
+        e.preventDefault();
+      // Get the field name
+      fieldName = $(this).attr('field');
+      // Get its current value
+      var currentVal = parseInt($('input#product-quantity-{{product2.id}}[name='+fieldName+']').val());
+                                  // If it isn't undefined or its greater than 0
+                                  if (!isNaN(currentVal) && currentVal > 0) {
+        // Decrement one
+        $('input#product-quantity-{{product2.id}}[name='+fieldName+']').val(currentVal - 1);
+          } else {
+          // Otherwise put a 0 there
+          $('input#product-quantity-{{product2.id}}[name='+fieldName+']').val(0);
+          }
+          });
+      });
+</script>
+
+<script>
+  $(document).ready(function(){
+
+    $('#taller_slider').slick({
+      dots: false,
+      infinite: false,
+      speed: 300,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 991,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            infinite: true,
+            dots: false,
+            prevArrow: '<button id="prev-cus" class="slick-prev slick-arrow" aria-label="Previous" type="button"><i class="fa fa-angle-left" aria-hidden="true"></i></button>', 
+            nextArrow: '<button id="next-cus" class="slick-next slick-arrow" aria-label="Next" type="button"><i class="fa fa-angle-right" aria-hidden="true"></i></button>'
+          }
+        },
+        {
+          breakpoint: 639,
+          settings: {
+            dots: false,
+            infinite: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            prevArrow: '<button id="prev-cus" class="slick-prev slick-arrow" aria-label="Previous" type="button"><i class="fa fa-angle-left" aria-hidden="true"></i></button>', 
+            nextArrow: '<button id="next-cus" class="slick-next slick-arrow" aria-label="Next" type="button"><i class="fa fa-angle-right" aria-hidden="true"></i></button>'
+
+          }
+        }
+        // You can unslick at a given breakpoint now by adding:
+        // settings: "unslick"
+        // instead of a settings object
+      ]
+    });
+
+  });
+
+</script>
+
+
+
+
+<script>
+  $(function(){
+    $('.js-faq-question').click(function(e){
+      $(this).toggleClass('faq-heading--active').next().slideToggle(200)
+      $("li").removeClass("highlight");
+      $(this).parent('li').addClass("highlight");
+    })
+  })
+</script>

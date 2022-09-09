@@ -1,0 +1,16 @@
+
+{%unless class%}
+{%assign class="lazyload"%}
+{%endunless%}
+{%capture size_x%}{{size}}x{%endcapture%}
+<img class="{{class}} block-12/12 d-block" 
+     alt="{{_image.alt}}" 
+     src="{{_image.src | img_url:'256x' , format:'pjpg'}}"
+     data-src="{{_image.src  | img_url:size_x , format:'pjpg'}}"
+     data-sizes="auto"
+     data-srcset="{{_image.src | img_url:size_x , format:'pjpg'}} {{size}}w,
+     {{_image.src | img_url:'256x' , format:'pjpg'}} 256w,
+     {{_image.src | img_url:'512x' , format:'pjpg'}} 512w,
+     {{_image.src | img_url:'767x' , format:'pjpg'}} 767w,
+     {{_image.src | img_url:'1024x' , format:'pjpg'}} 1024w,
+     {{_image.src | img_url:'2048x' , format:'pjpg'}} 2048w"> 

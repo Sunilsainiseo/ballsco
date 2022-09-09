@@ -1,0 +1,389 @@
+<div id="collection-template" class="custom-coll">
+   <div class="hero-banner">
+    <img id="desk_ban" class="banner" src="{{ 'banner.png' | asset_url }}" />
+    <img id="mob_ban" class="banner" src="{{ '1.png' | asset_url }}" />
+    {% comment %}
+    <img class="banner" src="{{ 'banner.png' | asset_url }}" />
+    {% endcomment %}
+    <div class="caption">
+      {% if settings.header != blank %}
+      <h1>{{settings.header}}</h1>
+      {% endif %}
+      {% if settings.text != blank %}
+      <p>{{settings.text }} </p>
+      {% endif %}
+    </div>
+
+  </div>
+  <div class="grid grid--f flex row-wrap align-center justify-center block-rel custom-collection">
+    {% assign collection_handle = 'balls-collection' %}
+    {% for product in collections[collection_handle].products %}
+    {%comment%}   
+    {% assign short = product.description | split:'[short]' | last | split:'[/short]' | first %}
+    {%endcomment%}
+    <div class="block-6/12 cell-l cell-r row--l  @mobile-mobile__block-12/12 item-collection" data-product-id="{{ product.id }}">
+     <a class="pro-image-cus" href="{{ product.url }}">
+
+        {% if product.metafields.global.bundle_badges != blank %}
+        <span class="note-bundle" ><span>{{ product.metafields.global.bundle_badges }}</span></span>
+        {% endif %}
+
+
+        <span class="wrapper-img">
+          <span class="wrapper-img-chill">
+
+            <img class="img-product" src="{{ product.featured_image | img_url: '' }}" alt="{{ product.featured_image.alt }}" />
+          </span>
+        </span>
+        <h2 class="">{{ product.title }}
+          <span class="e">{{ product.variants.first.price | money}}</span></h2>
+        {%comment%}
+        <div class="descr-pro">
+          {% if product.handle == "sacksafe-blade-replenishment"%}
+          <p>Avec une grande broussaille naît le besoin de grandes lames.</p>
+          {%else%}
+          <p>Pas d'accrocs, pas de coupures : juste deux jolies boules étincelantes.</p>
+          {%endif%}
+        </div>
+        {%endcomment%}
+        <div class="descr-pro">
+          {% assign short = product.description | split:'[short]' | last | split:'[/short]' | first %}
+          <p class="">{{short}}</p>
+        </div>
+      </a>
+      <div class="link_product">
+        <button class="btn btn_learn">
+          <a class="learn-more" href="{{ product.url }}">En savoir plus</a>
+        </button>
+        <form action="/cart/add" method="post" enctype="multipart/form-data" data-productid="{{product.id}}">
+          <input class="js-prod-bar-selector__radio cstmvid" type="hidden" name="id" value="{{product.variants.first.id}}">
+          <button class="btn btn_under btn--accent cstmatcbtn">
+            <span>{{'general.add_to_cart' | t}}</span>
+          </button>
+        </form>
+      </div>
+
+    </div>
+    {%endfor%}
+  </div>
+</div>
+<style>
+  .custom-coll .pro-image-cus{
+    display: block;
+    position: relative;
+    overflow: hidden;
+    max-width: 550px;
+    margin: 0 auto;
+  }
+  .custom-coll .pro-image-cus .wrapper-img{
+    display: block;
+    height: 100%;
+    opacity: 1;
+    overflow: hidden;
+    padding-bottom: 100%;
+    position: relative;
+    width: 100%;
+  }
+  .custom-coll .pro-image-cus .wrapper-img .wrapper-img-chill{
+    height: 100%;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 100%;
+  }
+  .custom-coll .pro-image-cus .wrapper-img .wrapper-img-chill img{
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    width: 100%;
+
+  }
+  .custom-coll .pro-image-cus span.note-bundle{
+    display: inline-block;
+    background: #145db9;
+    text-align: center;
+    color: #fff;
+    padding: 10px 30px;
+    border-radius: 20px;
+    position: absolute;
+    right: 25px;
+    z-index: 2;
+    top: 25px;
+    width: 100%;
+    max-width: 270px;
+  }
+  .custom-coll .pro-image-cus span.note-bundle span{
+    display: block;
+    color: #fff;
+  }
+  .custom-collection{
+    padding-top: 100px;
+    padding-bottom: 150px;
+  }
+  #collection-template .hero-banner{
+    position: relative;
+  }
+  #collection-template img.banner{
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+  }
+     #collection-template img.banner#mob_ban{
+    display:none;
+  }
+  #collection-template img.img-product{
+    /* position: relative;
+    display: block;
+    width: 100%;
+    max-width: 550px;
+    height: 450px;
+    margin: auto;
+    object-fit: cover;*/
+  }
+  #collection-template .caption{
+    display: inline-block;
+    position: absolute;
+    left: 16%;
+    top: 50%;
+    -webkit-transform: translate(0%, -50%);
+    -moz-transform: translate(0%, -50%);
+    -o-transform: translate(0%, -50%);
+    -ms-transform: translate(0%, -50%);
+    transform: translate(0%, -50%);
+    width: 100%;
+    max-width: 500px;
+  }
+  #collection-template h1{
+    color: #fff;
+    font-weight: 900;
+    line-height: 45px;
+    font-size: 38px;
+    padding-bottom: 15px;
+  }
+  #collection-template p{
+    color: #fff;
+    font-size: 16px;
+    line-height: 22px;
+    max-width: 400px;
+  }
+  #collection-template .descr-pro p{
+    color: #000;
+    max-width: 400px;
+    margin: auto;
+    display: block;
+    text-align: center;
+    font-size: 18px;
+  }
+  #collection-template h2{
+    font-size: 24px;
+    line-height: 30px;
+    color: #145db9;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  #collection-template .link_product{
+    width: 100%;
+    max-width: 450px;
+    margin: auto;
+    margin-top: 50px;
+    display: flex;
+    display: -webkit-flex;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+  #collection-template .btn_learn{
+    border-bottom: 3px solid #015db9;
+    padding: 20px 25px;
+    color: #015db9;
+    -ms-flex: 0 0 35%;
+    flex: 0 0 35%;
+    max-width: 35%;
+    position: relative;
+  }
+  #collection-template .btn_learn:hover{
+    opacity: 0.8;
+  }
+  #collection-template .link_product form{
+    -ms-flex: 0 0 65%;
+    flex: 0 0 65%;
+    max-width: 65%;
+    position: relative;
+    -webkit-align-items: center;
+    align-items: center;
+    padding-left: 20px;
+  }
+  #collection-template .link_product form .btn{
+    float: right;
+  }
+  #collection-template{
+
+  }
+  #collection-template{
+
+  }
+
+  @media screen and (max-width: 1199px) {
+    #collection-template h1 {
+      line-height: 38px;
+      font-size: 30px;
+      padding-bottom: 0;
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    #collection-template .link_product {
+      max-width: 80%;
+    }
+  }
+  @media screen and (max-width: 991px) {
+    #collection-template .btn_learn{
+      -ms-flex: 0 0 40%;
+      flex: 0 0 40%;
+      max-width: 40%;
+    }
+    #collection-template .link_product form{
+      -ms-flex: 0 0 60%;
+      flex: 0 0 60%;
+      max-width: 60%;
+    }
+    #collection-template img.banner {
+     /* height: 350px;*/
+      object-fit: cover;
+      object-position: center;
+    }
+    #collection-template .caption{
+      left: 5%;
+    }
+    #collection-template .link_product {
+      max-width: 98%;
+    }
+    #collection-template img.img-product{
+      /*
+      max-width: 450px;
+      height: 400px;
+      */
+    }
+  }
+  @media screen and (max-width: 767px) {
+    #collection-template .link_product {
+      max-width: 70%;
+    }
+    #collection-template .caption{
+      position: relative;
+      top: 0;
+      left: 0;
+      max-width: 350px;
+      width: 100%;
+      display: block;
+      margin: auto;
+      margin-top: 150px;
+    }
+    #collection-template h1{
+      color: #145db9;
+      text-align: center;
+      line-height: 30px;
+      font-size: 24px;
+    }
+    #collection-template .caption p {
+      color: #000;
+      text-align: center;
+      line-height: 22px;
+      max-width: 100%;
+      width: 100%;
+      padding-top: 20px;
+    }
+    .custom-collection {
+      padding-top: 0;
+      padding-bottom: 80px;
+    }
+    #collection-template img.img-product {
+      /*
+      max-width: 100%;
+      height: 500px;
+      */
+    }
+
+    .custom-coll .pro-image-cus span.note-bundle {
+      top: 25px;
+      -webkit-transform: translate(-50%, 0%);
+      -moz-transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, 0%);
+      -ms-transform: translate(-50%, 0%);
+      transform: translate(-50%, 0%);
+      left: 50%;
+    }
+
+
+  }
+  @media screen and (max-width: 639px) {
+    #collection-template .link_product {
+      max-width: 90%;
+    }
+         #collection-template img.banner#desk_ban{
+      display:none;
+    }
+    #collection-template img.banner#mob_ban{
+      display:block;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    #collection-template img.banner {
+      object-position: 70%;
+    }
+    #collection-template .link_product {
+      max-width: 98%;
+    }
+    .custom-coll .pro-image-cus span.note-bundle span {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 16px;
+    }
+    .custom-coll .pro-image-cus span.note-bundle {
+      padding: 10px;
+      max-width: 212px;
+    }
+    #collection-template .btn_learn {
+      padding: 20px 5px;
+    }
+  }
+  @media screen and (max-width: 379px) {
+    #collection-template .custom-collection .link_product form .btn {
+      padding-left: 5px;
+      padding-right: 5px;
+      width: 100%;
+      max-width: 95%;
+    }
+
+  }
+
+  @media screen and (max-width: 359px) {
+    .custom-coll .pro-image-cus span.note-bundle span {
+      font-size: 12px;
+      line-height: 16px;
+    }
+    .custom-coll .pro-image-cus span.note-bundle {
+      padding: 6px;
+      top: 20px;
+      max-width: 190px;
+    }
+  }
+</style>

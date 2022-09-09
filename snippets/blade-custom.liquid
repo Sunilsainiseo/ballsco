@@ -1,0 +1,99 @@
+<div class="product-blade">
+  <div class="product-bottom">
+    <div class="ft-image odd">
+      <div class="img-bg">
+        {% if product.metafields.image.box1 == blank %}
+        <img src="{{ settings.image_left | img_url: '' }}" alt="" />
+        {% else %}
+        <img src="{{ product.metafields.image.box1 }}" alt="" />
+        {% endif %}
+      </div>
+    </div>
+    <div class="ft-content">
+      {% if product.metafields.title.box1 != blank %}
+      <div class="titl_cus">{{ product.metafields.title.box1 }}</div>
+      {% else %}
+     <div class="titl_cus">Refresh and so clean (clean).</div>
+      {% endif %}
+
+      {% if product.metafields.text.box1 != blank %}
+      <p>{{ product.metafields.text.box1 }}</p>
+      {% else %}
+      <p>This is no ordinary body wash. Super refreshing and skin conditioning formula invigorates, deodorizes and nourishes to help keep you running in tip-top shape. </p>
+      {% endif %}
+
+    </div>
+  </div>
+  <div class="product-bottom two">
+    <div class="ft-content">
+      {% if product.metafields.header.box2 == blank %}
+      <h3>PERFORMANCE & EXPERIENCE MATTER </h3>
+      {% else %}
+      <h3>{{product.metafields.header.box2}}</h3>
+      {% endif %}
+
+      {% if product.metafields.title.box2 != blank %}
+      <div class="titl_cus">{{ product.metafields.title.box2 }}</div>
+      {% else %}
+     <div class="titl_cus">Lather-up like <br>a grown-up</div>
+      {% endif %}
+
+      {% if product.metafields.text.box2 != blank %}
+      <p>{{ product.metafields.text.box2 }}</p>
+      {% else %}
+      <p>Nourishing body wash provides a conditioning lather that whisks away dirt, oil, and sweat. Invigorating menthol and eucalyptus, energizing ginseng, and deodorizing witch hazel help bring the clean wherever you go. Coconut oil and vitamin E and vitamin B5 hydrate, soothe and moisturize. </p>
+      {% endif %}
+    </div>
+    <div class="ft-image even">
+      <div class="img-bg">
+        {% if product.metafields.image.box2 == blank %}
+        <img src="{{ settings.image_right | img_url: '' }}" alt="" />
+        {% else %}
+        <img src="{{ product.metafields.image.box2 }}" alt="" />
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .product-blade .ft-content .titl_cus{
+    font-size: 54px;
+    color: #015db9;
+    font-weight: bold;
+    text-align: center;
+    line-height: 65px;
+    margin-top: 25px;
+    margin-bottom: 60px;
+  }
+  .product-blade .ft-content .titl_cus span{
+    display: block;
+  }
+  @media only screen and (max-width: 1199px) {
+    .product-blade .ft-content .titl_cus {
+      font-size: 46px;
+      line-height: 50px;
+      margin-bottom: 50px;
+    }
+  }
+   @media only screen and (max-width: 991px) {
+    
+    .product-blade .ft-content .titl_cus {
+      font-size: 32px;
+      line-height: 40px;
+      padding-right: 15px;
+      margin-top: 15px;
+      padding-left: 15px;
+      margin-bottom: 20px;
+    }
+   }
+   @media only screen and (max-width: 380px) {
+   
+    .product-blade .ft-content .titl_cus {
+      font-size: 30px;
+      line-height: 32px;
+    }
+
+
+  }
+</style>
+

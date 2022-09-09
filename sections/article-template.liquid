@@ -1,0 +1,30 @@
+<div class="article-content">
+  <div class="section-header text-center">
+    <p class="tags">{% for tag in article.tags %}{{ tag | link_to_tag: tag }} {% endfor %}</p>
+    <h1 class="article__title">{{ article.title }}</h1>
+    <p class="article__au">
+      <span class="article__author">By {{ article.author }} | </span>
+      <span class="article__date">
+        {{ article.published_at | date: " %b %d, %Y" }}
+      </span>
+    </p>
+  </div>
+  <div class="image-features">
+    <img src="{{ article.image | img_url: '' }}" alt="{{article.name}}">
+  </div>
+  <div class="rte blog-info-text" itemprop="articleBody">
+    {{ article.content }}
+
+    <div class="share-btns">
+      <div class="caption">share it on:</div>
+      <div class="share-btn">
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ shop.url }}{{article.url}}" class="facebook" target="_blank"></a>
+      </div>
+      <div class="share-btn">
+        <a href="https://twitter.com/share?text={{ article.title | url_encode }}%20via%20{{ shop.name | url_encode }}%20&url={{ shop.url }}{{article.url}}" class="twitter" target="_blank"></a>
+      </div>
+    </div>
+  </div>
+
+</div>
+

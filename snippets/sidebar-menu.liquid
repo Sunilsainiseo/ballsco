@@ -1,0 +1,35 @@
+<div class="wbsk-ui-sidebar js-wbsk-sidebar-menu">
+  <span class="wbsk-ui-mask wbsk-ui-sidebar__close"></span>
+  <div class="wbsk-ui-sidebar__container wbsk-ui-sidebar__container--left bg-accent t-white">
+    <span class="wbsk-ui-sidebar__close-icon wbsk-ui-sidebar__close"></span>
+    {% comment %}
+    <div class="cell-l cell-r ct cb row--m ct--xl">
+      <form action="/search" class="block-rel bdr-b ">
+        <input class="reset-input t-white ct cb cell-r block-12/12" type="search" name="q" placeholder="Search">
+        <button class="btn-reset wbsk-ui-search__submit"></button>
+      </form>
+    </div>
+    {% endcomment %}
+    <nav class="cell-l cell-r ct--xl">
+      <div class="row--l">
+        {% for link in linklists[settings.sidebar_main].links %}
+        <a href="{{link.url}}" class="h-style h2-style d-block row--s">
+          {{link.title}}
+        </a>
+        {% endfor %}
+      </div>
+      {% for link in linklists[settings.sidebar_secondary].links %}
+      <a href="{% if link.url contains "/account/" %}{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}{%else%}{{link.url}}{%endif%}" class="d-block row--s">{{link.title}}</a>
+      {% endfor %}
+      <a href="mailto:{{settings.contactEmail}}" class="d-block row--s">{{settings.contactEmail}}</a>
+       <a href="/collections/replacement-parts" class="d-block row--s">Replacement Parts</a>
+    </nav>
+    
+  </div>
+</div>
+
+<script>
+  $('.js-wbsk-sidebar-menu').wbskSideBar({
+    openCtrlr:$('.js-wbsk-sidebar-menu__open')
+  })
+</script>

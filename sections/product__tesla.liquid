@@ -1,0 +1,420 @@
+
+<div class="tesla-wr">
+  <h4 class="tesla-title">The Tesla of Ball Trimming</h4>
+  <div class="tesla-container flex row-wrap align-stretch">
+    <div class="tesla-left block-6/12 block-mfrh block-rel">
+
+      <table>
+        <tr>
+          <th class="mobile-show border-r"><span> <img class="" src="{{ 'ball-iocn.png' | asset_url }}" alt/> BALLS™</span></th>
+          <th class="border-r mobile-hidden"><span> <img class="" src="{{ 'ball-iocn.png' | asset_url }}" alt/> BALLS™</span></th>
+          <th class="border-l"><span> <img class="" src="{{ 'tesla.png' | asset_url }}" alt/> Tesla</span></th>
+        </tr>
+        <tr class="mob-boder">
+          <td class="mob-text mobile-show mob-ball"><span> <img class="" src="{{ 'ball-iocn.png' | asset_url }}" alt/> BALLS™</span></td>
+          <td class="mob-text border-r mobile-hidden"><span> <img class="" src="{{ 'ball-iocn.png' | asset_url }}" alt/> BALLS™</span></td>
+          <td class="mob-text no-border-r mob-tesla"><span> <img class="" src="{{ 'tesla.png' | asset_url }}" alt/> Tesla</span></td>
+        </tr>
+        <tr>
+          <td class="mobile-show"><span class="tesla-tick"><i class="fa fa-check" aria-hidden="true"></i></span></td>
+          <td class="ball-option "><span class="row-title">Silencieuse</span><span class="tesla-tick mobile-hide"><i class="fa fa-check" aria-hidden="true"></i></span></td>
+          <td class="no-border-r"><span class="tesla-tick"><i class="fa fa-check" aria-hidden="true"></i></span></td>
+        </tr>
+        <tr>
+          <td class="mobile-show"><span class="tesla-tick"><i class="fa fa-check" aria-hidden="true"></i></span></td>
+          <td class="ball-option"><span class="row-title">Fonctionne par tout temps</span><span class="tesla-tick mobile-hide"><i class="fa fa-check" aria-hidden="true"></i></span></td>
+          <td class="no-border-r"><span class="tesla-tick"><i class="fa fa-times" aria-hidden="true"></i></span></td>
+        </tr>
+        <tr>
+          <td class="mobile-show"><span class="tesla-tick"><i class="fa fa-check" aria-hidden="true"></i></span></td>
+          <td class="ball-option"><span class="row-title">Vous permet d'avoir des boules lisses</span><span class="tesla-tick mobile-hide"><i class="fa fa-check" aria-hidden="true"></i></span></td>
+          <td class="no-border-r"><span class="tesla-tick"><i class="fa fa-times" aria-hidden="true"></i></span></td>
+        </tr>
+        <tr>
+          <td class="mobile-show last-br"><span class="tesla-tick"><i class="fa fa-check" aria-hidden="true"></i></span></td>
+          <td class="ball-option"><span class="row-title">Aide à draguer les filles </span><span class="tesla-tick mobile-hide"><i class="fa fa-check" aria-hidden="true"></i></span></td>
+          <td class="no-border-r"><span class="tesla-tick"><i class="fa fa-question" aria-hidden="true"></i></span></td>
+        </tr>
+      </table>
+
+    </div>
+    <div class="tesla-right block-6/12 block-mfrh block-rel">
+      <div class="r-content-tesla">
+        <h4>How do you like this Elon Musk?</h4>
+        <div class="men">
+          <span class="number-men number-bf">
+            <span class="number-wr">4</span>
+          </span>
+          <img class="" src="{{ 'man.png' | asset_url }}" alt/>
+          <span class="number-men number-af">
+            <span class="number-wr">1</span>
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+"name": "Section name",
+"settings": []
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+<style>
+  .tesla-wr{
+    display: block;
+    margin-bottom: 100px;
+  }
+  .tesla-wr .tesla-title{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 56px;
+    font-feature-settings: 'ss03' on;
+    color: #015DB9;
+    display: block;
+    text-align: center;
+  }
+  .tesla-wr .tesla-left{
+    background: #0E6CC9;
+    color: #fff;
+    padding: 110px 30px 80px;
+  }
+  .tesla-wr .tesla-left table{
+    max-width: 750px;
+    float: right;
+  }
+  .tesla-wr .tesla-left table td{
+    border: 1px solid rgba(255, 255, 255, .2);
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+  .tesla-wr .tesla-left table th{
+    border-top: none;
+    padding-bottom: 35px;
+  }
+  .tesla-wr .tesla-left table th span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 34px;
+    line-height: 45px;
+    color: #FFFFFF;
+  }
+  .tesla-wr .tesla-left table th img{
+    display: block;
+    width: 100%;
+    max-width: 94px;
+    margin-right: 18px;
+  }
+  .tesla-wr .tesla-left table th.border-l{
+    border-left: 1px solid rgba(255, 255, 255, .2);
+  }
+  .tesla-wr .tesla-left table th.border-r{
+    float: right;
+    padding-right: 25px;
+  }
+  .tesla-wr .tesla-left table tr{
+  }
+
+  .tesla-wr .tesla-left table .ball-option span.tesla-tick{
+    float: right;
+    padding-right: 100px;
+  }
+  .tesla-wr .tesla-left table span.tesla-tick{
+  }
+  .tesla-wr .tesla-left table span.row-title{
+  }
+  .tesla-wr .tesla-left table .ball-option{
+    border-left: none;
+    text-align: left;
+    padding-left: 0;
+  }
+  .tesla-wr .tesla-left table .no-border-r{
+    border-right: none;
+    text-align: center;
+  }
+  .tesla-wr .tesla-right{
+    background: #015DB9;
+  }
+  .tesla-wr .tesla-right .r-content-tesla{
+  }
+  .tesla-wr .r-content-tesla{
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 600px;
+  }
+  .tesla-wr .r-content-tesla h4{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 46px;
+    line-height: 120%;
+    font-feature-settings: 'ss03' on;
+    color: #FFFFFF;
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto 35px;
+    max-width: 400px;
+  }
+  .tesla-wr .r-content-tesla .men{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .tesla-wr .r-content-tesla .men .number-men{
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: 100%;
+  }
+  .tesla-wr .r-content-tesla .men .number-men span{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 120%;
+    text-align: center;
+    font-feature-settings: 'ss03' on;
+    color: #FFFFFF;
+    background: #0E6CC9;
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    border: 7px solid #015DB9;
+  }
+  .tesla-wr .r-content-tesla .men img{
+    background-color: #0E6CC9;
+    margin-left: 45px;
+    margin-right: 45px;
+    border-radius: 100%;
+        max-width: 150px;
+  }
+  .tesla-wr .tesla-left table .mobile-show{
+    display: none;
+  }
+  .tesla-wr .tesla-left table .mobile-hide{
+  }
+  .tesla-wr .tesla-left table td.mobile-show.mob-ball,
+  .tesla-wr .tesla-left table td.border-r.mobile-hidden,
+  .tesla-wr .tesla-left table td.no-border-r.mob-tesla {
+  }
+  .tesla-wr .tesla-left table .mob-boder{
+    display:none;
+  }
+  @media only screen and (max-width: 1199px) {
+    .tesla-wr .tesla-left table th span {
+      font-size: 24px;
+      line-height: 45px;
+    }
+    .tesla-wr .tesla-left table th img {
+      max-width: 75px;
+      margin-right: 14px;
+    }
+    .tesla-wr .tesla-left table .ball-option span.tesla-tick {
+      padding-right: 20px;
+    }
+
+    .tesla-wr .r-content-tesla h4 {
+      font-size: 44px;
+      line-height: 120%;
+      margin: 0 auto 35px;
+      max-width: 360px;
+    }
+    .tesla-wr .r-content-tesla .men img {
+      margin-left: 25px;
+      margin-right: 25px;
+      max-width: 150px;
+    }
+    .tesla-wr .r-content-tesla .men .number-men span {
+
+    }
+  }
+
+  @media only screen and (max-width: 991px) {
+    .tesla-wr .tesla-left table th img {
+      max-width: 50px;
+      margin-right: 10px;
+    }
+    .tesla-wr .tesla-left table th span {
+      font-size: 20px;
+      line-height: 137%;
+    }
+
+    .tesla-wr .tesla-left table .ball-option span.tesla-tick i{
+      font-size: 14px;
+    }
+    .tesla-wr .tesla-left {
+      padding: 90px 10px 65px;
+    }
+    .tesla-wr .tesla-left table .ball-option span.tesla-tick {
+      padding-right: 4px;
+    }
+    .tesla-wr .r-content-tesla h4 {
+      font-size: 34px;
+      line-height: 120%;
+      margin: 0 auto 26px;
+      max-width: 280px;
+    }
+    .tesla-wr .r-content-tesla .men img {
+      margin-left: 25px;
+      margin-right: 25px;
+      max-width: 110px;
+    }
+    .tesla-wr .r-content-tesla .men .number-men span {
+      font-size: 32px;
+      line-height: 120%;
+      width: 65px;
+      height: 65px;
+    }
+.tesla-wr .tesla-title {
+    font-size: 48px;
+    margin-bottom: 40px;
+}
+
+  }
+
+  @media only screen and (max-width: 767px) {
+    .tesla-wr .tesla-right {
+      display: none;
+    }
+    .tesla-wr .tesla-left {
+      width: 100%;
+    }
+    .tesla-wr .tesla-left table .mobile-show{
+      display: block;
+      border-bottom: none;
+
+    }
+    .tesla-wr .tesla-left table .mobile-hidden{
+    }
+    .tesla-wr .tesla-left table td {
+      border: 1px solid rgba(255, 255, 255, .2);
+      padding-top: 18px;
+      padding-bottom: 18px;
+      border-left: none !important;
+      border-right: none !important;
+      text-align: center !important;
+    }
+    .tesla-wr .tesla-left table th span {
+      display: block;
+      text-align: center;
+      width: 100%;
+    }
+    .tesla-wr .tesla-left table th img {
+      max-width: 65px;
+      margin-right: 10px;
+      margin: 0 auto 10px;
+      border: 2px solid #fff;
+      display: block;
+      border-radius: 100%;
+    }
+    .tesla-wr .tesla-left table th {
+      display: none !important;
+    }
+
+    .tesla-wr .tesla-left table td.mobile-show.mob-ball, 
+    .tesla-wr .tesla-left table td.border-r.mobile-hidden,
+    .tesla-wr .tesla-left table td.no-border-r.mob-tesla {
+    }
+    .tesla-wr .tesla-left table td.mobile-show.mob-ball {
+      border-top: none;
+    }
+    .tesla-wr .tesla-left table td.border-r.mobile-hidden {
+      border-top: none;
+    }
+    .tesla-wr .tesla-left table td.no-border-r.mob-tesla {
+      border-top: none;
+    }
+    .tesla-wr .tesla-left table td.mob-text span{
+      font-size: 20px;
+      line-height: 137%;
+    }
+    .tesla-wr .tesla-left table td.mob-text span img{
+      max-width: 65px;
+      margin-right: 10px;
+      margin: 0 auto 10px;
+      border: 2px solid #fff;
+      border-radius: 100%;
+      display: block;
+    }
+    .tesla-wr .tesla-left {
+      padding: 45px 30px 54px;
+    }
+    .tesla-wr .tesla-left table td.border-r.mobile-hidden span{
+      display: none !important;
+    }
+    .tesla-wr .tesla-left table .mob-boder{
+      position:relative;
+    }
+    .tesla-wr .tesla-left table .mob-boder:before{
+      content: "";
+      position: absolute;
+      width: 1px;
+      height: 140px;
+      border: none;
+      background-color: rgba(255, 255, 255, .2);
+      left: 50%;
+      -webkit-transform: translate(-50%, 0%);
+      -moz-transform: translate(-50%, 0%);
+      -o-transform: translate(-50%, 0%);
+      -ms-transform: translate(-50%, 0%);
+      transform: translate(-50%, 0%);
+    }
+    .tesla-wr .tesla-left table .mob-boder {
+      display: revert;
+    }
+    .tesla-wr .tesla-left table .mobile-show.last-br{
+      border-bottom: 1px solid rgba(255, 255, 255, .2);
+    }
+  }
+   @media only screen and (max-width: 639px) {
+  .tesla-wr .tesla-title {
+    font-size: 40px;
+    margin-bottom: 40px;
+    line-height: 50px;
+}
+  
+  }
+  @media only screen and (max-width: 479px) {
+    .tesla-wr .tesla-left {
+      padding: 45px 20px 50px;
+    }
+    .tesla-wr .tesla-title {
+    font-size: 36px;
+    margin-bottom: 40px;
+    line-height: 42px;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+}
+  }
+  @media only screen and (max-width: 379px) {
+    .tesla-wr .tesla-left {
+      padding: 45px 12px 50px;
+    }
+    .tesla-wr .tesla-left table span.row-title {
+      font-size: 14px;
+      line-height: 130%;
+    }
+  }
+</style>

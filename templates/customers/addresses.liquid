@@ -1,0 +1,63 @@
+
+  <div class="grid grid--f">
+    <div class="block-c block-10/12 @mobile-tablet__block-12/12 flex row-wrap align-top justify-left">
+      {%include 'account__crumbs',page:"Addresses"%}
+      <div class="cell-l cell-r block-6/12 @mobile-tablet__block-12/12 row--m ">
+        <div class="block-12/12">
+          <div class="ct cb flex row-wrap align-center justify-space bdr-b bdr-grey">
+            <h2 class="h-style h3-style">{{'customer.addresses.title' | t}}</h2>
+          </div>
+          <div class=" ct cb ">
+            {%if  customer.addresses.size > 0%}
+            {% for address in customer.addresses%}
+            <div class="flex row-wrap align-center justify-right row--two clear_bottom--two b-bottom row--s">
+              
+              <p class="block-l">
+                <a href="#" data-id="{{address.id}}" class="" data-edit="">
+                {{address.name}}, {{address.city}}, {{address.zip}}  {% if address == customer.default_address %}(default){%endif%}
+                </a>
+              </p>
+              <a href="#" class="t-accent t-small"  data-delete-address="{{ address.id }}" ><u>{{'general.remove' | t}}</u></a>
+            </div>
+            {% endfor %}
+            {%else%}
+            <div class="rte-content">
+              <p>{{'customer.addresses.no_addressess' | t}}</p>
+            </div>
+            {%endif%}
+          </div>
+        </div>
+      </div>
+      <div data-address="new"  class="js-adress_block cell-l cell-r block-6/12 @mobile-tablet__block-12/12 row--m">
+        <div class="block-12/12">
+          <div class="ct cb flex row-wrap align-center justify-space bdr-b bdr-grey">
+            <h2 class="h-style h3-style">{{'customer.addresses.add_address' | t}}</h2>
+          </div>
+          <div class=" ct cb fs1">
+            {%assign button_text = 'customer.addresses.save_changes' | t%}
+            {%assign block_title = 'customer.addresses.edit_address' | t %}
+            {%include 'account__address_block' ,type:customer.new_address , button:button_text, title:block_title %}
+          </div>
+        </div>
+      </div>
+      {% for address in customer.addresses%}
+      <div style="display:none" data-address="{{address.id}}" class="js-adress_block cell-l cell-r block-6/12 @mobile-tablet__block-12/12 row--m">
+        <div class="block-12/12 ac__block">
+          <div class="ct cb flex row-wrap align-center justify-space bdr-b bdr-grey">
+            <h2 class="h-style h3-style">{{'customer.addresses.edit_address' | t}}</h2>
+            <a class="t-small t-accent" data-address="cancel" href="#" ><u>{{'general.cancel'|t}}</u></a>
+          </div>
+          {%assign button_text = 'customer.addresses.save_changes' | t%}
+          <div class=" ct cb fs1">
+            {%include 'account__address_block',type:address , button:button_text%}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+</div>
+<script>
+  $(function(){
+    customer.adresses();
+  });
+</script>

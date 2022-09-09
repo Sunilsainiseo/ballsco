@@ -1,0 +1,565 @@
+<div class="pairs_wellwith Cross-Sell-wr">
+  <div id="list_pair" class="grid grid--f flex row-wrap justify-center block-rel custom-collection">    
+
+    {% if product.metafields['Pairs Well With'].pairs-well-with %}
+
+    {% assign slugs = product.metafields['Pairs Well With'].pairs-well-with | split: ',' %}
+    {% for slug in slugs %}
+
+    {% assign slugClear = slug | strip %}
+    {% assign slugProduct = all_products[slugClear] %}
+
+    <div class="block-4/12 cell-l cell-r row--l  @mobile-mobile__block-12/12 item-collection" data-product-id="{{ slugProduct.id }}">
+      <div class="crossell-inner">
+       <a class="" href="{{ slugProduct.url | within: collection }}">
+        <div class="pro-image-cus">
+          <span class="wrapper-img">
+            <span class="wrapper-img-chill">
+              <img class="img-product" src="{{ slugProduct.featured_image | img_url: '' }}" alt="{{ slugProduct.featured_image.alt }}" />
+            </span>
+          </span>
+        </div>
+        <div class="Crossel-des_product">
+           <div class="pro_tit">{{ slugProduct.title }}
+            {%comment%}
+            <span class="e">{{ slugProduct.variants.first.price | money}}</span>
+            {%endcomment%}
+          </div>
+          <div class="descr-pro">
+            {% assign short = slugProduct.description | split:'[short]' | last | split:'[/short]' | first %}
+            <p class="">{{short}}</p>
+          </div>
+          {%comment%}
+          <a class="btn" href="{{ slugProduct.url | within: collection }}">COMMANDER</a>
+          {%endcomment%}
+          <form action="/cart/add" method="post" enctype="multipart/form-data" data-productid="{{slugProduct.id}}">
+            <input class="js-prod-bar-selector__radio cstmvid" type="hidden" name="id" value="{{slugProduct.variants.first.id}}">
+            <button class="btn btn_under btn--accent cstmatcbtn">
+              <span>COMMANDER</span>
+            </button>
+          </form>
+
+        </div>
+       </a>
+      </div>
+    </div>
+
+    {%endfor%}
+
+    {% else %}
+
+    {% for pro_item in linklists.cross-sell.links %}
+    {% assign product_item = pro_item.object %}
+    {% assign product_name = pro_item.title %}
+    {% assign product_url = pro_item.url %}
+    <div class="block-4/12 cell-l cell-r row--m @mobile-mobile__block-12/12 item-collection" data-product-id="{{ product_item.id }}">
+      <div class="crossell-inner">
+        <a class="" href="{{ product_url }}">
+        <div class="pro-image-cus">
+          <span class="wrapper-img">
+            <span class="wrapper-img-chill">
+              <img class="img-product" src="{{ product_item.featured_image | img_url: '' }}" alt="{{ product_item.featured_image.alt }}" />
+            </span>
+          </span>
+        </div>
+        <div class="Crossel-des_product">
+           <div class="pro_tit">{{ product_item.title }}
+            {%comment%}
+            <span class="e">{{ product_item.variants.first.price | money}}</span>
+            {%endcomment%}
+          </div>
+          <div class="descr-pro">
+            {% assign short = product_item.description | split:'[short]' | last | split:'[/short]' | first %}
+            <p class="">{{short}}</p>
+          </div>
+          {%comment%}
+          <a class="btn" href="{{ product_url }}">COMMANDER</a>
+          {%endcomment%}
+          <form action="/cart/add" method="post" enctype="multipart/form-data" data-productid="{{product_item.id}}">
+            <input class="js-prod-bar-selector__radio cstmvid" type="hidden" name="id" value="{{product_item.variants.first.id}}">
+            <button class="btn btn_under btn--accent cstmatcbtn">
+              <span>COMMANDER</span>
+            </button>
+          </form>
+
+        </div>
+        </a>
+      </div>
+    </div>
+    {%endfor%}
+    {% endif %}
+
+  </div>
+</div>
+
+
+<script>
+    $(document).ready(function(){
+var highestBox_tit = 0;
+    var highestBox_descr = 0;
+    // Select and loop the elements you want to equalise
+    $('#list_pair .pro_tit', this).each(function(){
+
+      // If this box is higher than the cached highest then store it
+      if($(this).height() > highestBox_tit) {
+        highestBox_tit = $(this).height(); 
+      }
+    }); 
+   $('#list_pair .descr-pro', this).each(function(){
+      if($(this).height() > highestBox_descr) {
+        highestBox_descr = $(this).height(); 
+      }
+    }); 
+    // Set the height of all those children to whichever was highest 
+    $('#list_pair .pro_tit',this).height(highestBox_tit);
+    $('#list_pair .descr-pro',this).height(highestBox_descr);
+});
+  $(document).ready(function(){
+
+    $('#list_pair').slick({
+      dots: false,
+      infinite: false,
+      speed: 300,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 991,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            infinite: true,
+            dots: true
+          }
+        },
+        {
+          breakpoint: 767,
+          settings: {
+            dots: true,
+            infinite: true,
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+        // You can unslick at a given breakpoint now by adding:
+        // settings: "unslick"
+        // instead of a settings object
+      ]
+    });
+
+  });
+
+</script>
+
+
+<style>
+  .Cross-Sell-wr {
+    padding-top: 55px;
+  }
+  .pairs_wellwith .pro-image-cus{
+    display: block;
+    position: relative;
+    overflow: hidden;
+    max-width: 550px;
+    margin: 0 auto;
+  }
+  .pairs_wellwith .pro-image-cus .wrapper-img{
+    display: block;
+    height: 100%;
+    opacity: 1;
+    overflow: hidden;
+    padding-bottom: 100%;
+    position: relative;
+    width: 100%;
+  }
+  .pairs_wellwith .pro-image-cus .wrapper-img .wrapper-img-chill{
+    height: 100%;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 100%;
+  }
+  .pairs_wellwith .pro-image-cus .wrapper-img .wrapper-img-chill img{
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    width: 100%;
+
+  }
+  .pairs_wellwith .pro-image-cus span.note-bundle{
+    display: inline-block;
+    background: #145db9;
+    text-align: center;
+    color: #fff;
+    padding: 10px 30px;
+    border-radius: 20px;
+    position: absolute;
+    right: 25px;
+    z-index: 2;
+    top: 25px;
+    width: 100%;
+    max-width: 270px;
+  }
+  .pairs_wellwith .pro-image-cus span.note-bundle span{
+    display: block;
+    color: #fff;
+  }
+  .pairs_wellwith .hero-banner{
+    position: relative;
+  }
+  .pairs_wellwith img.banner{
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+  }
+  .pairs_wellwith img.img-product{
+    /* position: relative;
+    display: block;
+    width: 100%;
+    max-width: 550px;
+    height: 450px;
+    margin: auto;
+    object-fit: cover;*/
+  }
+  .pairs_wellwith .caption{
+    display: inline-block;
+    position: absolute;
+    left: 16%;
+    top: 50%;
+    -webkit-transform: translate(0%, -50%);
+    -moz-transform: translate(0%, -50%);
+    -o-transform: translate(0%, -50%);
+    -ms-transform: translate(0%, -50%);
+    transform: translate(0%, -50%);
+    width: 100%;
+    max-width: 500px;
+  }
+  .pairs_wellwith h1{
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 900;
+    line-height: 45px;
+    font-size: 36px;
+    padding-bottom: 15px;
+  }
+  .pairs_wellwith p{
+    color: #fff;
+    font-size: 16px;
+    line-height: 22px;
+    max-width: 400px;
+  }
+  .pairs_wellwith .descr-pro p{
+    color: #000;
+    max-width: 100%;
+    margin: auto;
+    display: block;
+    text-align: left;
+    font-size: 18px;
+  }
+  .Crossel-des_product {
+    position: relative;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 25px;
+  }
+  .Crossel-des_product a.btn,
+  .Crossel-des_product button.btn {
+    padding: 0px 15px;
+    background-color: #a4ddf1;
+    text-transform: uppercase;
+    color: #000;
+    font-weight: 600;
+    font-size: 22px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    letter-spacing: 1px;
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    display: block;
+    line-height: 42px;
+    height: 40px;
+  }
+  .Crossel-des_product a.btn:hover,
+  .Crossel-des_product button.btn:hover{
+    background-color: #015db9;
+    color: #fff;
+  }
+  .crossell-inner {
+    background-color: #fff;
+    border: 4px solid #000;
+    height: 100%;
+    position: relative;
+    border-radius: 30px;
+    overflow: hidden;
+  }
+  .pairs_wellwith .pro_tit{
+    font-size: 28px;
+    line-height: 32px;
+    color: #000;
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    max-width: 150px;
+  }
+  .pairs_wellwith .pro_tit:before {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: #000;
+    margin-bottom: 15px;
+  }
+  .pairs_wellwith .link_product{
+    width: 100%;
+    max-width: 450px;
+    margin: auto;
+    margin-top: 50px;
+    display: flex;
+    display: -webkit-flex;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+  .pairs_wellwith .btn_learn{
+    border-bottom: 3px solid #015db9;
+    padding: 20px 25px;
+    color: #015db9;
+    -ms-flex: 0 0 40%;
+    flex: 0 0 40%;
+    max-width: 40%;
+    position: relative;
+  }
+  .pairs_wellwith .btn_learn:hover{
+    opacity: 0.8;
+  }
+  .pairs_wellwith .link_product form{
+    -ms-flex: 0 0 60%;
+    flex: 0 0 60%;
+    max-width: 60%;
+    position: relative;
+    -webkit-align-items: center;
+    align-items: center;
+    padding-left: 20px;
+  }
+  .pairs_wellwith .link_product form .btn{
+    float: right;
+  }
+
+  #list_pair button.slick-arrow{
+    display:none !important;
+  }
+  #list_pair .slick-dots{
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+  }
+  #list_pair .slick-dots li{
+    display: inline-block;
+  }
+  #list_pair .slick-dots li button{
+    border: none;
+    text-indent: -9999px;
+    margin: 0 12px;
+    width: 10px;
+    height: 10px;
+    overflow: hidden;
+    border-radius: 100%;
+    padding: 0;
+    background: #aaa;
+    outline: none;
+  }
+  #list_pair .slick-dots li.slick-active button{
+    background: #5d5b5b;
+  }
+  #list_pair .slick-dots li.slick-active{
+  }
+
+  @media screen and (max-width: 1199px) {
+    .pairs_wellwith h1 {
+      line-height: 38px;
+      font-size: 30px;
+      padding-bottom: 0;
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    .pairs_wellwith .link_product {
+      max-width: 80%;
+    }
+  }
+  @media screen and (max-width: 991px) {
+    .pairs_wellwith .btn_learn{
+      -ms-flex: 0 0 40%;
+      flex: 0 0 40%;
+      max-width: 40%;
+    }
+    .pairs_wellwith .link_product form{
+      -ms-flex: 0 0 60%;
+      flex: 0 0 60%;
+      max-width: 60%;
+    }
+    .pairs_wellwith img.banner {
+      height: 350px;
+      object-fit: cover;
+      object-position: center;
+    }
+    .pairs_wellwith .caption{
+      left: 5%;
+    }
+    .pairs_wellwith .link_product {
+      max-width: 98%;
+    }
+    .pairs_wellwith img.img-product{
+      /*
+      max-width: 450px;
+      height: 400px;
+      */
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .pairs_wellwith .link_product {
+      max-width: 70%;
+    }
+    .pairs_wellwith .caption{
+      position: relative;
+      top: 0;
+      left: 0;
+      max-width: 350px;
+      width: 100%;
+      display: block;
+      margin: auto;
+      margin-top: 150px;
+    }
+    .pairs_wellwith h1{
+      color: #145db9;
+      text-align: center;
+      line-height: 30px;
+      font-size: 24px;
+    }
+    .pairs_wellwith .caption p {
+      color: #000;
+      text-align: center;
+      line-height: 22px;
+      max-width: 100%;
+      width: 100%;
+      padding-top: 20px;
+    }
+    .custom-collection {
+      padding-top: 0;
+    }
+
+    .pairs_wellwith .pro-image-cus span.note-bundle {
+      top: 25px;
+      -webkit-transform: translate(-50%, 0%);
+      -moz-transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, 0%);
+      -ms-transform: translate(-50%, 0%);
+      transform: translate(-50%, 0%);
+      left: 50%;
+    }
+
+
+  }
+  @media screen and (max-width: 639px) {
+       .Crossel-des_product {
+    padding-left: 10px;
+    padding-right: 10px;
+    }
+    .Crossel-des_product a.btn, .Crossel-des_product button.btn {
+    font-size: 16px;
+    right: 10px;
+    }
+
+    .pairs_wellwith .pro_tit {
+    font-size: 24px;
+    line-height: 30px;
+    }
+    #collection-template .link_product {
+      max-width: 90%;
+    }
+    .pairs_wellwith .btn_learn {
+      padding: 20px 10px;
+    }
+    .pairs_wellwith .link_product form .btn {
+      padding: 20px;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    #collection-template img.banner {
+      object-position: 70%;
+    }
+    #collection-template .link_product {
+      max-width: 98%;
+    }
+    .pairs_wellwith .pro-image-cus span.note-bundle span {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 16px;
+    }
+    .pairs_wellwith .pro-image-cus span.note-bundle {
+      padding: 10px;
+      max-width: 212px;
+    }
+    #collection-template .btn_learn {
+      padding: 20px 5px;
+    }
+    .pairs_wellwith .btn_learn {
+      font-size: 15px;
+    }
+    .pairs_wellwith .link_product {
+      max-width: 80%;
+    }
+    .pairs_wellwith .link_product form .btn {
+      font-size: 15px;
+    }
+    .pairs_wellwith h4.pair-title {
+      font-size: 32px;
+      line-height: 42px;
+    }
+  }
+  @media screen and (max-width: 379px) {
+    #collection-template .custom-collection .link_product form .btn {
+      padding-left: 5px;
+      padding-right: 5px;
+      width: 100%;
+      max-width: 95%;
+    }
+    .pairs_wellwith .link_product {
+      max-width: 260px;
+      margin-top: 20px;
+    }
+
+  }
+
+  @media screen and (max-width: 359px) {
+    .pairs_wellwith .pro-image-cus span.note-bundle span {
+      font-size: 12px;
+      line-height: 16px;
+    }
+    .pairs_wellwith .pro-image-cus span.note-bundle {
+      padding: 6px;
+      top: 20px;
+      max-width: 190px;
+    }
+  }
+</style>
+

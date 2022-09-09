@@ -1,0 +1,233 @@
+<div class="header-text">
+  <div class="grid grid--f text-center">
+    <h2 class="head-h2">{{ section.settings.title}}</h2>
+    <div class="star_icon"><span>4.5</span>{% render 'icon_trustpilot'%}</div>
+    <img class="trustpilot-img" src="{{ 'Trustpilot_logo.png' | asset_url }}" alt="" />
+    <p>{{ section.settings.text}}</p>
+  </div>
+</div>
+<div class="block-reviews d-flex flex-nowrap grid grid--f flex row-wrap block-rel">
+  <div id="Trust-reviews-swiper" class="new-pilot swiper-container">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+      <div class="swiper-slide reviews-item block-4/12 @mobile-mobile__block-12/12">
+        <div class="grid grid--f flex row-wrap block-rel">
+          <div class="reviews-box">
+            <a href="{{ block.settings.link}}">
+              <div class="customer-img">
+                <img src="{{ block.settings.image | img_url: '' }}" alt="" />
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</div>
+
+
+<script>
+
+  $(document).ready(function() {
+    // Swiper: Slider
+    new Swiper('#Trust-reviews-swiper', {
+      loop: false,
+      slidesPerView: 3,
+      spaceBetween: 20,
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+        clickable: true,
+      },
+      breakpoints: {
+        1920: {
+          slidesPerView: 3,
+        },
+        1028: {
+          slidesPerView: 2,
+
+        },
+        640: {
+          slidesPerView: 1,
+          spaceBetween: 20,
+
+        }
+      }
+    });
+  });
+
+</script>
+
+<style>
+  .star_icon{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .star_icon span{
+        color: #000;
+    margin-right: 18px;
+    font-size: 20px;
+  }
+  .star_icon svg{
+        max-width: 255px;
+    max-height: 50px;
+  }
+  .star_icon{
+  }
+  .section-trustpilot-new {
+    padding-bottom: 55px;
+        background: -webkit-gradient(linear, left top, right top, from(#005cba), to(#ffffff));
+    background: -webkit-linear-gradient(top, #005cba, #ffffff);
+    background: -moz-linear-gradient(top, #005cba, #ffffff);
+    background: -o-linear-gradient(top, #005cba, #ffffff);
+    background: -ms-linear-gradient(top, #005cba, #ffffff);
+    background: linear-gradient(top, #005cba, #ffffff);
+    background-color: #005cba;
+    padding-top: 50px;
+    margin-top: -1px;
+    z-index: 1;
+    display: block;
+    position: relative;
+  }
+  #Trust-reviews-swiper {
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    /*max-width: 1000px;*/
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  #Trust-reviews-swiper.new-pilot{
+    max-width: 100%;
+  }
+  #Trust-reviews-swiper .swiper-pagination {
+    bottom: 0;
+  }
+  .trustpilot-img {
+
+  }
+  .section-trustpilot-new .header-text {
+    text-align: center;
+  }
+  .section-trustpilot-new .header-text .head-h2 {
+    font-size: 52px;
+    line-height: 60px;
+    margin-bottom: 0;
+    color: #fff;
+  }
+  .section-trustpilot-new .header-text img.trustpilot-img {
+    width: 100%;
+    display: block;
+    max-width: 125px;
+    margin: 8px auto 0;
+    height: auto;
+  }
+  .section-trustpilot-new .reviews-box {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+  }
+  .section-trustpilot-new .reviews-box a {
+    display: block;
+  }
+  .section-trustpilot-new .reviews-box .customer-img {
+    padding-top: 10px;
+  }
+  .section-trustpilot-new .reviews-box .customer-img img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+    margin: 0 auto;
+    box-shadow: 0px 0px 5px rgb(0 0 0 / 30%);
+  }
+
+
+  @media only screen and (min-width: 1029px) {
+    #Trust-reviews-swiper .swiper-pagination {
+      display: none;
+    }
+
+  }
+    @media only screen and (max-width: 1199px) {
+  .section-trustpilot-new .header-text .head-h2 {
+    font-size: 50px;
+    line-height: 58px;
+  }
+  }
+
+  @media only screen and (max-width: 992px) {
+.star_icon svg {
+    max-width: 200px;
+    max-height: 40px;
+}
+    .section-trustpilot-new .header-text .head-h2 {
+    font-size: 46px;
+    line-height: 56px;
+}
+  }
+
+  @media only screen and (max-width: 767px) {
+    .section-trustpilot-new .block-reviews {
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+    }
+    .section-trustpilot-new .reviews-box {
+      max-width: 320px;
+    }
+    .section-trustpilot-new .header-text .head-h2 {
+      padding: 0 15px;
+    }
+    .section-trustpilot-new .block-reviews .reviews-item {
+      margin-bottom: 20px;
+    }
+    .section-trustpilot-new .header-text .grid {
+      margin-bottom: 0px;
+    }
+  }
+  @media only screen and (max-width: 639px) {
+    .section-trustpilot-new .header-text .head-h2 {
+    font-size: 42px;
+    line-height: 44px;
+}
+  }
+
+</style>
+
+{% schema %}
+{
+"name": "Section Trustpilot new",
+"class": "section-trustpilot section-trustpilot-new",
+"max_blocks": 3,
+"settings": [
+{
+"type": "text",
+"id": "title",
+"label": "Header"
+},
+{
+"type": "textarea",
+"id": "text",
+"label": "SubText"
+}
+],
+"blocks": [
+{
+"name": "Block",
+"type": "Block",
+"settings": [
+{
+"type": "image_picker",
+"id": "image",
+"label": "Image"
+}
+]
+}
+]
+}
+{% endschema %}
+
